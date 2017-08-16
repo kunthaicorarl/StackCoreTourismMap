@@ -82,9 +82,7 @@
         @section('sidebar')
            @if (!Auth::guest())
        <div class="col-md-2 panel-default">
-
-
-<ul class="nav navbar-default sidebar panel panel-default nav-list">
+<ul class="nav nav-rb navbar-default sidebar panel panel-default nav-list">
        <li>
                             <a href="{{url('admin')}}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -101,7 +99,7 @@
       <ul class="nav nav-list collapse" id="submenu">
       <li><a href="#" title="Title">Roles</a></li>
       <li><a href="#" title="Title">Permissions</a></li>
-      <li><a href="#" title="Title">Users</a></li>
+      <li><a href="/admin/users" title="Title">Users</a></li>
     </ul>
   </li>
 </ul>

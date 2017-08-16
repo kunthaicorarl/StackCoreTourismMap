@@ -10,6 +10,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Redirector;
 use View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 class UserController extends Controller
 {
     /**
@@ -28,17 +30,17 @@ class UserController extends Controller
 	}
     public function search($q)
      {  
-        $province=null;
+        $user=null;
         if($q){
         $search=$q;
-        $province=Province::where('title_khmer','like','%'.$search.'%')
-        ->orWhere('title_english','like','%'.$search.'%')
-        ->orderBy('title_khmer')
+        $user=User::where('name','like','%'.$search.'%')
+        ->orWhere('email','like','%'.$search.'%')
+        ->orderBy('name')
         ->paginate(50);
         }else{
-         $province=Province::orderBy('id', 'desc')->paginate(3);
+         $user=User::orderBy('id', 'desc')->paginate(3);
         }
-      return view('provinces.search')->with('displayProvinces',$province);
+      return view('users.search')->with('displayUsers',$user);
     }
     /**
      * Show the form for creating a new resource.
@@ -47,15 +49,39 @@ class UserController extends Controller
      */
     public function create()
     {
-       return view('provinces.create');
+       return view('users.create');
     }
     public function detail($id)
     {
-         $province = Province::find($id);
-        return \View::make('provinces.detail')
-            ->with('province', $province);
+         $user = User::find($id);
+        return \View::make('users.detail')
+            ->with('user', $user);
     }
 
+
+       protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function createModel(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -67,35 +93,19 @@ class UserController extends Controller
     public function store(Request $request)
     {  
             $validator = Validator::make($request->all(), [
-                 'title_khmer' => 'required',
-                 'title_english' => 'required',
-                  'description_khmer' => 'required',
-                 'description_english' => 'required',
-                'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
             ]);
            if ($validator->passes()) {
-              $photoName=null;   
-             $userId=Auth::user()->id;
-             if($request->thumbnail->isValid()) {
-                $photoName = 'province_'.time().'.'.$request->thumbnail->getClientOriginalExtension();
-                $request->thumbnail->move(public_path('img/provinces'), $photoName);  
-             }
-                $user=new User;
-                $user=Auth::user();
-                $province =new Province;
-                $province->postal_code=$request->postal_code;
-                $province->title_khmer=$request->title_khmer;
-                $province->title_english=$request->title_english;
-                $province->thumbnail=$photoName?$photoName:null;
-                $province->description_khmer=$request->description_khmer;
-                $province->description_english=$request->description_english;
-                $province->status=$request->status=='Enable'?true:false;
-                $province->users()->associate($user);
-                $province->save();
-      
-                return response()->json(['success'=>true,'infor'=>['Province Successful Saved']]);
-      }
-        return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+                User::create([
+                'name' => $request->name,
+                'email' =>$request->email,
+                'password' => Hash::make($request->password),
+              ]);
+                return response()->json(['success'=>true,'infor'=>['User Successful Saved']]);
+           }
+         return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
     }
 
     /**
@@ -119,9 +129,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-           $province = Province::find($id);
-        return \View::make('provinces.edit')
-            ->with('province', $province);
+           $user = User::find($id);
+        return \View::make('users.edit')
+            ->with('user', $user);
     }
 
     /**
@@ -132,58 +142,38 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
-    
-           $validator = Validator::make($request->all(), [
-                 '_id'=>'required',
-                 'title_khmer' => 'required',
-                 'title_english' => 'required',
-                  'description_khmer' => 'required',
-                 'description_english' => 'required',
-            ]);
+    {      
+             
+             $arrayError=array();;
+             $val1=null;
+               $val2=null;
+                 $val3=null;
+            $validator = Validator::make($request->all(), [
+            '_id' => 'required',
+            'name' => 'required|string|max:255']);
+            // 'email' => 'required|string|email|max:255|unique:users',]);
+           if (!$validator->passes()) {
+                return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+           }
+           $userHashed=User::find($request->_id)->password;
+           $checkHased=Hash::check($request->oldPassword,$userHashed);
+           if(!$checkHased)  return response()->json(['success'=>false,'infor'=>['Password is not match!!']]); 
+            $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:6|confirmed']);
+            if (!$validator->passes()) {
+                return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+            }
+            if($request->oldPassword==$request->password)
+            {
+                return response()->json(['success'=>false,'infor'=>['You use old password!!']]); 
+            }
 
-    
-
-      
-           if ($validator->passes()) {
-                    $photoName=null;   
-                    $userId=Auth::user()->id;
-                    $isExistImage=Province::find($request->_id);                 
-             if($request->_thumbnail && $isExistImage->thumbnail==$request->_thumbnail){
-                    $photoName=$request->_thumbnail;
-                     
-             }else{
-                        $validator = Validator::make($request->only('thumbnail'), [
-                            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-                        ]);
-                        if ($validator->passes()) {
-                              if($request->thumbnail->isValid()) {
-                                    $photoName = 'province_'.time().'.'.$request->thumbnail->getClientOriginalExtension();
-                                    $request->thumbnail->move(public_path('img/provinces'), $photoName);  
-                                }else {
-                                        return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-                                }
-                        }else {                           
-                                 return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);                            
-                        }
-                       
-             }        
-                $user=new User;
-                $user=Auth::user();
-                $province =Province::find($request->_id);;
-                $province->postal_code=$request->postal_code;
-                $province->title_khmer=$request->title_khmer;
-                $province->title_english=$request->title_english;
-                $province->thumbnail=$photoName?$photoName:null;
-                $province->description_khmer=$request->description_khmer;
-                $province->description_english=$request->description_english;
-                $province->status=$request->status=='Enable'?true:false;
-                $province->users()->associate($user);
-                $province->save();
-                return response()->json(['success'=>true,'infor'=>['Province Successful Updated']]);
-          }
-        return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-     }
+              $user =User::find($request->_id);
+              $user->name=$request->name;
+              $user->password=Hash::make($request->password);
+              $user->save();
+              return response()->json(['success'=>true,'infor'=>['User have been updated']]); 
+   }
     /**
      * Remove the specified resource from storage.
      *

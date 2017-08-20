@@ -26,8 +26,11 @@
     <thead>
         <tr>
             <th width="3%">No</th>
-            <th width="17%">Title</th>
-            <th width="17%">Description</th>
+            <th width="17%">Tourism Place</th>
+            <th width="17%">Province Name</th>
+              <th width="17%">Client Name</th>
+               <th width="17%">Description</th>
+                <th width="17%">Location</th>
              <th width="15%">CreateBy</th>
             <th width="5%">Status</th>
             <th width="10%">Action</th>

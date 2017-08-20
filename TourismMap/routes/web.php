@@ -18,7 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index');
-Route::resource('/admin/tourisms', 'TourismController');
 ///Province
 Route::resource('/admin/provinces', 'ProvinceController');
 Route::get('/admin/provinces/{id}/detail', 'ProvinceController@detail');
@@ -35,6 +34,16 @@ Route::get('/admin/users/{id}/show', 'UserController@show');
 Route::post('/admin/users/store', 'UserController@store');
 Route::post('/admin/users/update', 'UserController@update');
 Route::post('/admin/users/destroy', 'UserController@destroy');
+
+//Tourism;
+Route::resource('/admin/tourisms', 'TourismController');
+Route::get('/admin/tourisms/{id}/detail', 'UserController@detail');
+Route::get('/admin/tourisms/{q}/search', 'UserController@search');
+Route::get('/admin/tourisms/{id}/show', 'UserController@show');
+Route::post('/admin/tourisms/store', 'UserController@store');
+Route::post('/admin/tourisms/update', 'UserController@update');
+Route::post('/admin/tourisms/destroy', 'UserController@destroy');
+
 
 // Route::resource('users', 'UserController');
 // Route::resource('roles', 'RoleController');

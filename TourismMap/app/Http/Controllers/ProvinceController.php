@@ -26,7 +26,12 @@ class ProvinceController extends Controller
           $object=new province;
           $province=Province::orderBy('id', 'desc')->paginate(3);
          return view('provinces.index')->with('displayProvinces',$province);
-	}
+    }
+    public function imageList()
+    {     
+    
+    }
+
     public function search($q)
      {  
         $province=null;

@@ -17,7 +17,6 @@ class CreateTourismPlacesTable extends Migration
                $table->increments('id');
                $table->integer('province_id')->unsigned();
                $table->integer('client_id')->unsigned();
-               $table->integer('image_id')->unsigned();
                $table->integer('user_id')->unsigned();
                $table->string('title_khmer');
                $table->string('title_english');
@@ -32,9 +31,6 @@ class CreateTourismPlacesTable extends Migration
                $table->double('longitude');
                 $table->foreign('client_id')
             ->references('id')->on('clients')
-            ->onDelete('cascade');
-                $table->foreign('image_id')
-            ->references('id')->on('images')
             ->onDelete('cascade');
                 $table->foreign('province_id')
             ->references('id')->on('provinces')

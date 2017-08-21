@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Redirector;
 use View;
+use App\Role;
 class ProvinceController extends Controller
 {
     /**
@@ -23,7 +24,22 @@ class ProvinceController extends Controller
     }
     public function index()
     {   
-          $province=Province::orderBy('id', 'desc')->paginate(3);
+      //  $user=Role::find(2)->users;
+
+        //  $user = User::find(2);
+        //  $user->roles()->attach(3);
+
+         //  $roles =User::find(1)->roles()->orderBy('name')->get();
+         // return response()->json(['success'=>false,'infor'=>$roles]); 
+          
+        //  $user =User::find(1);
+         
+        //  $user->roles()->saveMany([
+        //      new Role(['name' => 'A new comment.','display_name' => 'A new comment.']),
+        //      new Role(['name' => 'A new comment2.','display_name' => 'A new comment2.']),
+        //  ]);
+        //  return response()->json(['success'=>false,'infor'=>$user]); 
+         $province=Province::orderBy('id', 'desc')->paginate(3);
          return view('provinces.index')->with('displayProvinces',$province);
 	}
     public function search($q)

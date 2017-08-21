@@ -20,6 +20,19 @@ class CreateImagesTable extends Migration
             $table->string('type',100);
             $table->timestamps();
         });
+
+        Schema::create('province_image', function (Blueprint $table) {
+            $table->integer('province_id')->unsigned();
+            $table->integer('image_id')->unsigned();
+
+            $table->foreign('province_id')->references('id')->on('provinces')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('image_id')->references('id')->on('images')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['province_id', 'image_id']);
+        });
+
     }
 
     /**
@@ -28,7 +41,8 @@ class CreateImagesTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
+        Schema::dropIfExists('province_image');
         Schema::dropIfExists('images');
     }
 }

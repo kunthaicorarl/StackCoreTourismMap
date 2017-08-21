@@ -91,7 +91,7 @@ class ProvinceController extends Controller
             ]);
            if ($validator->passes()) {
               $photoName=null;   
-             $userId=Auth::user()->id;
+              $userId=Auth::user()->id;
              if($request->thumbnail->isValid()) {
                 $photoName = 'province_'.time().'.'.$request->thumbnail->getClientOriginalExtension();
                 $request->thumbnail->move(public_path('img/provinces'), $photoName);  
@@ -111,7 +111,7 @@ class ProvinceController extends Controller
       
                 return response()->json(['success'=>true,'infor'=>['Province Successful Saved']]);
       }
-        return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+       return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
     }
 
     /**

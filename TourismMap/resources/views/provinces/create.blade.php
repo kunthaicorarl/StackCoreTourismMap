@@ -81,7 +81,7 @@
                     </div>
             </div>
                 
-                 <div class="form-group">
+            <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                        Image Upload
                         <span class="required"></span>
@@ -93,7 +93,7 @@
                                class="form-control"
                                placeholder="File Upload" />
                     </div>  
-            </div>
+            </div>              
              <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                     </label>
@@ -122,32 +122,6 @@
                             <option value="Enable">Enable</option>
                                <option value="Disable">Disable</option>
                         </select>
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                     Latigute,Longitude
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postalCode"
-                               
-                               class="form-control"
-                               placeholder="Latigute" />
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                     Longitude
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postalCode"
-                               
-                               class="form-control"
-                               placeholder="Longitude" />
                     </div>
                 </div>
                   <div class="form-group">

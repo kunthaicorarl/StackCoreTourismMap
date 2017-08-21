@@ -44,8 +44,11 @@ $("#preview").attr("src",e.target.result);
                 setTimeout(function(){ window.location = "/admin/provinces"; }, 1000);
                }else{
                  if(msg.infor.length>0){
+            
                      for(var i=0;i<msg.infor.length;i++)
                        alertify.error(msg.infor[i]);
+                       
+                    // sweetAlert("Oops...", "Something went wrong!"+msg.infor.join(""), "error");
                  }
               }
             }

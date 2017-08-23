@@ -19,6 +19,9 @@
      <link href="{{ asset('libs/alertify/default.css') }}" rel="stylesheet"/>
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>     
      <script src="{{ asset('libs/alertify/alertify.js') }}"></script> 
+     <script src="{{URL::asset('libs/sweetalert-master/dist/sweetalert.min.js')}}"></script>
+   <link rel="stylesheet" type="text/css" href="{{URL::asset('libs/sweetalert-master/dist/sweetalert.css')}}">
+ 
  </head>
 <body>
     <div id="app">
@@ -141,9 +144,6 @@
     </div>
     <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script> 
-  
-    
-
   {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> 
   <script src="{{ asset('libs/formoid-solid-red.js') }}"></script>
   <link href="{{ asset('libs/formoid-solid-red.css') }}" rel="stylesheet">    --}}

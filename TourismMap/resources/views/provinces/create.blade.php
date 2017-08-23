@@ -81,7 +81,7 @@
                     </div>
             </div>
                 
-           <div class="form-group">
+            <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                        Image Upload
                         <span class="required"></span>
@@ -93,22 +93,7 @@
                                class="form-control"
                                placeholder="File Upload" />
                     </div>  
-            </div>
-           
-            <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                       Image Upload Collector
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                            <ul id="media-list" class="clearfix">
-                            <li class="myupload">
-                                <span><i class="fa fa-plus" aria-hidden="true"></i><input type="file" click-type="type2" id="picupload" name="picupload" class="picupload" multiple></span>
-                            </li>
-                        </ul>
-                    </div>  
-            </div>
-
+            </div>              
              <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                     </label>
@@ -183,6 +168,9 @@
 <script src="{{ asset('app/province/create.js') }}"></script>
 <link rel="stylesheet" href="{{asset('libs/image-and-video-uploader/css/style.css')}}"/> 
 <script src="{{asset('libs/image-and-video-uploader/js/app.js')}}"></script>
+
+<script src="{{asset('libs\ccFileUpload\ccFileUpload.js')}}"></script>
+<script src="{{asset('libs\ccFileUpload\ccFileUploadInit.js')}}"></script>
 <style>
 #myImg {
     border-radius: 5px;

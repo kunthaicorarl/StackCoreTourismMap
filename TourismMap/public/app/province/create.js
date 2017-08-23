@@ -48,9 +48,6 @@ $("#preview").attr("src",e.target.result);
                        alertify.error(msg.infor[i]);
                  }
               }
-               
-              // alertify.error('Error message');
-              //  $("#ajaxResponse").append("<div>"+msg+"</div>");
             }
         });
     });

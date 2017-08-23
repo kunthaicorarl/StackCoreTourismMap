@@ -58,7 +58,8 @@ $(function() {
         } else if (getAttr == 'type2') {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                names.push($(this).get(0).files[i].name);
+                // names.push($(this).get(0).files[i].name);
+                names.push($(this).get(0));
                 if (file.type.match('image')) {
 
                     var picReader = new FileReader();
@@ -94,6 +95,7 @@ $(function() {
                 picReader.readAsDataURL(file);
 
             }
+            console.log(names);
             // return array of file name
             
 

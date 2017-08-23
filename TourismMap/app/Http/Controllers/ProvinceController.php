@@ -117,7 +117,7 @@ class ProvinceController extends Controller
     if($request->hasFile('picupload'))
     {
        
-        return response()->json(['success'=>false,'infor'=>$files[0]]); 
+        return response()->json(['success'=>false,'infor'=>$files]); 
     }
     return response()->json(['success'=>false,'infor'=>$data]); 
     }

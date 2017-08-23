@@ -124,32 +124,6 @@
                         </select>
                     </div>
                 </div>
-                 {{--  <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                     Latigute,Longitude
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postalCode"
-                               
-                               class="form-control"
-                               placeholder="Latigute" />
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                     Longitude
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postalCode"
-                               
-                               class="form-control"
-                               placeholder="Longitude" />
-                    </div>
-                </div>  --}}
                   <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       
@@ -166,11 +140,6 @@
         <form>
        
 <script src="{{ asset('app/province/create.js') }}"></script>
-<link rel="stylesheet" href="{{asset('libs/image-and-video-uploader/css/style.css')}}"/> 
-<script src="{{asset('libs/image-and-video-uploader/js/app.js')}}"></script>
-
-<script src="{{asset('libs\ccFileUpload\ccFileUpload.js')}}"></script>
-<script src="{{asset('libs\ccFileUpload\ccFileUploadInit.js')}}"></script>
 <style>
 #myImg {
     border-radius: 5px;

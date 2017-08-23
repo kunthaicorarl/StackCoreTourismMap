@@ -90,6 +90,9 @@
                             <a href="{{url('admin')}}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                          <li>
+                            <a href="{{url('admin/gallerys')}}" class="active"><i class="fa fa-table fa-fw"></i> Gallery</a>
+                        </li>
+                         <li>
                             <a href="{{url('admin/provinces')}}" class="active"><i class="fa fa-table fa-fw"></i> Province</a>
                         </li>
                          <li>

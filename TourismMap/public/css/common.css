@@ -134,3 +134,24 @@
 .nav-rb{
     border-radius:0px !important; 
 }
+
+.table-text-only-trail {
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 148px;
+    height: 21px;
+}
+
+.title-font{
+    font-size: 13px !important;
+    color: #000000;
+    font-weight: 600 !important;
+}
+.subtitle-font{
+    font-size: 10px !important;
+    color: gray !important;
+}

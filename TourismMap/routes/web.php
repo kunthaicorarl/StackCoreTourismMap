@@ -36,6 +36,26 @@ Route::post('/admin/users/store', 'UserController@store');
 Route::post('/admin/users/update', 'UserController@update');
 Route::post('/admin/users/destroy', 'UserController@destroy');
 
+
+//Gallery
+Route::resource('/admin/gallerys', 'GalleryController');
+Route::get('/admin/gallerys/{id}/detail', 'GalleryController@detail');
+Route::get('/admin/gallerys/{q}/search', 'GalleryController@search');
+Route::get('/admin/gallerys/{id}/show', 'GalleryController@show');
+Route::post('/admin/gallerys/store', 'GalleryController@store');
+Route::post('/admin/gallerys/update', 'GalleryController@update');
+Route::post('/admin/gallerys/destroy', 'GalleryController@destroy');
+
+//Image
+Route::resource('/admin/images', 'ImageController');
+Route::get('/admin/images/{id}/detail', 'ImageController@detail');
+Route::get('/admin/images/{q}/search', 'ImageController@search');
+Route::get('/admin/images/{id}/show', 'ImageController@show');
+Route::post('/admin/images/store', 'ImageController@store');
+Route::post('/admin/images/update', 'ImageController@update');
+Route::post('/admin/images/destroy', 'ImageController@destroy');
+
+
 // Route::resource('users', 'UserController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('permissions', 'PermissionController');

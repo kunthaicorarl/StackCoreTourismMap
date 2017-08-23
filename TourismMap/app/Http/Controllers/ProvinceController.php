@@ -112,7 +112,14 @@ class ProvinceController extends Controller
     //             return response()->json(['success'=>true,'infor'=>['Province Successful Saved']]);
     //   }
     //    return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-    return response()->json(['success'=>false,'infor'=>$request->all()]); 
+    $files = $request->file('picupload');
+    $data=null;
+    if($request->hasFile('picupload'))
+    {
+       
+        return response()->json(['success'=>false,'infor'=>$files[0]]); 
+    }
+    return response()->json(['success'=>false,'infor'=>$data]); 
     }
 
     /**

@@ -1,14 +1,19 @@
 $(function() {
     var names = [];
+
+
+
+
     $('body').on('change', '.picupload', function(event) {
         var getAttr = $(this).attr('click-type');
         var files = event.target.files;
         var output = document.getElementById("media-list");
-        var z = 0
+        var z = 0;
+       
         if (getAttr == 'type1') {
 
             $('#media-list').html('');
-            $('#media-list').html('<li class="myupload"><span><i class="fa fa-plus" aria-hidden="true"></i><input type="file" click-type="type2" id="picupload" class="picupload" multiple></span></li>');
+            $('#media-list').html('<li class="myupload"><span><i class="fa fa-plus" aria-hidden="true"></i><input type="file" click-type="type2" id="picupload" name="picupload" class="picupload" multiple></span></li>');
             $('#hint_brand').modal('show');
 
             for (var i = 0; i < files.length; i++) {
@@ -64,7 +69,7 @@ $(function() {
 
                         var div = document.createElement("li");
 
-                        div.innerHTML = "<img src='" + picFile.result + "'" +
+                        div.innerHTML = "<input type='hidden' value='"+picFile.result+"'/><img src='" + picFile.result + "'" +
                             "title='" + picFile.name + "'/><div  class='post-thumb'><div class='inner-post-thumb'><a href='javascript:void(0);' data-id='" + event.target.fileName + "' class='remove-pic'><i class='fa fa-times' aria-hidden='true'></i></a><div></div>";
 
                         $("#media-list").prepend(div);
@@ -90,7 +95,25 @@ $(function() {
 
             }
             // return array of file name
-            console.log(names);
+            
+
+        //     var myArray = [];
+        //     for(var i = 0; i < files.length; i++){
+                
+        //               file = {
+        //                   'lastMod'    : files[i].lastModified,
+        //                   'lastModDate': files[i].lastModifiedDate,
+        //                   'name'       : files[i].name,
+        //                   'size'       : files[i].size,
+        //                   'type'       : files[i].type,
+        //               } 
+                
+        //               //add the file obj to your array
+        //               myArray.push(file)
+        //             }
+        //    console.log(myArray);
+        //    debugger;
+
         }
 
     });

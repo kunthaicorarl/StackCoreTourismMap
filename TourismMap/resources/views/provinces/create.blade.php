@@ -103,7 +103,7 @@
                     <div class="col-md-5 col-sm-6">
                             <ul id="media-list" class="clearfix">
                             <li class="myupload">
-                                <span><i class="fa fa-plus" aria-hidden="true"></i><input type="file" click-type="type2" id="picupload" class="picupload" multiple></span>
+                                <span><i class="fa fa-plus" aria-hidden="true"></i><input type="file" click-type="type2" id="picupload" name="picupload" class="picupload" multiple></span>
                             </li>
                         </ul>
                     </div>  

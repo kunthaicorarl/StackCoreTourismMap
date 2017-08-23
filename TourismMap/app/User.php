@@ -28,13 +28,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     public function provinces(){
-        return $this->hasMany('App\Province','id','user_id');
+        return $this->hasMany('App\Province');
     }
-    public function posts()
-    {
-        return $this->belongsToMany('App\Posts', 'post_detail', 'user_id', 'post_id');
-    }
-     public function roles(){
-        return $this->belongsToMany('App\Role');
-     }
+    // public function roles(){
+    //     return $this->belongsToMany('App\Role');
+    // }
 }

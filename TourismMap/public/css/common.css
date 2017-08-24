@@ -1,0 +1,130 @@
+.header-title-module-p{
+    margin-bottom: 6px;
+}
+.header-title-module-p-btn-23{
+      margin-right: -23px;
+}
+.container-p{
+     padding: 26px;
+}
+
+.smart-table {
+  max-width: 600px;
+  margin: 20px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 15%;
+    padding: 2px;
+    margin: 7px;
+    border: 1px solid #ccc;
+}
+.margin-top-p-4{
+    margin-top: 4px;
+}
+.p-4-l{
+    padding-left: 4px;
+}
+.p-4-r{
+    padding-right: 4px;
+}
+.p-4-t{
+    padding-top: 20px;
+}
+#btnSearch{
+    cursor:pointer;
+}
+@media(max-width:768px){
+.mob-back-h{
+    height: 40px;
+}
+}
+
+.btn-rb-success{
+        padding: 2px;
+    border: 1px solid #ccc;
+    background: #2ab27b;
+    color: white;
+    padding-left: 15px;
+    padding-right: 14px;
+    /* margin-bottom: 2px !important; */
+    /* margin: 2px; */
+    border-radius: 4px;
+}
+.btn-rb-danger{
+
+        padding: 2px;
+    border: 1px solid #ccc;
+    background: #bf5329;
+    color: white;
+    padding-left: 15px;
+    padding-right: 14px;
+    /* margin-bottom: 2px !important; */
+    /* margin: 2px; */
+    border-radius: 4px;
+}
+.btn-rb-default{
+
+        padding: 2px;
+    border: 1px solid #ccc;
+    background: #cbb956;
+    color: white;
+    padding-left: 15px;
+    padding-right: 14px;
+    /* margin-bottom: 2px !important; */
+    /* margin: 2px; */
+    border-radius: 4px;
+}
+
+.margin-rb-b{
+    margin-bottom: 3px;
+}
+.form-control-rb{
+    height: 28px;
+}
+.table-text-trail{
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 148px;
+    height: 63px;
+}
+
+.text-m-6{
+        margin-top: 6px;
+}
+
+.btn-rb-green {
+    padding: 2px;
+    border: 1px solid #ccc;
+    background: #5756cb;
+    color: white;
+    padding-left: 15px;
+    padding-right: 14px;
+    /* margin-bottom: 2px !important; */
+    /* margin: 2px; */
+    border-radius: 4px;
+}

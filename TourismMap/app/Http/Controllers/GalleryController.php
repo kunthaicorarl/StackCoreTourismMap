@@ -51,7 +51,7 @@ class GalleryController extends Controller
       */
      public function create()
      {
-        return view('users.create');
+        return view('gallerys.create');
      }
      public function detail($id)
      {
@@ -93,19 +93,24 @@ class GalleryController extends Controller
       */
  
      public function store(Request $request)
-     {  
+     {        
+           
              $validator = Validator::make($request->all(), [
              'name' => 'required|string|max:255',
-             'email' => 'required|string|email|max:255|unique:users',
-             'password' => 'required|string|min:6|confirmed',
              ]);
+             if (!$validator->passes()) {
+                return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+             }
+            $galleryType=GalleryType::where('name','=',$request->name)->get();
+            if($galleryType){
+                return response()->json(['success'=>false,'infor'=>'Gallery Type is Deplicated']);  
+            }
             if ($validator->passes()) {
-                 User::create([
+                 GalleryType::create([
                  'name' => $request->name,
-                 'email' =>$request->email,
-                 'password' => Hash::make($request->password),
+                 'description' =>$request->description,
                ]);
-                 return response()->json(['success'=>true,'infor'=>['User Successful Saved']]);
+                 return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved']]);
             }
           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
      }

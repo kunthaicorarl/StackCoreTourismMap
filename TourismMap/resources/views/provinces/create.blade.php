@@ -159,7 +159,7 @@
                        <a href="{{ url('/admin/provinces') }}" class="btn btn-sm btn-danger">Discard</a>
                           {{-- <input type="submit" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save"  class="btn btn-sm btn-success upload-image" value="Save"/> --}}
                      
-<button type="submit" class="btn btn-sm btn-success upload-image " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
+<button type="submit" class="btn btn-sm btn-success upload-image" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
 
                     </div>
                 </div>

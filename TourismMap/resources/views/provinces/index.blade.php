@@ -84,8 +84,10 @@
 </table>
 </div>
 
+<div class="row">
 <div class="container">
  {{$displayProvinces}}
+</div>
 </div>
 </div>
 <div>

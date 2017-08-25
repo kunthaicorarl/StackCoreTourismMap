@@ -15,15 +15,19 @@ $(document).ready(function() {
             success: function(msg) {
                 console.log(msg);
                  $btn.button('reset');
-               if(msg.success){
+                if(msg.success){
                 $("#userForm")[0].reset();
                 $("#preview").attr("src","");
                 alertify.success(msg.infor[0]);
                 setTimeout(function(){ window.location = "/admin/users"; }, 1000);
                }else{
-                 if(msg.infor.length>0){
+                 if(msg.infor!==undefined && msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)
                        alertify.error(msg.infor[i]);
+                 }else{
+                   alertify.alert(msg, function(){
+                    alertify.message('Bug');
+                  });
                  }
               }
             }

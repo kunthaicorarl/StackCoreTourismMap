@@ -1,173 +1,92 @@
 @extends('layouts.app')
 @section('content')
-<div class="col-md-10 p-4-l p-4-r"><div class="pull-left">
-<h4>Edit Province</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/provinces') }}" class="btn btn-default btn-sm">
+
+<div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
+<h4>Edit User</h4></div> <div class="pull-right">
+<a href="{{ url('/admin/users') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
 
-  <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-          <form enctype="multipart/form-data" id="provinceForm" action="{{ url('/admin/provinces/update') }}" name="provinceForm" method="Post"  class="form-horizontal">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-               <input type="hidden" id="_thumbnail" name="_thumbnail" value="{{ $province->thumbnail }}">
-               <input type="hidden" name="_id" value="{{ $province->id }}">
-            <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                      Postal Code
-                        <span class="required">*</span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postal_code"
-                               id="postal_code"
-                               class="form-control"
-                               value="{{$province->postal_code}}"
-                               placeholder="Postal Code" />
-                    </div>
-            </div>
-              <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                      Title Khmer
-                        <span class="required">*</span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                                name="title_khmer"
-                               id="title_khmer"
-                               class="form-control"
-                                value="{{$province->title_khmer}}"
-                               placeholder="Title Khmer" />
-                    </div>
-            </div>
-                
-                <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                      Title English
-                        <span class="required">*</span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="title_english"
-                               id="title_english"
-                               class="form-control"
-                                 value="{{$province->title_english}}"
-                               placeholder="Title English" />
-                    </div>
-            </div>
+    <div class="col-md-10 panel default margin-top-p-4 p-4-t">
+      <form  id="userForm" method="POST" action="{{url('/admin/users/update')}}" name="userForm" class="form-horizontal"> 
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="_id" value="{{ $user->id }}">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Name</label>
 
-             <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                      Des Khmer
-                        <span class="required">*</span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="description_khmer"
-                               id="description_khmer"
-                                value="{{$province->description_khmer}}"
-                               class="form-control"
-                               placeholder="Des Khmer" />
-                    </div>
-            </div>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="{{$user->name}}" required autofocus>
 
-             <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                       Des English
-                        <span class="required">*</span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="description_english"
-                               id="description_english"
-                               class="form-control"
-                                value="{{$province->description_english}}"
-                               placeholder="Des English" />
-                    </div>
-            </div>
-                
-                 <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                       Image Upload
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="file"
-                               name="thumbnail"
-                                id="thumbnail"
-                               class="form-control"
-                               placeholder="File Upload" />
-                    </div>  
-            </div>
-             <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                         <img id="preview" src="{{ asset('img/provinces/') }}/{{$province->thumbnail}}" style=" width: 100%;"/>
-                         <!-- The Modal -->
-                        <div id="myModal" class="modal">
-                        <span class="close">&times;</span>
-                        <img class="modal-content" id="img01">
-                        <div id="caption"></div>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-            </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input readonly id="email" type="email" class="form-control" name="email" value="{{$user->email}}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('oldPassword') ? ' has-error' : '' }}">
+                            <label for="oldPassword" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="oldPassword" type="password" class="form-control" name="oldPassword" required>
+                                @if ($errors->has('oldPassword'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('oldPassword') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">New Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new-password-confirm" class="col-md-4 control-label">Confirm New Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
 
 
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                            <a href="/admin/users"  class="btn btn-rb-danger">
+                                   Discard
+                                </a>
+                               <button type="submit" class="btn-rb-success userSubmit" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
+                            </div>
+                        </div>
+                    </form>
+    </div> 
+<script src="{{ asset('app/user/unSaveConfirm.js') }}"></script>
+<script src="{{ asset('app/user/update.js') }}"></script>
 
-                <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                         Status
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <select class="form-control"
-                                name="status"          
-                                >
-                       <option value="Enable" {{$province->status==1?'selected':''}}>Enable</option>
-                       <option value="Disable" {{$province->status!=1?'selected':''}}>Disable</option>     
-                               
-                        </select>
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                     Latigute,Longitude
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postalCode"
-                               
-                               class="form-control"
-                               placeholder="Latigute" />
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                     Longitude
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                        <input type="text"
-                               name="postalCode"
-                               
-                               class="form-control"
-                               placeholder="Longitude" />
-                    </div>
-                </div>
-                  <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
-                      
-                        <span class="required"></span>
-                    </label>
-                    <div class="col-md-5 col-sm-6">
-                       <a href="{{ url('/admin/provinces') }}" class="btn btn-sm btn-danger">Discard</a>
-                          <input type="submit" class="btn btn-sm btn-success upload-image" value="Save"/>
-                      
-                    </div>
-                </div>
-         <form>
-  </div>
-   <script src="{{ asset('app/province/create.js') }}"></script>
 @endsection
+

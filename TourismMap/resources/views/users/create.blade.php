@@ -9,10 +9,8 @@
     </a></div></div>
 
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-    
-      <form name="userForm" id="userForm" class="form-horizontal" method="POST" action="{{ url('/admin/users/store') }}">
-                        {{ csrf_field() }}
-
+      <form  id="userForm" method="POST" action="{{url('/admin/users/store')}}" name="userForm" class="form-horizontal"> 
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -65,14 +63,15 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <a href="/admin/users"  class="btn btn-rb-danger ">
+                            <a href="/admin/users"  class="btn btn-rb-danger">
                                    Discard
                                 </a>
-                               <button type="submit" class="btn btn-sm btn-success upload-image " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
+                               <button type="submit" class="btn-rb-success userSubmit" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
                             </div>
                         </div>
                     </form>
     </div> 
+<script src="{{ asset('app/user/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/user/create.js') }}"></script>
 
 @endsection

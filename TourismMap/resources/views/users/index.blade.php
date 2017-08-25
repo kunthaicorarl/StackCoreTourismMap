@@ -19,7 +19,7 @@
                 </div>
                  <div class="col-md-2">
                  {{-- <button data-toggle="modal" data-target="#create-user" class="btn btn-success btn-sm">Create New</button> --}}
-                 <a href="{{url('/admin/provinces/create')}}" class="btn btn-rb-success  btn-md">Create New</a>
+                 <a href="{{url('/admin/users/create')}}" class="btn btn-rb-success  btn-md">Create New</a>
                  </div>
 
 

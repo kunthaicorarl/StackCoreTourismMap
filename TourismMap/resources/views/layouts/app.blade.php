@@ -101,7 +101,7 @@
       <ul class="nav nav-list collapse" id="submenu">
       <li><a href="#" title="Title">Roles</a></li>
       <li><a href="#" title="Title">Permissions</a></li>
-      <li><a href="#" title="Title">Users</a></li>
+      <li><a href="/admin/users" title="Title">Users</a></li>
     </ul>
   </li>
 </ul>

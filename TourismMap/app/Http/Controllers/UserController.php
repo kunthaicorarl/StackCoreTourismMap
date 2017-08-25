@@ -47,7 +47,7 @@ class UserController extends Controller
      */
     public function create()
     {
-       return view('provinces.create');
+       return view('users.create');
     }
     public function detail($id)
     {
@@ -56,6 +56,30 @@ class UserController extends Controller
             ->with('province', $province);
     }
 
+
+       protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function createModel(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,36 +90,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {  
-            $validator = Validator::make($request->all(), [
-                 'title_khmer' => 'required',
-                 'title_english' => 'required',
-                  'description_khmer' => 'required',
-                 'description_english' => 'required',
-                'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            $validator = Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
             ]);
            if ($validator->passes()) {
-              $photoName=null;   
-             $userId=Auth::user()->id;
-             if($request->thumbnail->isValid()) {
-                $photoName = 'province_'.time().'.'.$request->thumbnail->getClientOriginalExtension();
-                $request->thumbnail->move(public_path('img/provinces'), $photoName);  
-             }
-                $user=new User;
-                $user=Auth::user();
-                $province =new Province;
-                $province->postal_code=$request->postal_code;
-                $province->title_khmer=$request->title_khmer;
-                $province->title_english=$request->title_english;
-                $province->thumbnail=$photoName?$photoName:null;
-                $province->description_khmer=$request->description_khmer;
-                $province->description_english=$request->description_english;
-                $province->status=$request->status=='Enable'?true:false;
-                $province->users()->associate($user);
-                $province->save();
+                User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+              ]);
+               
       
-                return response()->json(['success'=>true,'infor'=>['Province Successful Saved']]);
-      }
-        return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+                return response()->json(['success'=>true,'infor'=>['User Successful Saved']]);
+           }
+         return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
     }
 
     /**

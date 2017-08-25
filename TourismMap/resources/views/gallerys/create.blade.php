@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-3 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name"/>
+                                <input id="title" type="text" class="form-control" name="title"/>
                             </div>
                         </div>
 

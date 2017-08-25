@@ -34,7 +34,6 @@
         <tr>
             <th width="3%">No</th>
             <th width="17%">Title</th>
-              <th width="17%">Description</th>
             <th width="15%">CreateBy</th>
             <th width="10%">Action</th>
         </tr>
@@ -44,11 +43,11 @@
         <tr>
             <td>{{$value->id }}</td>
             <td>
-               <div class="table-text-trail">  
-               {{ $value->name }}
+               <div class="table-text-only-trail">  
+               {{ $value->title }}
                 </div>  
-                <div class="table-text-trail">  
-               {{ $value->description }}
+                <div class="table-text-only-trail">  
+                {{ $value->description }}
                 </div>  
            </td>
              <td>
@@ -58,10 +57,10 @@
             </td>
             <td>
              <div class="margin-rb-b">
-                <a href="{{url('/admin/users/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
              </div>
               <div class="margin-rb-b">
-                <a href="{{url('/admin/users/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
              </div>
               {{-- <div class="margin-rb-b">
                 <a href="{{url('/admin/provinces/')}}/{{$value->id}}/detail"  class="btn-rb-green">Permissions</a>

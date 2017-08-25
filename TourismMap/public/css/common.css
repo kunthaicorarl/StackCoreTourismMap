@@ -134,3 +134,14 @@
 .nav-rb{
     border-radius:0px !important; 
 }
+
+.table-text-only-trail {
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 148px;
+    height: 21px;
+}

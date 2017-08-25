@@ -96,23 +96,16 @@ class GalleryController extends Controller
      {        
            
              $validator = Validator::make($request->all(), [
-             'name' => 'required|string|max:255',
+             'title' => 'required|bail|unique:gallery_types',
              ]);
-             if (!$validator->passes()) {
-                return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-             }
-            $galleryType=GalleryType::where('name','=',$request->name)->get();
-            if($galleryType){
-                return response()->json(['success'=>false,'infor'=>'Gallery Type is Deplicated']);  
-            }
             if ($validator->passes()) {
-                 GalleryType::create([
-                 'name' => $request->name,
-                 'description' =>$request->description,
-               ]);
-                 return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved']]);
+                $galleryType=new GalleryType;
+                $galleryType->title=$request->title;
+                $galleryType->description=$request->description;
+                $galleryType->save();
+                 return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved'.$list]]);
             }
-          return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
      }
  
      /**
@@ -123,8 +116,8 @@ class GalleryController extends Controller
       */
      public function show($id)
      {
-         $province = Province::find($id);
-         return \View::make('provinces.remove')
+         $province = GalleryType::find($id);
+         return \View::make('gallerys.remove')
              ->with('province', $province);
      }
  
@@ -135,10 +128,10 @@ class GalleryController extends Controller
       * @return \Illuminate\Http\Response
       */
      public function edit($id)
-     {
-            $user = User::find($id);
-         return \View::make('users.edit')
-             ->with('user', $user);
+     {  
+         $gallerType = GalleryType::find($id);
+         return \View::make('gallerys.edit')
+             ->with('gallerType',$gallerType);    
      }
  
      /**
@@ -201,7 +194,7 @@ class GalleryController extends Controller
                          $province->delete();
                         return response()->json(['success'=>true,'infor'=>['Province Successful Removed']]);
               }
-         return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
- 
+         //return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+         return response()->json(['success'=>false,'infor'=>$request->all()]); 
      }
 }

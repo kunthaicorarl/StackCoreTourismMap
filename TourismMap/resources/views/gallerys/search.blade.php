@@ -2,8 +2,8 @@
 @section('content')
 <div>
 <div class="col-md-10 p-4-l p-4-r"><div class="pull-left">
-<h4>Users</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/users') }}" class="btn btn-default btn-sm">
+<h4>Gallery Type</h4></div> <div class="pull-right">
+<a href="{{ url('/admin/gallerys') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
@@ -24,30 +24,23 @@
     <thead>
         <tr>
             <th width="3%">No</th>
-            <th width="17%">Name</th>
-            <th width="17%">Photo</th>
-              <th width="10%">Activation</th>
-             <th width="15%">CreateBy</th>
-            <th width="10%">Action</th>
+            <th width="17%">Title</th>
+            <th width="15%">CreateBy</th>
+            <th width="5%">Action</th>
         </tr>
     </thead>
   <tbody>
-    @foreach($displayUsers as $key => $value)
+    @foreach($displayGalleryTypes as $key => $value)
         <tr>
             <td>{{$value->id }}</td>
             <td>
-               <div class="table-text-trail">  
-               <b>{{ $value->name }}</b>
-               <br>
-              <span>{{ $value->email }}<span>
-              <br>
-              {{-- <span class="label label-{{ $value->status==1?'success':'danger'}}">{{ $value->status==1?'enable':'disable'}}</span> --}}
-               </div>  
+               <div class="table-text-only-trail title-font">  
+               {{ $value->title }}
+                </div>  
+                <div class="table-text-only-trail subtitle-font">  
+                {{ $value->description }}
+                </div>  
            </td>
-             <td>
-               <img style="width: 35%;" src="{{ asset('img/provinces') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
-            </td>
-            <td>active</td>
              <td>
                 {{$value->created_at}}
                 <br>
@@ -55,10 +48,10 @@
             </td>
             <td>
              <div class="margin-rb-b">
-                <a href="{{url('/admin/users/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
              </div>
               <div class="margin-rb-b">
-                <a href="{{url('/admin/users/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
              </div>
               {{-- <div class="margin-rb-b">
                 <a href="{{url('/admin/provinces/')}}/{{$value->id}}/detail"  class="btn-rb-green">Permissions</a>
@@ -73,7 +66,7 @@
 </div>
 
 <div class="container">
- {{$displayUsers}}
+ {{$displayGalleryTypes}}
 </div>
 </div>
 </div>

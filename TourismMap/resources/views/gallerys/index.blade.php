@@ -8,7 +8,7 @@
         <div class="col-md-3">
             <h4>Galleries</h4>
         </div>
-             <form name="userSearchForm" id="userSearchForm">
+             <form name="gallerySearchForm" id="gallerySearchForm">
              <input type="hidden" name="_token" value="{{ csrf_token() }}">
                <div class="col-md-7 col-md-offset-2">
                <div class="col-md-10 header-title-module-p-btn-23">
@@ -35,7 +35,7 @@
             <th width="3%">No</th>
             <th width="17%">Title</th>
             <th width="15%">CreateBy</th>
-            <th width="10%">Action</th>
+            <th width="5%">Action</th>
         </tr>
     </thead>
   <tbody>
@@ -43,10 +43,10 @@
         <tr>
             <td>{{$value->id }}</td>
             <td>
-               <div class="table-text-only-trail">  
+               <div class="table-text-only-trail title-font">  
                {{ $value->title }}
                 </div>  
-                <div class="table-text-only-trail">  
+                <div class="table-text-only-trail subtitle-font">  
                 {{ $value->description }}
                 </div>  
            </td>
@@ -82,5 +82,5 @@
 </div>
 <div>
 </div>
-  <script src="{{ asset('app/user/searchUser.js') }}"></script> 
+  <script src="{{ asset('app/gallery/searchGallery.js') }}"></script> 
 @endsection

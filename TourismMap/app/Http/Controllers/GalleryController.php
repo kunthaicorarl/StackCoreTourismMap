@@ -32,17 +32,16 @@ class GalleryController extends Controller
      }
      public function search($q)
       {  
-         $user=null;
+         $galleryType=null;
          if($q){
          $search=$q;
-         $user=User::where('name','like','%'.$search.'%')
-         ->orWhere('email','like','%'.$search.'%')
-         ->orderBy('name')
+         $galleryType=GalleryType::where('title','like','%'.$search.'%')
+         ->orderBy('title')
          ->paginate(50);
          }else{
-          $user=User::orderBy('id', 'desc')->paginate(3);
+          $galleryType=GalleryType::orderBy('id', 'desc')->paginate(3);
          }
-       return view('users.search')->with('displayUsers',$user);
+       return view('gallerys.search')->with('displayGalleryTypes',$galleryType);
      }
      /**
       * Show the form for creating a new resource.
@@ -55,9 +54,9 @@ class GalleryController extends Controller
      }
      public function detail($id)
      {
-          $user = User::find($id);
-         return \View::make('users.detail')
-             ->with('user', $user);
+          $galleryType = GalleryType::find($id);
+         return \View::make('gallerys.detail')
+             ->with('galleryType', $galleryType);
      }
  
  
@@ -143,36 +142,20 @@ class GalleryController extends Controller
       */
      public function update(Request $request)
      {      
-              
-              $arrayError=array();;
-              $val1=null;
-                $val2=null;
-                  $val3=null;
-             $validator = Validator::make($request->all(), [
-             '_id' => 'required',
-             'name' => 'required|string|max:255']);
-             // 'email' => 'required|string|email|max:255|unique:users',]);
-            if (!$validator->passes()) {
-                 return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-            }
-            $userHashed=User::find($request->_id)->password;
-            $checkHased=Hash::check($request->oldPassword,$userHashed);
-            if(!$checkHased)  return response()->json(['success'=>false,'infor'=>['Password is not match!!']]); 
-             $validator = Validator::make($request->all(), [
-             'password' => 'required|string|min:6|confirmed']);
-             if (!$validator->passes()) {
-                 return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-             }
-             if($request->oldPassword==$request->password)
-             {
-                 return response()->json(['success'=>false,'infor'=>['You use old password!!']]); 
-             }
- 
-               $user =User::find($request->_id);
-               $user->name=$request->name;
-               $user->password=Hash::make($request->password);
-               $user->save();
-               return response()->json(['success'=>true,'infor'=>['User have been updated']]); 
+          $validator = Validator::make($request->all(), [
+            '_id' => 'required',  
+            'title' => 'required|bail|unique:gallery_types',
+            ]);
+           if ($validator->passes()) {
+               $galleryType=GalleryType::find($request->_id);
+               $galleryType->title=$request->title;
+               $galleryType->description=$request->description;
+               $galleryType->save();
+                return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved']]);
+           }
+           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+
+             
     }
      /**
       * Remove the specified resource from storage.

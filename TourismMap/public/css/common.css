@@ -145,3 +145,13 @@
     max-width: 148px;
     height: 21px;
 }
+
+.title-font{
+    font-size: 13px !important;
+    color: #000000;
+    font-weight: 600 !important;
+}
+.subtitle-font{
+    font-size: 10px !important;
+    color: gray !important;
+}

@@ -38,8 +38,8 @@
                         </div>
                     </form>
     </div> 
-<script src="{{ asset('app/user/unSaveConfirm.js') }}"></script>
-<script src="{{ asset('app/user/update.js') }}"></script>
+<script src="{{ asset('app/gallery/unSaveConfirm.js') }}"></script>
+<script src="{{ asset('app/gallery/update.js') }}"></script>
 
 @endsection
 

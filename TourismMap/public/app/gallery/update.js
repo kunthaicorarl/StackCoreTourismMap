@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    $('#userForm').on('submit', function (e) {
+    $('#galleryTypeForm').on('submit', function (e) {
         e.preventDefault();
         var $form=$(this);
-          var $btn = $('.userSubmit');
+          var $btn = $('.galleryTypeSubmit');
           $btn.button('loading');
-        
+         
         $.ajax({
             type: "POST",
             url: $(this).attr('action'),
@@ -21,10 +21,10 @@ $(document).ready(function() {
                      return;   
                     }
                 if(msg.success){
-                $("#userForm")[0].reset();
+                $("#galleryTypeForm")[0].reset();
                 $("#preview").attr("src","");
                 alertify.success(msg.infor[0]);
-                setTimeout(function(){ window.location = "/admin/users"; }, 1000);
+                setTimeout(function(){ window.location = "/admin/gallerys"; }, 1000);
                }else{
                  if(msg.infor!==undefined && msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)

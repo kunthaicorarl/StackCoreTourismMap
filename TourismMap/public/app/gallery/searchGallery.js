@@ -1,7 +1,7 @@
 $(document).ready( function() {
-    var $form=$('#userSearchForm');
+    var $form=$('#gallerySearchForm');
     var $btn=$('#btnSearch');
-    var strUrl="/admin/users/";
+    var strUrl="/admin/gallerys/";
     $form.bind("keypress", function(e) {
    if (e.keyCode == 13) {               
     e.preventDefault();

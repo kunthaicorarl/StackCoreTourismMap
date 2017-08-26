@@ -142,6 +142,7 @@
 
 <script src="{{ asset('app/image/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/image/create.js') }}"></script>
+<script src="{{ asset('app/image/cacheData.js') }}"></script>
 
 @endsection
 

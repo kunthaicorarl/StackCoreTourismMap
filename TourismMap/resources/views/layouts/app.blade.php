@@ -93,6 +93,16 @@
                             <a href="{{url('admin/gallerys')}}" class="active"><i class="fa fa-table fa-fw"></i> Gallery</a>
                         </li>
                          <li>
+                            <a class="accordion-heading" data-toggle="collapse" data-target="#subMedia">
+      <span class="nav-header-primary"><i class="fa fa-wrench fa-fw"></i>  Media <b class="caret"></b></span>
+    </a>
+      <ul class="nav nav-list collapse" id="subMedia">
+      <li><a href="{{url('admin/images')}}" title="Title">Images</a></li>
+      <li><a href="#" title="Title">Videos</a></li>
+    </ul>
+                           
+                        </li>
+                         <li>
                             <a href="{{url('admin/provinces')}}" class="active"><i class="fa fa-table fa-fw"></i> Province</a>
                         </li>
                          <li>

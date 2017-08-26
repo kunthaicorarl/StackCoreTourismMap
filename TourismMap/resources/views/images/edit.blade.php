@@ -2,21 +2,22 @@
 @section('content')
 
 <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
-<h4>Create New Gallery</h4></div> <div class="pull-right">
+<h4>Edit Gallery Type</h4></div> <div class="pull-right">
 <a href="{{ url('/admin/gallerys') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
 
-<div id="result"></div>
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-      <form  id="galleryTypeForm" method="POST" action="{{url('/admin/gallerys/store')}}" name="galleryTypeForm" class="form-horizontal"> 
+
+ <form  id="galleryTypeForm" method="POST" action="{{url('/admin/gallerys/update')}}" name="galleryTypeForm" class="form-horizontal"> 
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                       <input type="hidden" name="_id" value="{{ $gallerType->id }}">
                         <div class="form-group">
                             <label for="name" class="col-md-3 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="title"/>
+                                <input id="title" type="text" class="form-control" value="{{ $gallerType->title }}"  name="title"/>
                             </div>
                         </div>
 
@@ -24,7 +25,7 @@
                             <label for="name" class="col-md-3 control-label">Description</label>
 
                             <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+                            <textarea class="form-control" rows="5" id="description" name="description">{{ $gallerType->description }}</textarea>
                             </div>
                         </div>                  
                         <div class="form-group">
@@ -38,7 +39,7 @@
                     </form>
     </div> 
 <script src="{{ asset('app/gallery/unSaveConfirm.js') }}"></script>
-<script src="{{ asset('app/gallery/create.js') }}"></script>
+<script src="{{ asset('app/gallery/update.js') }}"></script>
 
 @endsection
 

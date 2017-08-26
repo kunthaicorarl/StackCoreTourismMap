@@ -93,7 +93,7 @@ class GalleryController extends Controller
  
      public function store(Request $request)
      {        
-           
+        
              $validator = Validator::make($request->all(), [
              'title' => 'required|bail|unique:gallery_types',
              ]);
@@ -104,7 +104,7 @@ class GalleryController extends Controller
                 $galleryType->save();
                  return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved'.$list]]);
             }
-            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+             return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
      }
  
      /**

@@ -20,8 +20,10 @@
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>     
      <script src="{{ asset('libs/alertify/alertify.js') }}"></script> 
      <script src="{{URL::asset('libs/sweetalert-master/dist/sweetalert.min.js')}}"></script>
-   <link rel="stylesheet" type="text/css" href="{{URL::asset('libs/sweetalert-master/dist/sweetalert.css')}}">
- 
+     <link rel="stylesheet" type="text/css" href="{{URL::asset('libs/sweetalert-master/dist/sweetalert.css')}}">
+   {{--  <script src="http://www.dropzonejs.com/js/dropzone.js?v=6"></script>  --}}
+    {{--  <script src="{{URL::asset('libs/loadingoverlay/loadingoverlay.min.js')}}"></script>  
+    <script src="{{URL::asset('libs/loadingoverlay/loadingoverlay_progress.min.js')}}"></script>    --}}
  </head>
 <body>
     <div id="app">
@@ -93,6 +95,16 @@
                             <a href="{{url('admin/gallerys')}}" class="active"><i class="fa fa-table fa-fw"></i> Gallery</a>
                         </li>
                          <li>
+                            <a class="accordion-heading" data-toggle="collapse" data-target="#subMedia">
+      <span class="nav-header-primary"><i class="fa fa-wrench fa-fw"></i>  Media <b class="caret"></b></span>
+    </a>
+      <ul class="nav nav-list collapse" id="subMedia">
+      <li><a href="{{url('admin/images')}}" title="Title">Images</a></li>
+      <li><a href="#" title="Title">Videos</a></li>
+    </ul>
+                           
+                        </li>
+                         <li>
                             <a href="{{url('admin/provinces')}}" class="active"><i class="fa fa-table fa-fw"></i> Province</a>
                         </li>
                          <li>
@@ -146,7 +158,9 @@
     </div>
     </div>
     <!-- Scripts -->
+    
   <script src="{{ asset('js/app.js') }}"></script> 
+ 
   {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> 
   <script src="{{ asset('libs/formoid-solid-red.js') }}"></script>
   <link href="{{ asset('libs/formoid-solid-red.css') }}" rel="stylesheet">    --}}

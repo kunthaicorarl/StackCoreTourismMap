@@ -3,7 +3,7 @@
 
 <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
 <h4>Create New Gallery</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/gallerys') }}" class="btn btn-default btn-sm">
+<a href="{{ url('/admin/gallerys') }}" id='_currentGalleryCreateUrl' class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
@@ -36,7 +36,19 @@
                             </div>
                         </div>
                     </form>
-    </div> 
+    </div>
+<script>
+$(function(){
+     if (typeof(Storage) !== "undefined") {
+          $('#_currentGalleryCreateUrl').attr('href',localStorage.getItem("_currentUrl"));
+         
+        } else {
+            sweetAlert("Oops...", "Sorry, your browser does not support Web Storage...", "error");
+            return;
+        }
+
+});
+</script> 
 <script src="{{ asset('app/gallery/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/gallery/create.js') }}"></script>
 

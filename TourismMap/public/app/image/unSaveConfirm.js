@@ -15,4 +15,13 @@ $(window).bind('beforeunload', function(e){
                 $(window).off('beforeunload');
 });
 }
+
+$("#galleryType").on('change',function(){
+    if($(this).val()=='AddNew'){
+        $(window).off('beforeunload');
+        setTimeout(function(){ window.location = $('#_url').val(); }, 20);
+    }
+});
+
+
 });

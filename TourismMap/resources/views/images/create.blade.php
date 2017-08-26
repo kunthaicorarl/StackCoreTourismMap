@@ -3,14 +3,15 @@
 
 <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
 <h4>Create New Image</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/images') }}" class="btn btn-default btn-sm">
+<a href="{{ url('/admin/images') }}"  id="_currentUrl" class="btn btn-default btn-sm">
+<input type="hidden" name="_url" id="_url" value="{{ url('/admin/gallerys/create') }}">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
 
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
     
-  <form enctype="multipart/form-data" id="provinceForm" action="{{ url('/admin/provinces/store') }}" name="provinceForm" method="POST"  class="form-horizontal">
+  <form enctype="multipart/form-data" id="imageForm" action="{{ url('/admin/provinces/store') }}" name="provinceForm" method="POST"  class="form-horizontal">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
         
          <div class="form-group">
@@ -20,14 +21,14 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <select class="form-control"
-                                name="status" id="status"
+                                name="galleryType" id="galleryType"
                                 >
                              <option value="Enable">Enable</option>
                                <option value="Disable">Disable</option>
                                <option value="AddNew">AddNew</option>
                         </select>
                     </div>
-                </div>
+         </div>
           <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       Title
@@ -139,8 +140,8 @@
         <form>
 
     </div> 
-
 <script src="{{ asset('app/image/unSaveConfirm.js') }}"></script>
+<script src="{{ asset('app/image/redirectCacheImage.js') }}"></script>
 <script src="{{ asset('app/image/create.js') }}"></script>
 <script src="{{ asset('app/image/cacheData.js') }}"></script>
 

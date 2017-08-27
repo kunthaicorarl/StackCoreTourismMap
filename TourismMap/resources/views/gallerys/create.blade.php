@@ -12,6 +12,17 @@
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
       <form  id="galleryTypeForm" method="POST" action="{{url('/admin/gallerys/store')}}" name="galleryTypeForm" class="form-horizontal"> 
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div>
+                        <div class="page-head portlet-title">
+                                                    <div class="page-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject font-blue-sharp bold uppercase">
+                                                            <h4> Gallery Type Infor</h4>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <hr>
                         <div class="form-group">
                             <label for="name" class="col-md-3 control-label">Name</label>
 
@@ -26,7 +37,20 @@
                             <div class="col-md-6">
                             <textarea class="form-control" rows="5" id="description" name="description"></textarea>
                             </div>
-                        </div>                  
+                        </div>
+                        </div>
+                        <div>
+                            <div class="page-head portlet-title">
+                                                    <div class="page-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject font-blue-sharp bold uppercase">
+                                                            <h4> Image Album</h4>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <hr>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <a href="/admin/gallerys"  class="btn btn-rb-danger">

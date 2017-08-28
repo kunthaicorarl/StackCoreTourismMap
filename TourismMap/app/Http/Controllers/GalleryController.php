@@ -93,7 +93,7 @@ class GalleryController extends Controller
  
      public function store(Request $request)
      {        
-           
+
              $validator = Validator::make($request->all(), [
              'title' => 'required|bail|unique:gallery_types',
              ]);

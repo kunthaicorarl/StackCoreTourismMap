@@ -16,8 +16,8 @@ $(document).ready(function() {
                 console.log(msg);
                  $btn.button('reset');
 
-               if(msg.alert!==undefined && msg.alert)
-              { 
+                if(msg.alert!==undefined && msg.alert)
+                { 
                  sweetAlert("Oops...", "Something went wrong!"+msg.infor, "error");
                  return;   
                 }

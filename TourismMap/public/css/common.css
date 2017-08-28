@@ -155,3 +155,30 @@
     font-size: 10px !important;
     color: gray !important;
 }
+
+/*Prview Image*/
+.rb-preview{
+    width: 10%;
+    float: left;
+}
+.rb-preview>span>img{
+    border-radius: 9px;
+}
+.rb-content-image{
+    width: 60%;
+    float: left;
+}
+.rb-size-image{
+    color: red;
+    font-size: 12px;
+}
+.rb-content-action-image{
+    width: 30%;
+    float: right;
+}
+.rb-content-preview{
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 93px;
+    padding: 4px;
+}

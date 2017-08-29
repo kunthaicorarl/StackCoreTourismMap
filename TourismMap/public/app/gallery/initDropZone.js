@@ -19,7 +19,13 @@ var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
 
 myDropzone.on("addedfile", function(file) {
   // Hookup the start button
-  file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
+     file.previewElement.querySelector(".start").onclick = function() {
+     myDropzone.enqueueFile(file); 
+    };
+    jsonFormImage={
+       data:myDropzone.getFilesWithStatus(Dropzone.ADDED),
+    };
+    console.log(jsonFormImage);
 });
 
 // Update the total progress bar

@@ -51,7 +51,8 @@ class ImageController extends Controller
       */
      public function create()
      {
-        return view('images.create');
+        $galleryType=GalleryType::all();
+        return view('images.create')->with('displayGalleryType',$galleryType);;
      }
      public function detail($id)
      {

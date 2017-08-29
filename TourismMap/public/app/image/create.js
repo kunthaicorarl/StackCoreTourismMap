@@ -13,6 +13,7 @@ $(document).ready(function() {
 
 $("#thumbnail").change(function() {
 var file = this.files[0];
+$('#title').val(file.name);
 $("#_thumbnail").val("");
 var reader = new FileReader();
 reader.onload = imageIsLoaded;

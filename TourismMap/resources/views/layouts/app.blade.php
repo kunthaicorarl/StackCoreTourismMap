@@ -21,7 +21,7 @@
      <script src="{{ asset('libs/alertify/alertify.js') }}"></script> 
      <script src="{{URL::asset('libs/sweetalert-master/dist/sweetalert.min.js')}}"></script>
      <link rel="stylesheet" type="text/css" href="{{URL::asset('libs/sweetalert-master/dist/sweetalert.css')}}">
-    <script src="http://www.dropzonejs.com/js/dropzone.js?v=6"></script>
+   {{--  <script src="http://www.dropzonejs.com/js/dropzone.js?v=6"></script>  --}}
     {{--  <script src="{{URL::asset('libs/loadingoverlay/loadingoverlay.min.js')}}"></script>  
     <script src="{{URL::asset('libs/loadingoverlay/loadingoverlay_progress.min.js')}}"></script>    --}}
  </head>

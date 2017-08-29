@@ -23,9 +23,10 @@
                         <select class="form-control"
                                 name="galleryType" id="galleryType"
                                 >
-                             <option value="Enable">Enable</option>
-                               <option value="Disable">Disable</option>
-                               <option value="AddNew">AddNew</option>
+                                <option value="">--Select Gallery Type--</option>
+                                @foreach($displayGalleryType as $key => $value)
+                                 <option value="{{$value->id}}">{{$value->title}}</option>
+                                @endforeach 
                         </select>
                     </div>
          </div>
@@ -36,10 +37,10 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <input type="text"
-                               name="postal_code"
-                               id="postal_code"
+                              name="title"
+                               id="title"
                                class="form-control"
-                               placeholder="Postal Code" />
+                               placeholder="TItle" />
                     </div>
             </div>
               <div class="form-group">
@@ -49,10 +50,10 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <input type="text"
-                                name="title_khmer"
-                               id="title_khmer"
+                                name="url"
+                               id="url"
                                class="form-control"
-                               placeholder="Title Khmer" />
+                               placeholder="Url" />
                     </div>
             </div>
                 
@@ -63,10 +64,10 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <input type="text"
-                               name="title_english"
-                               id="title_english"
+                               name="caption"
+                               id="caption"
                                class="form-control"
-                               placeholder="Title English" />
+                               placeholder="Caption" />
                     </div>
             </div>
 
@@ -77,10 +78,10 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <input type="text"
-                               name="description_khmer"
-                               id="description_khmer"
+                               name="alt_text"
+                               id="alt_text"
                                class="form-control"
-                               placeholder="Des Khmer" />
+                               placeholder="Alt Text" />
                     </div>
             </div>
 
@@ -91,10 +92,10 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <input type="text"
-                               name="description_english"
-                               id="description_english"
+                               name="description"
+                               id="description"
                                class="form-control"
-                               placeholder="Des English" />
+                               placeholder="Description" />
                     </div>
             </div>
                 
@@ -105,8 +106,8 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <input type="file"
-                               name="thumbnail"
-                                id="thumbnail"
+                               name="fileUpload"
+                                id="fileUpload"
                                class="form-control"
                                placeholder="File Upload" />
                     </div>  
@@ -143,7 +144,5 @@
 <script src="{{ asset('app/image/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/image/redirectCacheImage.js') }}"></script>
 <script src="{{ asset('app/image/create.js') }}"></script>
-<script src="{{ asset('app/image/cacheData.js') }}"></script>
-
 @endsection
 

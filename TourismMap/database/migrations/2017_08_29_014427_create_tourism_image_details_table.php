@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProvinceImageDetailsTable extends Migration
+class CreateTourismImageDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateProvinceImageDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('province_image_details', function (Blueprint $table) {
+        Schema::create('tourism_image_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('province_id')-unsigned();
+            $table->integer('tourism_places_id')-unsigned();
             $table->integer('image_id')-unsigned();
             $table->foreign('image_id')
   ->references('id')->on('images')
   ->onDelete('cascade');
-  $table->foreign('province_id')
-  ->references('id')->on('provinces')
+  $table->foreign('tourism_places_id')
+  ->references('id')->on('tourism_places')
   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ class CreateProvinceImageDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('province_image_details');
+        Schema::dropIfExists('tourism_image_details');
     }
 }

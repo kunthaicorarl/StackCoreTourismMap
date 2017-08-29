@@ -22,7 +22,8 @@ class ProvinceController extends Controller
         $this->middleware('auth');
     }
     public function index()
-    {   
+    {     
+          $object=new province;
           $province=Province::orderBy('id', 'desc')->paginate(3);
          return view('provinces.index')->with('displayProvinces',$province);
 	}

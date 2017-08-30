@@ -12,12 +12,16 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="{{ asset('css/home-page-common.css') }}" rel="stylesheet"/> 
+    <link href="{{ asset('css/slider.css') }}" rel="stylesheet"/>  
+        <link href="{{ asset('js/slider.js') }}" rel="stylesheet"/>  
+             <link href="{{ asset('css/footer-link-style.css') }}" rel="stylesheet"/>  
         <!-- Styles -->
         <style>
-            html, body {
+            body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Raleway', sans-serif;
+                font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif !important;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
@@ -139,7 +143,7 @@ src: url('../fonts/radikal_font_family/OPENSANS-SEMIBOLD.TTF');
 .form-horizontal_x .col-sm-4 {    padding: 3px;}
 .form-horizontal_x .col-sm-3 {    padding: 3px;}
 .form-horizontal_x .col-sm-2 {    padding: 3px;}
-.jain_container .navbar-default{position: absolute;    top: 20px;     background-color: rgba(255, 255, 255, 0.72);}
+.jain_container .navbar-default{position: absolute;    top:0px;     background-color: rgba(255, 255, 255, 0.72);}
 
 .jain_container .nav>li>a{padding: 15px 10px;color:#4c1f1e;font-family: RadikalW01_Black_bold;}
 
@@ -150,6 +154,8 @@ src: url('../fonts/radikal_font_family/OPENSANS-SEMIBOLD.TTF');
     border-radius: 0px;
     text-transform: uppercase;
     font-size: 16px;
+    border: 2px solid #ccc !important;
+    padding: 3px;
 
 }
 .jain_container .navbar-nav{    margin-top: 12px;}
@@ -483,11 +489,13 @@ body {
 
 
 .jain_container .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{    color: #f45541;    background-color: rgba(231, 231, 231, 0);}
-
+.flex-center{
+        background-color: #117bf3 !important;
+}
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref">
             {{--  @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -573,13 +581,13 @@ body {
 </ul>
 </div>
 <div class="col-md-12">
-<form class="form-horizontal form-horizontal_x">
+<div class="form-horizontal form-horizontal_x">
 <div class="col-md-12">
     <div class="form-group">
      
       <div class="col-sm-4">
-	 <select  name="hotel" id="hotel" required="" class="form-control" onchange="changeFormaction2(this.value);">
-                        <option value="" selected="">Select Hotel</option>
+	 <select  name="tourism" id="tourism"  class="form-control" onchange="changeFormaction2(this.value);">
+                        <option value="" selected="">----Select Province---</option>
                                                 <option value="67961">Pride Plaza Hotel Ahmedabad</option>
                                                 <option value="67964">The Pride Hotel Bengaluru</option>
                                                 <option value="29191">The Pride Hotel Nagpur</option>
@@ -597,20 +605,24 @@ body {
       </div>
 	  
 	  <div class="col-sm-3">          
-        <input type="text" class="form-control" id="pwd" placeholder="Check In">
+        <input type="text" class="form-control" id="pwd" placeholder="Place Pointer">
       </div>
 	  
-	  <div class="col-sm-3">          
-        <input type="text" class="form-control" id="pwd" placeholder="Check Out">
-      </div>
+	  {{--  <div class="col-sm-3">          
+<div class="content">
+<input type="text" class="search" id="searchid" placeholder="Search for people" />&nbsp; &nbsp; Ex:arunkumar, shanmu, vicky<br /> 
+
+</div>
+      </div>  --}}
 	  
 	  <div class="col-sm-2">
-        <button type="submit" class="btn btn-default">Book Now</button>
+      {{--  <button type="submit" class="btn btn-default">Visit Now</button>  --}}
+          <button id="visitedNow" class="btn btn-default">Visit Now</button>
       </div>
     </div>
 	</div>
 	
-  </form>
+  </div>
   </div>
   
 </div>
@@ -645,7 +657,7 @@ body {
 </nav>
 
 
-<div class="banner_home">
+<div class="banner_home" style="display:none">
   
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -739,9 +751,12 @@ body {
 
 
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="content" style="display:none">
+              <div class="title m-b-md" style="
+    font-weight: 400;
+    font-size: 49px;
+">
+                    Tourism Map
                 </div>
 
                 <div class="links">
@@ -753,5 +768,504 @@ body {
                 </div>
             </div>
         </div>
+
+<!--Slidder-->
+ <!-- Add this css File in head tag-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+
+
+ <!--  
+        If you want to change #bootstrap-touch-slider id then you have to change Carousel-indicators and Carousel-Control  #bootstrap-touch-slider slide as well
+        Slide effect: slide, fade
+        Text Align: slide_style_center, slide_style_left, slide_style_right
+        Add Text Animation: https://daneden.github.io/animate.css/
+        -->
+
+
+        <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#bootstrap-touch-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#bootstrap-touch-slider" data-slide-to="1"></li>
+                <li data-target="#bootstrap-touch-slider" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper For Slides -->
+            <div class="carousel-inner" role="listbox">
+
+                <!-- Third Slide -->
+                <div class="item active">
+
+                    <!-- Slide Background -->
+                    <img src="http://img2.zol.com.cn/product/64_940x705/260/ce8lwb67zHqZQ.jpg" alt="Bootstrap Touch Slider"  class="slide-image"/>
+                    <div class="bs-slider-overlay"></div>
+
+                    <div class="container">
+                        <div class="row">
+                            <!-- Slide Text Layer -->
+                            <div class="slide-text slide_style_left">
+                                <h1 data-animation="animated zoomInRight">Khmer Tample Greate</h1>
+                                <p data-animation="animated fadeInLeft">Tample  now touch enable slide.</p>
+                                <a href="http://bootstrapthemes.co/" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">select one</a>
+                                <a href="http://bootstrapthemes.co/" target="_blank"  class="btn btn-primary" data-animation="animated fadeInRight">select two</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Slide -->
+
+                <!-- Second Slide -->
+                <div class="item">
+
+                    <!-- Slide Background -->
+                    <img src="https://www.ampersandtravel.com/CropUp/940x-/media/466241/Luxury-Indochina-Itinerary-21-.jpg" alt="Bootstrap Touch Slider"  class="slide-image"/>
+                    <div class="bs-slider-overlay"></div>
+                    <!-- Slide Text Layer -->
+                    <div class="slide-text slide_style_center">
+                        <h1 data-animation="animated flipInX">Bootstrap touch slider</h1>
+                        <p data-animation="animated lightSpeedIn">Make Bootstrap Better together.</p>
+                        <a href="http://bootstrapthemes.co/" target="_blank" class="btn btn-default" data-animation="animated fadeInUp">select one</a>
+                        <a href="http://bootstrapthemes.co/" target="_blank"  class="btn btn-primary" data-animation="animated fadeInDown">select two</a>
+                    </div>
+                </div>
+                <!-- End of Slide -->
+
+                <!-- Third Slide -->
+                <div class="item">
+
+                    <!-- Slide Background -->
+                    <img src="https://images.pexels.com/photos/144345/pexels-photo-144345.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Bootstrap Touch Slider"  class="slide-image"/>
+                    <div class="bs-slider-overlay"></div>
+                    <!-- Slide Text Layer -->
+                    <div class="slide-text slide_style_right">
+                        <h1 data-animation="animated zoomInLeft">Beautiful Animations</h1>
+                        <p data-animation="animated fadeInRight">Lots of css3 Animations to make slide beautiful .</p>
+                        <a href="http://bootstrapthemes.co/" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">select one</a>
+                        <a href="http://bootstrapthemes.co/" target="_blank" class="btn btn-primary" data-animation="animated fadeInRight">select two</a>
+                    </div>
+                </div>
+                <!-- End of Slide -->
+
+
+            </div><!-- End of Wrapper For Slides -->
+
+            <!-- Left Control -->
+            <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
+                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <!-- Right Control -->
+            <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
+                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div> <!-- End  bootstrap-touch-slider Slider -->
+        
+        
+        
+             
+          {{--  <div style="text-align: center;margin-top: 150px; margin-bottom:100px"><h3>Check this in <a href="http://bootstrapthemes.co/demo/resource/BootstrapCarouselTouchSlider/"target="_blank"> Full Screen Preview </a> And Drag the Slider ;)</h3> / Slide Carousel Also <a href="http://bootsnipp.com/snippets/Padax"target="_blank">  Available here </a></div>
+          <div style="text-align: center;margin-top: 150px; margin-bottom:100px"> | <a href="http://bootstrapthemes.co/item/bootstrap-carousel-touch-slider-with-text-animation/"target="_blank"> Snippet By Bootstrapthemes.co </a> |</div>
+            --}}
+
+<!--Slider-->
+
+
+
+  <div id="goToList" class="content">
+<div class="content" style="
+    margin-top: -2px;
+">
+  <h4 style="
+    font-size: 24px;
+    padding: -3px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e0e0;
+    background: #fafafb;
+    top: 2px;
+    margin-top: 0px;
+">List of Tourism Place </h4>
+ </div>
+   <div class="container">
+    <div clss="col-md-12"> 
+      <div class="col-md-8">
+      <!--Item-->
+		<div class="row"  style="border-bottom: 1px solid #f5f4f4;"> 
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <a href="#">
+                  <img src="http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg" style="
+    width: 240px;
+">        </a>
+             </div> 
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-content text-left">
+                                    <div class="list-group-item-heading">
+                                        <a href="#" title="sintret">
+                                            <small>sintret</small>
+                                        </a>
+                                    </div>
+                                    <small>
+                                        <i class="glyphicon glyphicon-time"></i> 3 days ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
+                                        <br>
+                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 2 places </a></span>
+                                    </small>
+                                </div>
+                                <div class="row-content text-left">
+                                <h5><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a></h5>
+                                    <div>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</div>
+                                </div>
+                            </div>
+                        </div>
+                  </div> 
+                </div>
+
+
+                      <!--Item-->
+		<div class="row"  style="border-bottom: 1px solid #f5f4f4;"> 
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <a href="#">
+                  <img src="http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg" style="
+    width: 240px;
+">        </a>
+             </div> 
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-content text-left">
+                                    <div class="list-group-item-heading">
+                                        <a href="#" title="sintret">
+                                            <small>sintret</small>
+                                        </a>
+                                    </div>
+                                    <small>
+                                        <i class="glyphicon glyphicon-time"></i> 3 days ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
+                                        <br>
+                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 2 places </a></span>
+                                    </small>
+                                </div>
+                                <div class="row-content text-left">
+                                <h5><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a></h5>
+                                    <div>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</div>
+                                </div>
+                            </div>
+                        </div>
+                  </div> 
+                </div>
+
+                      <!--Item-->
+		<div class="row"  style="border-bottom: 1px solid #f5f4f4;"> 
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <a href="#">
+                  <img src="http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg" style="
+    width: 240px;
+">        </a>
+             </div> 
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-content text-left">
+                                    <div class="list-group-item-heading">
+                                        <a href="#" title="sintret">
+                                            <small>sintret</small>
+                                        </a>
+                                    </div>
+                                    <small>
+                                        <i class="glyphicon glyphicon-time"></i> 3 days ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
+                                        <br>
+                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 2 places </a></span>
+                                    </small>
+                                </div>
+                                <div class="row-content text-left">
+                                <h5><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a></h5>
+                                    <div>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</div>
+                                </div>
+                            </div>
+                        </div>
+                  </div> 
+                </div>
+
+                      <!--Item-->
+		<div class="row"  style="border-bottom: 1px solid #f5f4f4;"> 
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <a href="#">
+                  <img src="http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg" style="
+    width: 240px;
+">        </a>
+             </div> 
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-content text-left">
+                                    <div class="list-group-item-heading">
+                                        <a href="#" title="sintret">
+                                            <small>sintret</small>
+                                        </a>
+                                    </div>
+                                    <small>
+                                        <i class="glyphicon glyphicon-time"></i> 3 days ago via <span class="twitter"> <i class="fa fa-twitter"></i> <a target="_blank" href="https://twitter.com/sintret" alt="sintret" title="sintret">@sintret</a></span>
+                                        <br>
+                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a href="#">Explore 2 places </a></span>
+                                    </small>
+                                </div>
+                                <div class="row-content text-left">
+                                <h5><a href="#">5 of Bali’s Spanking New Haunts - WanderLuxe Magazine</a></h5>
+                                    <div>Naturally, we know where Bali's newest restaurants are and what to order, so give that private chef a rest and check out these spanking new haunts.</div>
+                                </div>
+                            </div>
+                        </div>
+                  </div> 
+                </div>
+         
+
+           
+   </div>
+   <div class="col-md-4">
+     <h4>Interesting Place<h4>
+     <hr>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--Footer-->
+
+<!--footer-->
+<footer class="footer1">
+<div class="container">
+
+<div class="row"><!-- row -->
+            
+                <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_nav_menu"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Useful links</h1>
+                                
+                                <ul>
+                                	<li><a  href="#"><i class="fa fa-angle-double-right"></i> About Us</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i> Contact Us</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i> Success Stories</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i> PG Courses</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i> Achiever's Batch</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Regular Batch</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Test & Discussion</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Fast Track T & D</a></li>
+                                </ul>
+                    
+							</li>
+                            
+                        </ul>
+                         
+                      
+                </div><!-- widgets column left end -->
+                
+                
+                
+                <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+            
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_nav_menu"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Useful links</h1>
+                                
+                                <ul>
+ 									<li><a  href="#"><i class="fa fa-angle-double-right"></i>  Test Series Schedule</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Postal Coaching</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  PG Dr. Bhatia Books</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  UG Courses</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Satellite Education</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Study Centres</a></li>
+                                    <li><a  href="#"><i class="fa fa-angle-double-right"></i>  State P.G. Mocks</a></li>
+                                    <li><a  href="#" target="_blank"><i class="fa fa-angle-double-right"></i> Results</a></li>
+                                    
+                                </ul>
+                    
+							</li>
+                            
+                        </ul>
+                         
+                      
+                </div><!-- widgets column left end -->
+                
+                
+                
+                <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+            
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_nav_menu"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Useful links</h1>
+                                
+                                <ul>
+
+
+                <li><a href="#"><i class="fa fa-angle-double-right"></i> Enquiry Form</a></li>
+ 				<li><a href="#"><i class="fa fa-angle-double-right"></i> Online Test Series</a></li>
+				<li><a href="#"><i class="fa fa-angle-double-right"></i> Grand Tests Series</a></li>
+				<li><a href="#"><i class="fa fa-angle-double-right"></i> Subject Wise Test Series</a></li>
+				<li><a href="#"><i class="fa fa-angle-double-right"></i> Smart Book</a></li>
+				<li><a href="#"><i class="fa fa-angle-double-right"></i> Test Centres</a></li>
+                <li><a href="#"><i class="fa fa-angle-double-right"></i>  Admission Form</a></li>
+				<li><a href="#"><i class="fa fa-angle-double-right"></i>  Computer Live Test</a></li>
+
+                                </ul>
+                    
+							</li>
+                            
+                        </ul>
+                         
+                      
+                </div><!-- widgets column left end -->
+                
+                
+                <div class="col-lg-3 col-md-3"><!-- widgets column center -->
+                
+                   
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_recent_news"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Contact Detail </h1>
+                                
+                                <div class="footerp"> 
+                                
+                                <h2 class="title-median">Webenlance Pvt. Ltd.</h2>
+                                <p><b>Email id:</b> <a href="mailto:info@webenlance.com">info@webenlance.com</a></p>
+                                <p><b>Helpline Numbers </b>
+
+    <b style="color:#ffc106;">(8AM to 10PM):</b>  +91-8130890090, +91-8130190010  </p>
+    
+    <p><b>Corp Office / Postal Address</b></p>
+    <p><b>Phone Numbers : </b>7042827160, </p>
+    <p> 011-27568832, 9868387223</p>
+                                </div>
+                                
+                                <div class="social-icons">
+                                
+                                	<ul class="nomargin">
+                                    
+                <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social-fb" id="social"></i></a>
+	            <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social-tw" id="social"></i></a>
+	            <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social-gp" id="social"></i></a>
+	            <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social-em" id="social"></i></a>
+                                    
+                                    </ul>
+                                </div>
+                    		</li>
+                          </ul>
+                       </div>
+                </div>
+</div>
+</footer>
+<!--header-->
+
+<div class="footer-bottom">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+				<div class="copyright">
+
+					© 2015, Webenlance, All rights reserved
+
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+				<div class="design">
+
+					 <a href="#">Franchisee </a> |  <a target="_blank" href="http://www.webenlance.com">Web Design & Development by Webenlance</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+<!--Footer-->
+
+
+
+ <script>
+        $( document ).ready(function() {
+       console.log( "ready!" );
+              $("#visitedNow").click(function() {
+                $('html, body').animate({
+                    scrollTop: $("#goToList").offset().top
+                }, 1000);
+            });   
+
+       function find_in_object(my_object, my_criteria){
+
+  return my_object.filter(function(obj) {
+    return Object.keys(my_criteria).every(function(c) {
+      return obj[c] == my_criteria[c];
+    });
+  });
+
+}       
+var my_data = [{"name":"Lenovo Thinkpad 41A4298","website":"google"},
+{"name":"Lenovo Thinkpad 41A2222","website":"google"},
+{"name":"Lenovo Thinkpad 41Awww33","website":"yahoo"},
+{"name":"Lenovo Thinkpad 41A424448","website":"google"},
+{"name":"Lenovo Thinkpad 41A429rr8","website":"ebay"},
+{"name":"Lenovo Thinkpad 41A429ff8","website":"ebay"},
+{"name":"Lenovo Thinkpad 41A429ss8","website":"rediff"},
+{"name":"Lenovo Thinkpad 41A429sg8","website":"yahoo"}];     
+
+$(".search").keyup(function() 
+{ 
+var searchid = $(this).val();
+var dataString = 'search='+ searchid;
+if(searchid!='')
+{
+
+    //We do that to ensure to get a correct JSON
+var my_json = JSON.stringify(my_data)
+//We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
+var filtered_json = find_in_object(JSON.parse(my_json), {website:searchid});
+ $("#result").html(filtered_json).show();
+   
+}
+return false;    
+});
+
+$("#result").on("click",'a',function(e){ 
+    var $clicked = $(e.target);
+    var $name = $clicked.find('.name').html();
+    var decoded = $("<div/>").html($name).text();
+    $('#searchid').val(decoded);
+});
+$(document).on("click",'a', function(e) { 
+    var $clicked = $(e.target);
+    if (! $clicked.hasClass("search")){
+    jQuery("#result").fadeOut(); 
+    }
+});
+$('#searchid').click(function(){
+    $("#result").fadeIn();
+});  
+     
+      });
+      
+        </script>
     </body>
 </html>

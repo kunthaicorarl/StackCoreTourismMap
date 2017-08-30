@@ -1026,9 +1026,178 @@ body {
            
    </div>
    <div class="col-md-4">
+   <div class="row">
      <h4>Interesting Place<h4>
      <hr>
+
+	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Please sign up as a Member <small>It's free!</small></h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form">
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+			    					</div>
+			    				</div>
+			    			</div>
+
+			    			<div class="form-group">
+			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+			    			</div>
+
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			
+			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    		
+			    		</form>
+			    	</div>
+	    		</div>
+
+   
+    <hr/>
+      </div>
+      <div class="row">
+        <!--Add NO-->
+     <style>.addon {
+background: #fff;
+border: 1px solid #C0CAE3;
+margin-bottom: 20px;
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+.addon li {
+padding: 10px;
+border-top: 1px solid #eee;
+overflow: hidden;
+}
+.addon li {
+list-style:none;
+}
+
+.clearfix {
+display: block;
+}
+.clearfix:after {
+content: " ";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+overflow: hidden;
+}
+
+li {
+display: list-item;
+text-align: -webkit-match-parent;
+} ul {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+ ul {
+list-style: none;
+}
+.round {
+border-radius:100%;
+  display: block;
+height: 48px;
+width: 49px;
+float: left;
+}
+.addon li em {
+background: url(http://d1dls1ko4h0b59.cloudfront.net/assets/campaign-legend-d95e12bce50a8e18d8bd3c96383c352f.png) no-repeat;
+display: block;
+height: 48px;
+width: 49px;
+float: left;
+}
+.addon li em.extra {
+background-position: -118px 0;
+}
+.addon li em.hot {
+background-position: -58px 0;
+}
+.addon p {
+padding: 10px 15px;
+margin: 0;
+font: 600 16px/22px "myriad-pro",Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+p {
+display: block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}
+
+.addon li .legend-info {
+float: left;
+margin-left: 10px;
+width: 155px;
+}
+
+.addon strong {
+display: block;
+margin: 0 0 4px;
+}
+
+strong {
+font-weight: bold;
+}
+     </style>
+     <div class="addon">
+          <p>What's this?</p>
+          <ul>
+            <li class="clearfix">
+              <a href="#" target="_blank">
+              <img class="round" src="https://8share-production-my.s3.amazonaws.com/campaigns/4898/photos/profile/thumb_copy.png?1397732185">
+              <div class="legend-info">
+                <strong>Social Good</strong>Help share a cause and do good.
+                </div></a>
+              </li>
+            <li class="clearfix">
+              <em class="hot"></em>
+              <div class="legend-info">
+                <strong>Fire Hot</strong>Featured hot special at the moment.
+              </div>
+            </li>
+            <li class="clearfix">
+              <em class="extra"></em>
+              <div class="legend-info">
+                <strong>Extra Fun</strong>Contests, surveys, prizes and more fun stuff.
+              </div>
+            </li>
+          </ul>
+        </div>
+     <!--Add No-->
+      </div>
     </div>
+
+
   </div>
 </div>
 </div>

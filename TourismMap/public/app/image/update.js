@@ -1,8 +1,18 @@
 $(document).ready(function() {
-    $('#galleryTypeForm').on('submit', function (e) {
+  $("#thumbnail").change(function() {
+    var file = this.files[0];
+    $("#_thumbnail").val("");
+    var reader = new FileReader();
+    reader.onload = imageIsLoaded;
+    reader.readAsDataURL(this.files[0]);
+    });
+    function imageIsLoaded(e) {
+    $("#preview").attr("src",e.target.result);
+    };
+    $('#form').on('submit', function (e) {
         e.preventDefault();
         var $form=$(this);
-          var $btn = $('.galleryTypeSubmit');
+          var $btn = $('.form-post');
           $btn.button('loading');
          
         $.ajax({
@@ -21,10 +31,10 @@ $(document).ready(function() {
                      return;   
                     }
                 if(msg.success){
-                $("#galleryTypeForm")[0].reset();
+                $("#form")[0].reset();
                 $("#preview").attr("src","");
                 alertify.success(msg.infor[0]);
-                setTimeout(function(){ window.location = "/admin/gallerys"; }, 1000);
+                setTimeout(function(){ window.location = "/admin/images"; }, 1000);
                }else{
                  if(msg.infor!==undefined && msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)

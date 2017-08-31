@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    
-    $('#removeProvinceForm').on('submit', function (e) {
+    var url="/admin/images";
+    $('#form').on('submit', function (e) {
         e.preventDefault();
         var $form=$(this);
         $.ajax({
@@ -14,7 +14,7 @@ $(document).ready(function() {
                 console.log(msg);
                if(msg.success){
                 alertify.success(msg.infor[0]);
-                setTimeout(function(){ window.location = "/admin/provinces"; }, 1000);
+                setTimeout(function(){ window.location = url; }, 100);
                }else{
                  if(msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)

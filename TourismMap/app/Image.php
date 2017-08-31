@@ -6,11 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    public function provinces(){
-		return $this->belongsToMany('App\Province');
-     }
      public function galleryTypes(){
-      return $this->belongsTo(GalleryType::class);
-
+      return $this->belongsTo('App\GalleryType','gallery_type_id','id');
      }
 }

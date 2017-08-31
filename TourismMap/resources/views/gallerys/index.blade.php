@@ -60,12 +60,13 @@
                 <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
              </div>
               <div class="margin-rb-b">
-                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">Add Image</a>
              </div>
+             <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>
               {{-- <div class="margin-rb-b">
                 <a href="{{url('/admin/provinces/')}}/{{$value->id}}/detail"  class="btn-rb-green">Permissions</a>
              </div>
-               <a href="{{url('/admin/provinces/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a> --}}
+                --}}
             </td>
         </tr>
     @endforeach

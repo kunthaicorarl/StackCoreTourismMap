@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div>
 <div class="col-md-10 panel panel-default container-p">
 
@@ -27,22 +28,51 @@
                  </form>
     </div>
 </div>
+
+
+{{--  <div class="row header-title-module-p">
+    <div>
+        <div class="col-md-12">
+           <form name="gallerySearchForm" id="gallerySearchForm">
+             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+               <div class="form-group">
+                    <label class="col-md-2 col-sm-4 control-label">
+                         Gallery Type
+                        <span class="required"></span>
+                    </label>
+                    <div class="col-md-5 col-sm-6">
+                        <select class="form-control"
+                                name="gallery_type_id" id="gallery_type_id"
+                                >
+                                <option value="">--Select Gallery Type--</option>
+                                @foreach($galleryTypes as $key => $value)
+                                 <option value="{{$value->id}}">{{$value->title}}</option>
+                                @endforeach 
+                        </select>
+                    </div>
+         </div>
+        </div>
+            
+    </div>
+</div>  --}}
+
 <div class="row ">
 <div class="table-responsive">
 <table class="table table-condensed">
     <thead>
         <tr>
             <th width="3%">No</th>
-            <th width="17%">Title</th>
+            <th width="5%">Title</th>
             <th width="15%">CreateBy</th>
             <th width="5%">Action</th>
         </tr>
     </thead>
   <tbody>
-    @foreach($displayImages as $key => $value)
+    @foreach($displayImage as $key => $value)
         <tr>
             <td>{{$value->id }}</td>
             <td>
+              <img src="{{asset($value->url)}}/{{$value->name}}" width="150px"/>
                <div class="table-text-only-trail title-font">  
                {{ $value->title }}
                 </div>  
@@ -57,15 +87,12 @@
             </td>
             <td>
              <div class="margin-rb-b">
-                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+                <a href="{{url('/admin/images/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
              </div>
               <div class="margin-rb-b">
-                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+                <a href="{{url('/admin/images/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
              </div>
-              {{-- <div class="margin-rb-b">
-                <a href="{{url('/admin/provinces/')}}/{{$value->id}}/detail"  class="btn-rb-green">Permissions</a>
-             </div>
-               <a href="{{url('/admin/provinces/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a> --}}
+              <a href="{{url('/admin/images/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>           
             </td>
         </tr>
     @endforeach
@@ -76,7 +103,7 @@
 
 <div class="row">
 <div class="container">
- {{$displayImages}}
+ {{$displayImage}}
 </div>
 </div>
 </div>

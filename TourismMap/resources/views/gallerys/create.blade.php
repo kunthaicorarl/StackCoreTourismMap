@@ -3,6 +3,7 @@
 <script type="text/javascript">
   var _token = '{{ csrf_token() }}';
 </script>
+ 
 <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
 <h4>Create New Gallery</h4></div> <div class="pull-right">
 <a href="{{ url('/admin/gallerys') }}" id='_currentGalleryCreateUrl' class="btn btn-default btn-sm">
@@ -42,7 +43,7 @@
                         </div>
                         </div>
                         <div>
-                            {{--  <div class="page-head portlet-title">
+                            <div class="page-head portlet-title">
                                                     <div class="page-title">
                                                         <div class="caption">
                                                             <span class="caption-subject font-blue-sharp bold uppercase">
@@ -51,12 +52,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                             <hr>  --}}
+                             <hr>
                              <!--Drop Zone Config-->
-                                                                  
+                        <div class="form-group">
+                        <input id="file-5" class="file" name="file-5" type="file" multiple data-preview-file-type="any"   />
+                        {{--  data-preview-file-type="any"  --}}
+                     {{--  data-upload-url="#"  --}}
+                     </div>
+
                              <!--Drop Zone Config-->
 
                         </div>
+                        <br/>
+                         <br/>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <a href="/admin/gallerys"  class="btn btn-rb-danger">
@@ -67,19 +75,8 @@
                         </div>
                     </form>
     </div>
-{{--  <script>
-$(function(){
-     if (typeof(Storage) !== "undefined") {
-          $('#_currentGalleryCreateUrl').attr('href',localStorage.getItem("_currentUrl"));
-         
-        } else {
-            sweetAlert("Oops...", "Sorry, your browser does not support Web Storage...", "error");
-            return;
-        }
-
-});
-</script>   --}}
-{{--  <script src="{{ asset('app/gallery/robertjs.js') }}"></script>  --}}
+<script>
+</script>
 <script src="{{ asset('app/gallery/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/gallery/create.js') }}"></script>
 

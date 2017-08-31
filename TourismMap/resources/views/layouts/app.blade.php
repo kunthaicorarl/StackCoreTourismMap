@@ -12,16 +12,33 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      <link href="{{ asset('css/common.css') }}" rel="stylesheet">  
-     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     {{--  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  --}}
      <link href="{{ asset('libs/google-map/maps.css') }}" rel="stylesheet">  
      <link href="{{ asset('libs/alertify/alertify.css') }}" rel="stylesheet"/>  
-     <script src="http://malsup.github.com/jquery.form.js"></script>   
+     {{--  <script src="http://malsup.github.com/jquery.form.js"></script>     --}}
      <link href="{{ asset('libs/alertify/default.css') }}" rel="stylesheet"/>
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>     
      <script src="{{ asset('libs/alertify/alertify.js') }}"></script> 
      <script src="{{URL::asset('libs/sweetalert-master/dist/sweetalert.min.js')}}"></script>
      <link rel="stylesheet" type="text/css" href="{{URL::asset('libs/sweetalert-master/dist/sweetalert.css')}}">
-   {{--  <script src="http://www.dropzonejs.com/js/dropzone.js?v=6"></script>  --}}
+   
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('libs/fileinput/bootstrap-fileinput/themes/explorer/theme.css') }}" media="all" rel="stylesheet" type="text/css"/>  
+    <link href="{{ asset('libs/fileinput/bootstrap-fileinput/css/fileinput.css') }}" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+       <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/fileinput.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/plugins/sortable.js') }}" type="text/javascript"></script>
+    {{-- 
+
+    <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/locales/fr.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/locales/es.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('libs/fileinput/bootstrap-fileinput/themes/explorer/theme.js') }}" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+
+    
+    {{--  <script src="http://www.dropzonejs.com/js/dropzone.js?v=6"></script>  --}}
     {{--  <script src="{{URL::asset('libs/loadingoverlay/loadingoverlay.min.js')}}"></script>  
     <script src="{{URL::asset('libs/loadingoverlay/loadingoverlay_progress.min.js')}}"></script>    --}}
  </head>

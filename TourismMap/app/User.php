@@ -30,6 +30,9 @@ class User extends Authenticatable
     public function provinces(){
         return $this->hasMany('App\Province');
     }
+    public function galleryTypes(){
+        return $this->hasMany('App\GalleryType');
+    }
     // public function roles(){
     //     return $this->belongsToMany('App\Role');
     // }

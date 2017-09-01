@@ -6,6 +6,7 @@ use App\Province;
 use App\User;
 use App\GalleryType;
 use App\Image;
+use App\Helper;
 use Auth;
 use Response;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +30,12 @@ class ImageController extends Controller
      public function index()
      {   
            $image=Image::orderBy('id', 'desc')->paginate(3);
-           return view('images.index')->with('displayImages',$image);
+           $galleryType=GalleryType::all();
+          // return view('images.create')->with('displayGalleryType',$galleryType);;
+         //  return view('images.index')->with('displayImage',array('users' => $users,
+          // 'projects' => $projects ,'foods' => $foods);
+           return view('images.index', array('displayImage' => $image,
+           'galleryTypes' =>  $galleryType));
      }
      public function search($q)
       {  
@@ -94,20 +100,46 @@ class ImageController extends Controller
       */
  
      public function store(Request $request)
-     {        
-           
-             $validator = Validator::make($request->all(), [
-             'title' => 'required|bail|unique:gallery_types',
-             ]);
-            if ($validator->passes()) {
-                $galleryType=new GalleryType;
-                $galleryType->title=$request->title;
-                $galleryType->description=$request->description;
-                $galleryType->save();
-                 return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved'.$list]]);
-            }
-            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-     }
+     {      
+         
+        //   $galleryType=GalleryType::find($request->galler_type_id)->first();
+        //    $image =new Image;
+        //    $image->title=$request->title;
+        //   //  $image->name=$photoName;
+        // //    $image->url=$url;
+        //     $image->description=$request->description;
+        //     $image->caption=$request->caption;
+        //     $image->alt_text=$request->alt_text;
+        //     $image->galleryTypes()->associate($galleryType);
+        //    return response()->json(['success'=>false,'infor'=>[$image]]);
+
+       
+        $validator = Validator::make($request->all(), [
+           'gallery_type_id'=>'required',
+           'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+      if ($validator->passes()) {
+         $photoName=null;   
+         $url="img/gallerys/";
+        if($request->thumbnail->isValid()) {
+           $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
+           $request->thumbnail->move(public_path($url), $photoName);  
+         }
+      
+           $galleryType=GalleryType::find($request->gallery_type_id);
+           $image =new Image;
+           $image->title=$request->thumbnail?$request->file("thumbnail")->getClientOriginalName():'Default Name';
+           $image->name=$photoName;
+           $image->url=$url;
+           $image->description=$request->description;
+           $image->caption=$request->caption;
+           $image->alt_text=$request->alt_text;
+           $image->galleryTypes()->associate($galleryType);
+           $image->save();
+           return response()->json(['success'=>true,'infor'=>['Image save Successfully']]);
+       }
+  return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+ }
  
      /**
       * Display the specified resource.

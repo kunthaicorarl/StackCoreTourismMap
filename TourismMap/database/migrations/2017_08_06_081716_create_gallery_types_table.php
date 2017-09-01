@@ -16,7 +16,9 @@ class CreateGalleryTypesTable extends Migration
         Schema::create('gallery_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('description');
+            $table->integer('user_id')->unsigned();
+            $table->string('description')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');            
             $table->timestamps();
         });
     }

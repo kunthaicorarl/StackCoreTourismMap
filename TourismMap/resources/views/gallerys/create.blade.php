@@ -11,7 +11,6 @@
            Back
     </a></div></div>
 
-<div id="result"></div>
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
       <form  id="galleryTypeForm" method="POST" action="{{url('/admin/gallerys/store')}}" name="galleryTypeForm" class="form-horizontal"> 
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -40,58 +39,19 @@
                             <div class="col-md-6">
                             <textarea class="form-control" rows="5" id="description" name="description"></textarea>
                             </div>
-                        </div>
-                        </div>
-                        <div>
-                            <div class="page-head portlet-title">
-                                                    <div class="page-title">
-                                                        <div class="caption">
-                                                            <span class="caption-subject font-blue-sharp bold uppercase">
-                                                            <h4> Image Album</h4>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                             <hr>
-                             <!--Drop Zone Config-->
-                        <div class="form-group">
-                        {{--  <input id="file-5"
-                            data-show-upload="false" 
-                            data-preview-file-type="image"
-                            class="file" name="file-5" type="file"
-                            multiple data-preview-file-type="any" 
-                            data-show-remove="false"
-                            />  --}}
-                        {{--  data-preview-file-type="any"  --}}
-                     {{--  data-upload-url="#"  --}}
-
-                       <input data-upload-url="#"  data-show-upload="false"  id="file-5" class="file" type="file" multiple data-preview-file-type="any" > 
-                       {{--  data-upload-url="#"  --}}
-                     </div>
-
-                    
-
- {{--  <input id="fileinput" name="listingImages" class="file" type="file" multiple="multiple" data-preview-file-type="image" data-show-remove="false" data-show-upload="false" data-upload-url="#" data-max-file-size="1000" data-max-file-count="5">  --}}
-                             <!--Drop Zone Config-->
-
-                        </div>
-                        <br/>
-                         <br/>
+                      </div>
+                      
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                             <a href="/admin/gallerys"  class="btn btn-rb-danger">
                                    Discard
                                 </a>
                                <button type="submit" class="btn-rb-success galleryTypeSubmit" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
+                                 <button type="submit" class="btn-rb-success galleryTypeSubmitNew" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save & New">Save & New</button>
                             </div>
                         </div>
                     </form>
     </div>
-  
-
-
-<!--test-->
-
 <script src="{{ asset('app/gallery/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/gallery/create.js') }}"></script>
 

@@ -27,7 +27,7 @@ class GalleryController extends Controller
      }
      public function index()
      {   
-           $gallery=GalleryType::orderBy('id', 'desc')->paginate(3);
+           $gallery=GalleryType::orderBy('id', 'desc')->paginate(50);
            return view('gallerys.index')->with('displayGallerys',$gallery);
      }
      public function search($q)
@@ -93,18 +93,20 @@ class GalleryController extends Controller
  
      public function store(Request $request)
      {        
-        return response()->json(['success'=>false,'infor'=>$request->all()]); 
-            //  $validator = Validator::make($request->all(), [
-            //  'title' => 'required|bail|unique:gallery_types',
-            //  ]);
-            // if ($validator->passes()) {
-            //     $galleryType=new GalleryType;
-            //     $galleryType->title=$request->title;
-            //     $galleryType->description=$request->description;
-            //     $galleryType->save();
-            //      return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved'.$list]]);
-            // }
-            //  return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+      
+       // return response()->json(['success'=>false,'infor'=>$request->all()]); 
+             $validator = Validator::make($request->all(), [
+             'title' => 'required|bail|unique:gallery_types',
+             ]);
+            if ($validator->passes()) {
+                $galleryType=new GalleryType;
+                $galleryType->title=$request->title;
+                $galleryType->description=$request->description;
+                $galleryType->users()->associate(Auth::user());
+                $galleryType->save();
+                 return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved']]);
+            }
+            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
      }
  
      /**

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-$formUser=$('#galleryTypeForm')
+$formUser=$('#provinceForm')
 $formUser.data('serialize',$formUser.serialize()); // On load save form current state
 $(window).bind('beforeunload', function(e){
     if($formUser.serialize()!=$formUser.data('serialize'))

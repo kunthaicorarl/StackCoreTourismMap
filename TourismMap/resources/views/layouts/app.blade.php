@@ -12,7 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      <link href="{{ asset('css/common.css') }}" rel="stylesheet">  
-     {{--  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  --}}
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
      <link href="{{ asset('libs/google-map/maps.css') }}" rel="stylesheet">  
      <link href="{{ asset('libs/alertify/alertify.css') }}" rel="stylesheet"/>  
      {{--  <script src="http://malsup.github.com/jquery.form.js"></script>     --}}
@@ -24,7 +24,7 @@
    
 
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    {{--  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('libs/fileinput/bootstrap-fileinput/themes/explorer/theme.css') }}" media="all" rel="stylesheet" type="text/css"/>  
     <link href="{{ asset('libs/fileinput/bootstrap-fileinput/css/fileinput.css') }}" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -35,7 +35,7 @@
     <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/locales/es.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset('libs/fileinput/bootstrap-fileinput/themes/explorer/theme.js') }}" type="text/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>  --}}
 
     
     {{--  <script src="http://www.dropzonejs.com/js/dropzone.js?v=6"></script>  --}}

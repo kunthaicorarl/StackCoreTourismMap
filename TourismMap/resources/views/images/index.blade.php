@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div>
 <div class="col-md-10 panel panel-default container-p">
 
@@ -27,6 +28,34 @@
                  </form>
     </div>
 </div>
+
+
+<div class="row header-title-module-p">
+    <div>
+        <div class="col-md-3">
+           <form name="gallerySearchForm" id="gallerySearchForm">
+             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+               <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label">
+                         Gallery Type
+                        <span class="required"></span>
+                    </label>
+                    <div class="col-md-5 col-sm-6">
+                        <select class="form-control"
+                                name="gallery_type_id" id="gallery_type_id"
+                                >
+                                <option value="">--Select Gallery Type--</option>
+                                @foreach($galleryTypes as $key => $value)
+                                 <option value="{{$value->id}}">{{$value->title}}</option>
+                                @endforeach 
+                        </select>
+                    </div>
+         </div>
+        </div>
+            
+    </div>
+</div>
+
 <div class="row ">
 <div class="table-responsive">
 <table class="table table-condensed">
@@ -39,10 +68,11 @@
         </tr>
     </thead>
   <tbody>
-    @foreach($displayImages as $key => $value)
+    @foreach($displayImage as $key => $value)
         <tr>
             <td>{{$value->id }}</td>
             <td>
+              <img src="{{asset($value->url)}}/{{$value->name}}" width="150px"/>
                <div class="table-text-only-trail title-font">  
                {{ $value->title }}
                 </div>  
@@ -76,7 +106,7 @@
 
 <div class="row">
 <div class="container">
- {{$displayImages}}
+ {{$displayImage}}
 </div>
 </div>
 </div>

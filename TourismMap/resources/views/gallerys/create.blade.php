@@ -55,11 +55,23 @@
                              <hr>
                              <!--Drop Zone Config-->
                         <div class="form-group">
-                        <input id="file-5" class="file" name="file-5" type="file" multiple data-preview-file-type="any"   />
+                        {{--  <input id="file-5"
+                            data-show-upload="false" 
+                            data-preview-file-type="image"
+                            class="file" name="file-5" type="file"
+                            multiple data-preview-file-type="any" 
+                            data-show-remove="false"
+                            />  --}}
                         {{--  data-preview-file-type="any"  --}}
                      {{--  data-upload-url="#"  --}}
+
+                       <input data-upload-url="#"  data-show-upload="false"  id="file-5" class="file" type="file" multiple data-preview-file-type="any" > 
+                       {{--  data-upload-url="#"  --}}
                      </div>
 
+                    
+
+ {{--  <input id="fileinput" name="listingImages" class="file" type="file" multiple="multiple" data-preview-file-type="image" data-show-remove="false" data-show-upload="false" data-upload-url="#" data-max-file-size="1000" data-max-file-count="5">  --}}
                              <!--Drop Zone Config-->
 
                         </div>
@@ -75,8 +87,11 @@
                         </div>
                     </form>
     </div>
-<script>
-</script>
+  
+
+
+<!--test-->
+
 <script src="{{ asset('app/gallery/unSaveConfirm.js') }}"></script>
 <script src="{{ asset('app/gallery/create.js') }}"></script>
 

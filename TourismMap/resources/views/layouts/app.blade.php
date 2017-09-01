@@ -30,10 +30,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
        <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/fileinput.js') }}" type="text/javascript"></script>
         <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/plugins/sortable.js') }}" type="text/javascript"></script>
-    {{-- 
 
     <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/locales/fr.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/locales/es.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('libs/fileinput/bootstrap-fileinput/js/locales/es.js') }}" type="text/javascript"></script>
+
     <script src="{{ asset('libs/fileinput/bootstrap-fileinput/themes/explorer/theme.js') }}" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 

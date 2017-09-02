@@ -57,13 +57,14 @@ Route::get('/admin/images/{id}/show', 'ImageController@show');
 Route::post('/admin/images/store', 'ImageController@store');
 Route::post('/admin/images/update', 'ImageController@update');
 Route::post('/admin/images/destroy', 'ImageController@destroy');
-
-
-
-//Route::post('/admin/gallerys/removeImage','GalleryController@removeImage', ['middleware' => 'restfulApi']);
-// Route::resource('users', 'UserController');
-// Route::resource('roles', 'RoleController');
-// Route::resource('permissions', 'PermissionController');
-// Route::resource('posts', 'PostController');
-//'middleware' => 'auth'
+//Tourism
+Route::resource('/admin/tourisms', 'TourismController');
+Route::get('/admin/tourisms/{id}/detail', 'TourismController@detail');
+Route::get('/admin/tourisms/{q}/search', 'TourismController@search');
+Route::get('/admin/tourisms/{id}/show', 'TourismController@show');
+Route::post('/admin/tourisms/store', 'TourismController@store');
+Route::post('/admin/tourisms/update', 'TourismController@update');
+Route::post('/admin/tourisms/destroy', 'TourismController@destroy');
+Route::post('/admin/tourisms/enable', 'TourismController@enable');
+Route::post('/admin/tourisms/disable', 'TourismController@disable');
 

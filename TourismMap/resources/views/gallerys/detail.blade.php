@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
-
+<script>
+var _urlImageGallery='{{url("/admin/gallerys/removeImage")}}';
+var _urlCurrentPage='{{url("/admin/gallerys")}}/{{$galleryType->id}}/detail';
+var _token='{{ csrf_token() }}';
+console.log(
+    _urlImageGallery,
+    _urlCurrentPage,
+    _token);
+</script>
 <div class="col-md-10 p-4-l p-4-r"><div class="pull-left">
 <h4>View Gallery Type Detail</h4></div> <div class="pull-right">
 <a href="{{ url('/admin/gallerys') }}" class="btn btn-default btn-sm">
@@ -79,61 +87,7 @@ Add Image
    
 </table>
 </div>
-<script>
-$(document).ready(function() {
-    var _urlCurrentPage='{{url("/admin/gallerys")}}/{{$galleryType->id}}/detail';
-    function showAlertToDelete(e,numberId){
-        e.preventDefault();
-        
-       var formData = new FormData();
-           formData.append('id', numberId);
-            formData.append('_token', '{{ csrf_token() }}');
-          swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover this imaginary file!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false
-            },
-            function(){
-           $.ajax({
-            type: "POST",
-            url: '{{url("/admin/gallerys/removeImage")}}',
-             data:formData,
-              contentType: false,
-            //  dataType: "json",
-             cache: false,            
-             processData:false,       
-            success: function(msg) {
-                console.log(msg);
-               if(msg.success){
-                //alertify.success(msg.infor[0]);
-                 swal("Deleted!",msg.infor[0], "success");
-                 setTimeout(function(){ window.location = _urlCurrentPage; }, 1000);
-               }else{
-                 if(msg.infor.length>0){
-                     for(var i=0;i<msg.infor.length;i++)
-                       alertify.error(msg.infor[i]);
-                 }
-              }
-               
-             
-            }
-        });
-            });
-
-
-    }
-    $('#removeId').on('click',function(e){
-           var numberId=$(this).attr('data-id');
-           showAlertToDelete(e,numberId);
-    });
-});
-
-
-</script>
+<script src="{{ asset('app/gallery/ajaxSweetAlertDelete.js') }}"></script>
     </div>
 
 

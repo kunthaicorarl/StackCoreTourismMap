@@ -17,7 +17,7 @@ class CreateClientTypesTable extends Migration
             $table->increments('id');
             $table->string('title_khmer');
             $table->string('title_english');
-            $table->text('thumbnail');
+            $table->text('thumbnail')->nullable();
             $table->timestamps();
         });
     }

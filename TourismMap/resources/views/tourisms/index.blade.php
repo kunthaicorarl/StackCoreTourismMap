@@ -1,8 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <div>
-<div class="col-md-9 panel panel-default container-p">
-
+<div class="col-md-10 panel panel-default container-p">
+<script>
+var EnableUri="{{url('/admin/tourisms/enable')}}";
+var _urlCurrentPage="{{url('/admin/tourisms')}}";
+var DisableUri="{{url('/admin/tourisms/disable')}}";
+var _token='{{ csrf_token() }}';
+console.log(
+    EnableUri,
+_urlCurrentPage,
+_token);
+</script>
 <div class="row header-title-module-p">
     <div>
         <div class="col-md-6">
@@ -16,152 +25,92 @@
                 </div>
                  <div class="col-md-2">
                  {{-- <button data-toggle="modal" data-target="#create-user" class="btn btn-success btn-sm">Create New</button> --}}
-                 <a href="{{url('/admin/provinces/create')}}" class="btn btn-success btn-sm">Create New</a>
+                 <a href="{{url('/admin/tourisms/create')}}" class="btn btn-success btn-sm">Create New</a>
                  </div>
                  </div>
     </div>
 </div>
 <div class="row ">
+
 <table class="table table-condensed">
     <thead>
         <tr>
-            <th width="3%">No</th>
-            <th width="17%">Title</th>
-            <th width="17%">Description</th>
+             <th width="3%">No</th>
+             <th width="17%">Title</th>
+             <th width="17%">Province</th>
+             <th width="15%">Thumbnail</th>
+             <th width="17%">GalleryType</th>
+             <th width="17%">Description</th>
              <th width="15%">CreateBy</th>
-            <th width="5%">Status</th>
             <th width="10%">Action</th>
         </tr>
     </thead>
-    <tbody>
+  <tbody>
+    @foreach($displayTourisms as $key => $value)
         <tr>
-            <td>1</td>
-            <td>DDD</td>
-            <td>DDDD</td>
-            <td>DDDD</td>
-             <td>DDDD</td>
+            <td>{{$value->id }}</td>
             <td>
-            <button data-toggle="modal" ng-click="edit(value.id)" data-target="#edit-data" class="btn btn-sm btn-primary">Update</button>
-            <a href="{{url('/admin/provinces/show')}}"  class="btn btn-sm btn-danger">Remove</a>
+               <div class="table-text-trail">  
+                  <b>{{ $value->title_khmer }}</b>
+                <br>
+                <span>{{ $value->title_english }}<span>
+                 <br>
+                <span class="label label-{{ $value->status==1?'success':'danger'}}">{{ $value->status==1?'enable':'disable'}}</span>
+               </div>  
+            </td>
+
+            <td>
+               <div class="table-text-trail">  
+                 <b>  {{ $value->provinces->title_khmer }}</b>
+                  <br>
+                  <span>  {{ $value->provinces->title_english }}<span> 
+               </div>  
+            </td>
+
+             <td>
+               <img style="width: 35%;" src="{{ asset('img/gallerys') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
+             </td>
+              <td>
+               {{
+                  $value->galleryTypes[0]->title
+               }}
+              </td>
+               <td>
+                  <div class="table-text-trail">  
+                  <b>{{ $value->description_khmer }}</b>
+                  <br>
+                  <span>{{ $value->description_english }}<span>
+                  </div>
+              </td>
+             <td>
+                {{$value->created_at}}
+                <br>
+                {{$value->created_at==$value->updated_at?'':'Last Updated'.$value->updated_at}}
+            </td>
+            <td>
+             <div class="margin-rb-b">
+                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+             </div>
+              <div class="margin-rb-b">
+                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+             </div>
+               <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>
+             <div class="margin-rb-b" @if($value->status==1) style="display:none" @endif>
+                {{--  <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/enable"  class="btn-rb-default">Enable</a>  --}}
+                 <a href="javascript:;" id="removeId" data-id="{{$value->id}}" class="btn-rb-success">Enable</a>           
+             </div>
+              <div class="margin-rb-b" @if($value->status==0) style="display:none" @endif>
+                <a href="javascript:;" id="disableId" data-id="{{$value->id}}" class="btn-rb-banning">Disable</a>           
+             </div>
             </td>
         </tr>
+    @endforeach
     </tbody>
+   
 </table>
-</div>
-<div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <form method="POST" action="{{url('/admin/provinces/store')}}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create New Province</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" >
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Post Code</label>
-            <input type="text" class="form-control" name="postalCode" id="postalCode">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Tittle KH</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Tittle EN</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-        <div class="form-group">
-                <label>Upload Image</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <span class="btn btn-default btn-file">
-                            Browse… <input type="file" name="user_photo" id="imgInp">
-                        </span>
-                    </span>
-                    <input type="text" class="form-control" readonly>
-                </div>
-                <img id='img-upload'/>
-                <h1 id="loadingId">Loading....</h1>
-            </div>
 
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">Des KH:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-         <div class="form-group">
-            <label for="message-text" class="form-control-label">Des EN:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
-        <input type="submit" class="btn btn-primary" value="Save"/>
-      </div>
-    </div>
-  </div>
-</div>
- </form>
 </div>
 
-<script>
-
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-});
-
-
-$(document).ready( function() {
-       $('#img-upload').css({'display':'none'});
-       $('#loadingId').css({'display':'none'});
-       loadingId
-    	$(document).on('change', '.btn-file :file', function() {
-              $('#loadingId').css({'display':'block'});
-		var input = $(this),
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
-		});
-
-		$('.btn-file :file').on('fileselect', function(event, label) {
-		    
-		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
-		    
-		    if( input.length ) {
-		        input.val(log);
-		    } else {
-		        if( log ) alert(log);
-		    }
-	    
-		});
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        
-		        reader.onload = function (e) {
-		            $('#img-upload').attr('src', e.target.result);
-                      $('#img-upload').css({'display':'block'});
-                       $('#loadingId').css({'display':'none'});
-		        }
-		        
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
-
-		$("#imgInp").change(function(){
-		    readURL(this);
-		}); 	
-	});
-</script>
-
+<script src="{{ asset('app/tourism/ajaxSweetAlertEnable.js') }}"></script>
+<script src="{{ asset('app/tourism/ajaxSweetAlertDisable.js') }}"></script>
 @endsection

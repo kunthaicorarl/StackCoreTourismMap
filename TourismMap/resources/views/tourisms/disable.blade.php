@@ -2,7 +2,7 @@
 @section('content')
 
  <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
-<h4>Remove  Tourism Confirm</h4></div> <div class="pull-right">
+<h4>Disable  Tourism Confirm</h4></div> <div class="pull-right">
 <a href="{{ url('/admin/tourisms') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
@@ -11,11 +11,11 @@
 <div class="col-md-10 p-4-l p-4-r"><div class="pull-left">
 </div></div>
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-        <form name="form" action="{{url('admin/tourisms/destroy')}}" id="form" method="POST" class="form-horizontal">
+        <form name="form" action="{{url('admin/tourisms/disable')}}" id="form" method="POST" class="form-horizontal">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                <input type="hidden" name="_id" value="{{ $tourism->id }}">
-      <div class="form-group"><label class="col-md-5 control-label pull-left">
-                   Are you sure to Remove this ??
+           <div class="form-group"><label class="col-md-5 control-label pull-left">
+                   Are you sure to Disable this ??
                     </label></div>
                
                   <div class="form-group">

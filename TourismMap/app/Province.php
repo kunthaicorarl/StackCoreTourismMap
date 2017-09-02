@@ -8,5 +8,9 @@ class Province extends Model
 	 }
 	 public function images(){
 		return $this->belongsToMany('App\Image');
-     }
+	 }
+	 public function tourism()
+	 {
+	   return $this->hasMany('App\TourismPlace'); // assuming user_id and task_id as fk
+	 }
 }

@@ -87,11 +87,14 @@
                         <span class="required"></span>
                     </label>
                     <div class="col-md-5 col-sm-6">
-                        <input type="file"
-                               name="thumbnail"
-                                id="thumbnail"
-                               class="form-control"
-                               placeholder="File Upload" />
+                        <label class="myLabel">
+                                  <input type="file"
+                                            name="thumbnail"
+                                                id="thumbnail"
+                                            class="form-control"
+                                            placeholder="File Upload" />
+                                <span>Image Loading</span>
+                            </label>
                     </div>  
             </div>              
              <div class="form-group">

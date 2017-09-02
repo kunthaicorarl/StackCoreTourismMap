@@ -61,7 +61,7 @@
               </div>
             </td>
              <td>
-               <img style="width: 35%;" src="{{ asset('img/provinces') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
+               <img style="width: 35%;" src="{{ asset('img/gallerys') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
             </td>
              <td>
                 {{$value->created_at}}

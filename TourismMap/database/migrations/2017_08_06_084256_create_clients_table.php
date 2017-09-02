@@ -20,10 +20,10 @@ class CreateClientsTable extends Migration
           //  $table->integer('image_id')->unsigned();
             $table->string('title_khmer');
             $table->string('title_english');
-            $table->string('address_khmer');
-            $table->string('address_english');
-            $table->string('description_khmer');
-            $table->string('description_english');
+            $table->string('address_khmer')->nullable;
+            $table->string('address_english')->nullable;
+            $table->text('description_khmer')->nullable;
+            $table->text('description_english')->nullable;
             $table->text('thumbnail')->nullable();
             $table->boolean('status');
             $table->foreign('client_type_id')

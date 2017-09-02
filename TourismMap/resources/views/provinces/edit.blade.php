@@ -12,6 +12,8 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                <input type="hidden" id="_thumbnail" name="_thumbnail" value="{{ $province->thumbnail }}">
                <input type="hidden" name="_id" value="{{ $province->id }}">
+               {{--  <input type="hidden" name="status" value="{{ $province->status==1?'Enable':'Disable' }}">
+                 --}}
             <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       Postal Code
@@ -55,7 +57,7 @@
                                placeholder="Title English" />
                     </div>
             </div>
-
+{{--  
              <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       Des Khmer
@@ -69,8 +71,14 @@
                                class="form-control"
                                placeholder="Des Khmer" />
                     </div>
-            </div>
-
+            </div>  --}}
+            <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Description Khmer</label>
+                    <div class="col-md-5">
+                    <textarea class="form-control" rows="5" id="description_khmer" name="description_khmer" placeholder="Description English">{{$province->description_khmer}}</textarea>
+                    </div>
+                </div>  
+{{--  
              <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                        Des English
@@ -84,9 +92,15 @@
                                 value="{{$province->description_english}}"
                                placeholder="Des English" />
                     </div>
-            </div>
-                
+            </div>  --}}
                  <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Description English</label>
+                    <div class="col-md-5">
+                    <textarea class="form-control" rows="5" id="description_english" name="description_english" placeholder="Description English">{{$province->description_english}}</textarea>
+                    </div>
+                </div>  
+                
+                 {{--  <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                        Image Upload
                         <span class="required"></span>
@@ -98,7 +112,23 @@
                                class="form-control"
                                placeholder="File Upload" />
                     </div>  
-            </div>
+            </div>  --}}
+              <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label">
+                       Image Upload
+                        <span class="required"></span>
+                    </label>
+                    <div class="col-md-5 col-sm-6">
+                        <label class="myLabel">
+                                  <input type="file"
+                                            name="thumbnail"
+                                                id="thumbnail"
+                                            class="form-control"
+                                            placeholder="File Upload" />
+                                <span>Image Loading</span>
+                            </label>
+                    </div>  
+            </div>    
              <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                     </label>
@@ -112,8 +142,6 @@
                         </div>
                     </div>
             </div>
-
-
 
                 <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
@@ -130,7 +158,7 @@
                         </select>
                     </div>
                 </div>
-                 <div class="form-group">
+                 {{--  <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                      Latigute,Longitude
                         <span class="required"></span>
@@ -155,7 +183,7 @@
                                class="form-control"
                                placeholder="Longitude" />
                     </div>
-                </div>
+                </div>  --}}
                   <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       

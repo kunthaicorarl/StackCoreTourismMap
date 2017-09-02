@@ -27,6 +27,21 @@ class TourismController extends Controller
         return view('tourisms.index')->with('displayTourisms',$tourismPlace);
 
     }
+   
+    public function search($q)
+    {  
+       $tourism=null;
+       if($q){
+       $search=$q;
+       $tourism=TourismPlace::where('title_khmer','like','%'.$search.'%')
+       ->orWhere('title_english','like','%'.$search.'%')
+       ->orderBy('title_khmer')
+       ->paginate(50);
+       }else{
+        $tourism=TourismPlace::orderBy('id', 'desc')->paginate(3);
+       }
+     return view('tourisms.search')->with('displayTourisms',$tourism);
+   }
 
     /**
      * Show the form for creating a new resource.

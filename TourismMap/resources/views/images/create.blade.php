@@ -129,7 +129,7 @@
                     </div>  
             </div>              
              <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
+                    <label class="ss-md-3 col-sm-4 control-label">
                     </label>
                     <div class="col-md-5 col-sm-6">
                          <img id="preview" src="" style=" width: 100%;"/>

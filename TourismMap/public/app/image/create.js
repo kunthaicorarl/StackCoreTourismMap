@@ -30,7 +30,7 @@ $("#preview").attr("src",e.target.result);
                 $("#provinceForm")[0].reset();
                 $("#preview").attr("src","");
                 alertify.success(msg.infor[0]);
-             //   setTimeout(function(){ window.location = "/admin/images"; }, 1000);
+                setTimeout(function(){ window.location = "/admin/images"; },100);
                }else{
                  if(msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)

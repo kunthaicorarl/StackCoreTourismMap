@@ -32,11 +32,11 @@
 
 <div class="row header-title-module-p">
     <div>
-        <div class="col-md-3">
+        <div class="col-md-12">
            <form name="gallerySearchForm" id="gallerySearchForm">
              <input type="hidden" name="_token" value="{{ csrf_token() }}">
                <div class="form-group">
-                    <label class="col-md-3 col-sm-4 control-label">
+                    <label class="col-md-2 col-sm-4 control-label">
                          Gallery Type
                         <span class="required"></span>
                     </label>
@@ -61,9 +61,8 @@
 <table class="table table-condensed">
     <thead>
         <tr>
-            <th><INPUT type="checkbox" onchange="checkAll(this)" name="chk[]" /> </th>
             <th width="3%">No</th>
-            <th width="17%">Title</th>
+            <th width="5%">Title</th>
             <th width="15%">CreateBy</th>
             <th width="5%">Action</th>
         </tr>
@@ -71,7 +70,6 @@
   <tbody>
     @foreach($displayImage as $key => $value)
         <tr>
-              <td> <INPUT type="checkbox" name="chkbox[]" /></td>
             <td>{{$value->id }}</td>
             <td>
               <img src="{{asset($value->url)}}/{{$value->name}}" width="150px"/>
@@ -89,16 +87,12 @@
             </td>
             <td>
              <div class="margin-rb-b">
-                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+                <a href="{{url('/admin/images/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
              </div>
               <div class="margin-rb-b">
-                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+                <a href="{{url('/admin/images/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
              </div>
-              <a href="{{url('/admin/provinces/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a> 
-              {{-- <div class="margin-rb-b">
-                <a href="{{url('/admin/provinces/')}}/{{$value->id}}/detail"  class="btn-rb-green">Permissions</a>
-             </div>
-               <a href="{{url('/admin/provinces/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a> --}}
+              <a href="{{url('/admin/images/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>           
             </td>
         </tr>
     @endforeach
@@ -115,30 +109,5 @@
 </div>
 <div>
 </div>
-<script>
-$(document).ready(function() {
- 
-function checkAll(ele) {
-     var checkboxes = document.getElementsByTagName('input');
-     if (ele.checked) {
-         for (var i = 0; i < checkboxes.length; i++) {
-             if (checkboxes[i].type == 'checkbox') {
-                 checkboxes[i].checked = true;
-             }
-         }
-     } else {
-         for (var i = 0; i < checkboxes.length; i++) {
-             console.log(i)
-             if (checkboxes[i].type == 'checkbox') {
-                 checkboxes[i].checked = false;
-             }
-         }
-     }
- }
-
-
-});
-
-</script>
   <script src="{{ asset('app/gallery/searchGallery.js') }}"></script> 
 @endsection

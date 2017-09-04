@@ -226,9 +226,9 @@ class ImageController extends Controller
 
           
            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-     //   return response()->json(['success'=>false,'infor'=>$request->all()]); 
-             
+          
     }
+    
      /**
       * Remove the specified resource from storage.
       *

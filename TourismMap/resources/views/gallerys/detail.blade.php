@@ -66,12 +66,12 @@ Add Image
             </td>
             <td>
              <div class="margin-rb-b">
-                <a href="{{url('/admin/images/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/updateimage"  class="btn-rb-success">Update</a>
              </div>
-              <div class="margin-rb-b">
-                <a href="{{url('/admin/images/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
-             </div>
-              <a href="{{url('/admin/images/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>           
+              {{--  <div class="margin-rb-b">
+                <a href="{{url('/admin/gallerys/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+             </div>  --}}
+              <a href="javascript:;" id="removeId" data-id="{{$value->id}}" class="btn-rb-danger">Remove</a>           
             </td>
         </tr>
     @endforeach
@@ -79,8 +79,59 @@ Add Image
    
 </table>
 </div>
+<script>
+$(document).ready(function() {
+    function showAlertToDelete(e,numberId){
+        e.preventDefault();
+       var formData = new FormData();
+           console.log(formData);
+           debugger;
+          swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this imaginary file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+            },
+            function(){
+           $.ajax({
+            type: "POST",
+            url: '{{url("/admin/gallerys/removeImage")}}',
+             data:formData,
+              contentType: false,
+            //  dataType: "json",
+             cache: false,            
+             processData:false,       
+            success: function(msg) {
+                console.log(msg);
+               if(msg.success){
+                alertify.success(msg.infor[0]);
+                 swal("Deleted!",msg.infor[0], "success");
+                setTimeout(function(){ window.location = url; }, 100);
+               }else{
+                 if(msg.infor.length>0){
+                     for(var i=0;i<msg.infor.length;i++)
+                       alertify.error(msg.infor[i]);
+                 }
+              }
+               
+             
+            }
+        });
+            });
 
 
+    }
+    $('#removeId').on('click',function(e){
+           var numberId=$(this).attr('data-id');
+           showAlertToDelete(e,numberId);
+    });
+});
+
+
+</script>
     </div>
 
 

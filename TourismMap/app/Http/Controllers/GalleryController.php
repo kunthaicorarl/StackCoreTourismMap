@@ -67,12 +67,24 @@ class GalleryController extends Controller
 
      public function addimage($id)
      {  
-          $galleryType = GalleryType::find($id);
+        $galleryType = GalleryType::find($id);
+          $image=Image::find($id);
          return \View::make('gallerys.addimage',array(
-            'gallery_type_id'=>$galleryType));
-        
+            'image'=>$image,
+           'gallery_type_id'=>$galleryType));
+           
+       
      }
- 
+     public function updateimage($id)
+     {  
+      //  
+        $image=Image::find($id);
+        $galleryType = GalleryType::find($image->gallery_type_id);
+        return \View::make('gallerys.updateimage',array(
+          'image'=>$image,
+         'gallery_type_id'=>$galleryType));
+        //   return response()->json(['success'=>true,'infor'=>[$image]]);
+     }
  
         protected function validator(array $data)
      {
@@ -194,4 +206,67 @@ class GalleryController extends Controller
          //return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
          return response()->json(['success'=>false,'infor'=>$request->all()]); 
      }
+     public function updateFromGallery(Request $request)
+     {      
+          $validator = Validator::make($request->all(), [
+            '_id' => 'required', 
+            'gallery_type_id'=>'required',
+            ]);
+        
+            if ($validator->passes()) {
+                $photoName=null;   
+                $userId=Auth::user();
+                $isExistImage=Image::find($request->_id); 
+                if(!$isExistImage)   return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+                if($request->_thumbnail && $isExistImage->name==$request->_thumbnail){
+                    $photoName=$request->_thumbnail;
+                }else{
+                    $validator = Validator::make($request->only('thumbnail'), [
+                        'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                    ]);
+                    if ($validator->passes()) {
+                        if($request->thumbnail->isValid()) {
+                            $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
+                            $request->thumbnail->move(public_path($url), $photoName);  
+                          }else {
+                                  return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+                          }
+                  }else {                           
+                           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);                            
+                  }
+                }
+                 
+                $galleryType=GalleryType::find($request->gallery_type_id);
+                if(!$galleryType) return response()->json(['success'=>false,'infor'=>['Gallery Type Object not found']]);                            
+                $image =Image::find($request->_id); 
+                if(!$image) return response()->json(['success'=>false,'infor'=>['Image Object not found']]);                          
+                $image->title=$request->title;
+                $image->name=$photoName;
+                $image->url=$request->url;
+                $image->description=$request->description;
+                $image->caption=$request->caption;
+                $image->alt_text=$request->alt_text;
+                $image->galleryTypes()->associate($galleryType);
+                $image->save();
+                return response()->json(['success'=>true,'infor'=>['Image save Successfully']]);
+            }
+ 
+          
+           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
+          
+    }
+    public function removeImage(Request $request){
+    //     $validator = Validator::make($request->all(), [
+    //         'id' => 'required'
+    //    ]);
+         
+    //      if ($validator->passes()) {
+    //                $image =Image::find($request->id);;
+    //                $image->delete();
+    //               return response()->json(['success'=>true,'infor'=>['Image Successful Removed']]);
+    //     }
+    //   return response()->json(['success'=>false,'infor'=>$request->all()]); 
+ //dd($request->json()->all());
+ return response()->json(['success'=>false,'infor'=> (object)$request->all()]); 
+    }
 }

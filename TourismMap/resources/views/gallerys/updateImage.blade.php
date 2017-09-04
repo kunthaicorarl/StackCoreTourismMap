@@ -3,24 +3,28 @@
 
 <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
 <h4>Edit Image</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/images') }}" class="btn btn-default btn-sm">
+<a href="{{ url('/admin/gallerys') }}/{{ $gallery_type_id->id }}/detail" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
 
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-
- <form  id="form" method="POST" action="{{url('/admin/images/update')}}" name="form" class="form-horizontal"> 
+<script>
+var _urlRedirect='{{ url("/admin/gallerys") }}/{{ $gallery_type_id->id }}/detail';
+console.log(_urlRedirect);
+</script>
+ <form  id="form" method="POST" action="{{url('/admin/gallerys/updateFromGallery')}}" name="form" class="form-horizontal"> 
                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                        <input type="hidden" name="_id" value="{{ $image->id }}">
   <input type="hidden" id="_thumbnail" name="_thumbnail" value="{{ $image->name }}">
+  <input type="hidden" name="gallery_type_id" value="{{ $gallery_type_id->id }}">
  <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                          Gallery Type
                         <span class="required"></span>
                     </label>
                     <div class="col-md-5 col-sm-6">
-                        <select class="form-control"
+                        {{--  <select class="form-control"
                                 name="gallery_type_id" id="gallery_type_id"
                                 >
                                 <option value="">--Select Gallery Type--</option>
@@ -30,7 +34,15 @@
                                    selected
                                   @endif>{{$value->title}}</option>
                                 @endforeach 
-                        </select>
+                        </select>  --}}
+                    <div class="col-md-5 col-sm-6">
+                         <input type="text"
+                              name="title"
+                               id="title"
+                               value='{{$gallery_type_id->title}}'
+                               class="form-control"
+                               placeholder="TItle" readonly />
+                    </div>
                     </div>
          </div>
           <div class="form-group">
@@ -144,7 +156,7 @@
                        <a href="{{ url('/admin/images') }}" class="btn btn-sm btn-danger">Discard</a>
                           {{-- <input type="submit" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save"  class="btn btn-sm btn-success upload-image" value="Save"/> --}}
                      
-<button type="submit" class="btn btn-sm btn-success form-post" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
+<button type="submit" class="btn btn-sm btn-success btn-submit-uploading" id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Save">Save</button>
 
                     </div>
                 </div>                       
@@ -152,8 +164,8 @@
 
 </form>
     </div> 
-<script src="{{ asset('app/image/unSaveConfirm.js') }}"></script>
-<script src="{{ asset('app/image/update.js') }}"></script>
+<script src="{{ asset('app/gallery/unImageSaveConfirm.js') }}"></script>
+<script src="{{ asset('app/gallery/updateimage.js') }}"></script>
 
 @endsection
 

@@ -3,7 +3,7 @@
 
 <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
 <h4>Edit Image</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/image') }}" class="btn btn-default btn-sm">
+<a href="{{ url('/admin/images') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>

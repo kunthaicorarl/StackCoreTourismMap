@@ -117,9 +117,9 @@ class GalleryController extends Controller
       */
      public function show($id)
      {
-         $province = GalleryType::find($id);
+         $galleryType = GalleryType::find($id);
          return \View::make('gallerys.remove')
-             ->with('province', $province);
+             ->with('gallerys', $galleryType);
      }
  
      /**
@@ -155,9 +155,7 @@ class GalleryController extends Controller
                $galleryType->save();
                 return response()->json(['success'=>true,'infor'=>['Gallery Type Successful Saved']]);
            }
-           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-
-             
+           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);         
     }
      /**
       * Remove the specified resource from storage.

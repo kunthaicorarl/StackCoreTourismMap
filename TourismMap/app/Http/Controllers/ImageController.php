@@ -163,9 +163,9 @@ class ImageController extends Controller
      public function edit($id)
      {  
         $image = Image::find($id);
-        if(!$image){
-           return response()->json(['success'=>false,'infor'=>['Image not Found']]); 
-        }
+        // if(!$image){
+        //    return response()->json(['success'=>false,'infor'=>['Image not Found']]); 
+        // }
         $gallerType=GalleryType::all();
         return \View::make('images.edit',array(
            'image'=>$image,
@@ -191,6 +191,7 @@ class ImageController extends Controller
                 $photoName=null;   
                 $userId=Auth::user();
                 $isExistImage=Image::find($request->_id); 
+                if(!$isExistImage)   return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
                 if($request->_thumbnail && $isExistImage->name==$request->_thumbnail){
                     $photoName=$request->_thumbnail;
                 }else{
@@ -210,7 +211,9 @@ class ImageController extends Controller
                 }
                  
                 $galleryType=GalleryType::find($request->gallery_type_id);
+                if(!$galleryType) return response()->json(['success'=>false,'infor'=>['Gallery Type Object not found']]);                            
                 $image =Image::find($request->_id); 
+                if(!$image) return response()->json(['success'=>false,'infor'=>['Image Object not found']]);                          
                 $image->title=$request->title;
                 $image->name=$photoName;
                 $image->url=$request->url;
@@ -226,7 +229,7 @@ class ImageController extends Controller
 
           
            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
-
+     //   return response()->json(['success'=>false,'infor'=>$request->all()]); 
              
     }
      /**

@@ -45,6 +45,7 @@ Route::get('/admin/gallerys/{id}/show', 'GalleryController@show');
 Route::post('/admin/gallerys/store', 'GalleryController@store');
 Route::post('/admin/gallerys/update', 'GalleryController@update');
 Route::post('/admin/gallerys/destroy', 'GalleryController@destroy');
+Route::get('/admin/gallerys/{id}/addimage', 'GalleryController@addimage');
 
 //Image
 Route::resource('/admin/images', 'ImageController');

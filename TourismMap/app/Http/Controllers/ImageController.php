@@ -31,9 +31,6 @@ class ImageController extends Controller
      {   
            $image=Image::orderBy('id', 'desc')->paginate(3);
            $galleryType=GalleryType::all();
-          // return view('images.create')->with('displayGalleryType',$galleryType);;
-         //  return view('images.index')->with('displayImage',array('users' => $users,
-          // 'projects' => $projects ,'foods' => $foods);
            return view('images.index', array('displayImage' => $image,
            'galleryTypes' =>  $galleryType));
      }
@@ -249,10 +246,15 @@ class ImageController extends Controller
                          if(!$image){
                              return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);
                          }
+                        //  $file= $image->name;
+                        //  if(!$file){
+                        //     return response()->json(['success'=>false,'infor'=>['Image File Not Found']]);
+                        //  }
+                        //  $filename = public_path().'/img/gallerys/'.$file;
+                        //  \File::delete($filename);
                          $image->delete();
                         return response()->json(['success'=>true,'infor'=>['Image Successful Removed']]);
               }
-         //return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
          return response()->json(['success'=>false,'infor'=>$request->all()]); 
      }
 }

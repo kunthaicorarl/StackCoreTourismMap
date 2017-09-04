@@ -30,7 +30,7 @@
 </div>
 
 
-<div class="row header-title-module-p">
+{{--  <div class="row header-title-module-p">
     <div>
         <div class="col-md-12">
            <form name="gallerySearchForm" id="gallerySearchForm">
@@ -54,7 +54,7 @@
         </div>
             
     </div>
-</div>
+</div>  --}}
 
 <div class="row ">
 <div class="table-responsive">

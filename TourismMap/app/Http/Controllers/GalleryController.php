@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Province;
 use App\User;
+use App\Image;
 use App\GalleryType;
 use Auth;
 use Response;
@@ -53,10 +54,23 @@ class GalleryController extends Controller
         return view('gallerys.create');
      }
      public function detail($id)
-     {
+     {  
           $galleryType = GalleryType::find($id);
-         return \View::make('gallerys.detail')
-             ->with('galleryType', $galleryType);
+          $image=Image::all()->where('gallery_type_id','=',$id);
+         return \View::make('gallerys.detail',array(
+            'galleryType'=>$galleryType,
+            'displayImage'=>$image
+         ));
+       //  return response()->json(['success'=>false,'infor'=>[$galleryType]]); 
+     }
+
+
+     public function addimage($id)
+     {  
+          $galleryType = GalleryType::find($id);
+         return \View::make('gallerys.addimage',array(
+            'gallery_type_id'=>$galleryType));
+        
      }
  
  

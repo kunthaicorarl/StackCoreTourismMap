@@ -81,11 +81,13 @@ Add Image
 </div>
 <script>
 $(document).ready(function() {
+    var _urlCurrentPage='{{url("/admin/gallerys")}}/{{$galleryType->id}}/detail';
     function showAlertToDelete(e,numberId){
         e.preventDefault();
+        
        var formData = new FormData();
-           console.log(formData);
-           debugger;
+           formData.append('id', numberId);
+            formData.append('_token', '{{ csrf_token() }}');
           swal({
             title: "Are you sure?",
             text: "You will not be able to recover this imaginary file!",
@@ -107,9 +109,9 @@ $(document).ready(function() {
             success: function(msg) {
                 console.log(msg);
                if(msg.success){
-                alertify.success(msg.infor[0]);
+                //alertify.success(msg.infor[0]);
                  swal("Deleted!",msg.infor[0], "success");
-                setTimeout(function(){ window.location = url; }, 100);
+                 setTimeout(function(){ window.location = _urlCurrentPage; }, 1000);
                }else{
                  if(msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)

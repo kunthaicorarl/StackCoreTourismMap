@@ -48,7 +48,7 @@ Route::post('/admin/gallerys/destroy', 'GalleryController@destroy');
 Route::get('/admin/gallerys/{id}/addimage', 'GalleryController@addimage');
 Route::get('/admin/gallerys/{id}/updateimage', 'GalleryController@updateimage');
 Route::post('/admin/gallerys/updateFromGallery', 'GalleryController@updateFromGallery');
-//Route::post('/admin/gallerys/removeImage/{id}', 'GalleryController@removeImage');
+Route::post('/admin/gallerys/removeImage', 'GalleryController@removeImage');
 //Image
 Route::resource('/admin/images', 'ImageController');
 Route::get('/admin/images/{id}/detail', 'ImageController@detail');
@@ -60,7 +60,7 @@ Route::post('/admin/images/destroy', 'ImageController@destroy');
 
 
 
-Route::post('/admin/gallerys/removeImage','GalleryController@removeImage', ['middleware' => 'restfulApi']);
+//Route::post('/admin/gallerys/removeImage','GalleryController@removeImage', ['middleware' => 'restfulApi']);
 // Route::resource('users', 'UserController');
 // Route::resource('roles', 'RoleController');
 // Route::resource('permissions', 'PermissionController');

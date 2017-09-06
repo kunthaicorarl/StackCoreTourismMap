@@ -79,61 +79,7 @@ Add Image
    
 </table>
 </div>
-<script>
-$(document).ready(function() {
-    var _urlCurrentPage='{{url("/admin/gallerys")}}/{{$galleryType->id}}/detail';
-    function showAlertToDelete(e,numberId){
-        e.preventDefault();
-        
-       var formData = new FormData();
-           formData.append('id', numberId);
-            formData.append('_token', '{{ csrf_token() }}');
-          swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover this imaginary file!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false
-            },
-            function(){
-           $.ajax({
-            type: "POST",
-            url: '{{url("/admin/gallerys/removeImage")}}',
-             data:formData,
-              contentType: false,
-            //  dataType: "json",
-             cache: false,            
-             processData:false,       
-            success: function(msg) {
-                console.log(msg);
-               if(msg.success){
-                //alertify.success(msg.infor[0]);
-                 swal("Deleted!",msg.infor[0], "success");
-                 setTimeout(function(){ window.location = _urlCurrentPage; }, 1000);
-               }else{
-                 if(msg.infor.length>0){
-                     for(var i=0;i<msg.infor.length;i++)
-                       alertify.error(msg.infor[i]);
-                 }
-              }
-               
-             
-            }
-        });
-            });
-
-
-    }
-    $('#removeId').on('click',function(e){
-           var numberId=$(this).attr('data-id');
-           showAlertToDelete(e,numberId);
-    });
-});
-
-
-</script>
+<script src="{{ asset('app/gallery/ajaxSweetAlertDelete.js') }}"></script>
     </div>
 
 

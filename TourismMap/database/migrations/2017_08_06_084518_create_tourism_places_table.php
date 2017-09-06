@@ -20,15 +20,15 @@ class CreateTourismPlacesTable extends Migration
                $table->integer('user_id')->unsigned();
                $table->string('title_khmer');
                $table->string('title_english');
-            //   $table->text('thumbnail');
+               $table->text('thumbnail');
             //    $table->text('video');
                $table->boolean('status');
                $table->string('address_khmer');
                $table->string('address_english');
                $table->string('description_khmer');
                $table->string('description_english');
-               $table->double('latitude');
-               $table->double('longitude');
+               $table->float('latitude', 10, 6);
+               $table->float('longitude', 10, 6);
                 $table->foreign('client_id')
             ->references('id')->on('clients')
             ->onDelete('cascade');
@@ -40,12 +40,12 @@ class CreateTourismPlacesTable extends Migration
         });
         Schema::create('tourism_gallery', function (Blueprint $table) {
             $table->integer('tourism_place_id')->unsigned();
-            $table->integer('image_id')->unsigned();
+            $table->integer('gallery_type_id')->unsigned();
             $table->foreign('tourism_place_id')->references('id')->on('tourism_places')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('image_id')->references('id')->on('images')
+            $table->foreign('gallery_type_id')->references('id')->on('gallery_types')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->primary(['tourism_place_id', 'image_id']);
+            $table->primary(['tourism_place_id', 'gallery_type_id']);
         });
     }
 

@@ -214,7 +214,8 @@ class GalleryController extends Controller
             ]);
         
             if ($validator->passes()) {
-                $photoName=null;   
+                $photoName=null;  
+                $url="img/gallerys/"; 
                 $userId=Auth::user();
                 $isExistImage=Image::find($request->_id); 
                 if(!$isExistImage)   return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 

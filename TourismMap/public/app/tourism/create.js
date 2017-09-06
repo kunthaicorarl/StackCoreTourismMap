@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    
-
 $("#thumbnail").change(function() {
 var file = this.files[0];
 $("#_thumbnail").val("");
@@ -11,7 +9,7 @@ reader.readAsDataURL(this.files[0]);
 function imageIsLoaded(e) {
 $("#preview").attr("src",e.target.result);
 };
-    $('#provinceForm').on('submit', function (e) {
+    $('#form').on('submit', function (e) {
         e.preventDefault();
         var $form=$(this);
           var $btn = $('.upload-image');
@@ -28,10 +26,10 @@ $("#preview").attr("src",e.target.result);
                 console.log(msg);
                  $btn.button('reset');
                if(msg.success){
-                $("#provinceForm")[0].reset();
+                $("#form")[0].reset();
                 $("#preview").attr("src","");
                 alertify.success(msg.infor[0]);
-                setTimeout(function(){ window.location = "/admin/provinces"; }, 1000);
+                setTimeout(function(){ window.location = "/admin/tourisms"; },500);
                }else{
                  if(msg.infor.length>0){
             

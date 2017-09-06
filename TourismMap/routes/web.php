@@ -58,7 +58,7 @@ Route::post('/admin/images/store', 'ImageController@store');
 Route::post('/admin/images/update', 'ImageController@update');
 Route::post('/admin/images/destroy', 'ImageController@destroy');
 
-//Image
+//Tourism
 Route::resource('/admin/tourisms', 'TourismController');
 Route::get('/admin/tourisms/{id}/detail', 'TourismController@detail');
 Route::get('/admin/tourisms/{q}/search', 'TourismController@search');

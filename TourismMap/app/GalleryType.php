@@ -12,4 +12,8 @@ class GalleryType extends Model
     public function images(){
         return $this->hasMany('App\Image','image_id','id');
     }
+    public function tourisms()
+    {
+      return $this->belongsToMany('App\TourismPlace', 'tourism_gallery'); // assuming user_id and task_id as fk
+    }
 }

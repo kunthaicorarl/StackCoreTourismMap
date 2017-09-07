@@ -11,6 +11,6 @@ class Province extends Model
 	 }
 	 public function tourism()
 	 {
-	   return $this->hasMany('App\Tourism'); // assuming user_id and task_id as fk
+	   return $this->hasMany('App\TourismPlace'); // assuming user_id and task_id as fk
 	 }
 }

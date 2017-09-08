@@ -20,13 +20,13 @@ class CreateTourismPlacesTable extends Migration
                $table->integer('user_id')->unsigned();
                $table->string('title_khmer');
                $table->string('title_english');
-               $table->text('thumbnail');
-            //    $table->text('video');
+               $table->text('thumbnail')->nullable();
+               $table->text('video')->nullable();
                $table->boolean('status');
-               $table->string('address_khmer');
-               $table->string('address_english');
-               $table->string('description_khmer');
-               $table->string('description_english');
+               $table->string('address_khmer')->nullable();
+               $table->string('address_english')->nullable();
+               $table->string('description_khmer')->nullable();
+               $table->string('description_english')->nullable();
                $table->float('latitude', 10, 6);
                $table->float('longitude', 10, 6);
                 $table->foreign('client_id')

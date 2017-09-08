@@ -49,7 +49,17 @@ class TourismController extends Controller
     {
         
            $user=Auth::user();
-           $tourism =new TourismPlace()->users()->associate($user)->first();
+           $tourism =new TourismPlace;
+           $tourism->latitude=12;
+           $tourism->latitude=222;
+           $tourism->users()->associate($user);
+           $tourism->title_khmer='222';
+           $tourism->title_english='222';
+           $tourism->thumbnail=null;
+           $tourism->description_khmer='222';
+           $tourism->description_english='222';
+           $tourism->status=false;
+           $tourism->save();
        //  $tourism->users()->associate($user);
         // $tourism=$tourism->save();
 //         $tourism->latitude=$request->latitude;
@@ -57,14 +67,14 @@ class TourismController extends Controller
   
 //         $tourism->title_khmer=$request->title_khmer;
 //         $tourism->title_english=$request->title_english;
-//   //      $tourism->thumbnail=$photoName;
+//   //    $tourism->thumbnail=$photoName;
 //         $tourism->description_khmer=$request->description_khmer;
 //         $tourism->description_english=$request->description_english;
 //         $tourism->status=$request->status=='Enable'?true:false;
 //         $tourism=$tourism->save();
 //         $tourism->accociate($province);
 //         $tourism->galleryTypes()->save($galleryType);
-       return response()->json(['success'=>true,'infor'=>[new TourismPlace()]]);
+       return response()->json(['success'=>true,'infor'=>[$tourism]]);
 
 //         $validator = Validator::make($request->all(), [
 //              'gallery_type'=>'required',

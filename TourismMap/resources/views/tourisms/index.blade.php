@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div>
-<div class="col-md-9 panel panel-default container-p">
+<div class="col-md-10 panel panel-default container-p">
 
 <div class="row header-title-module-p">
     <div>
@@ -22,31 +22,61 @@
     </div>
 </div>
 <div class="row ">
+
 <table class="table table-condensed">
     <thead>
         <tr>
             <th width="3%">No</th>
             <th width="17%">Title</th>
             <th width="17%">Description</th>
+             <th width="15%">Thumbnail</th>
              <th width="15%">CreateBy</th>
-            <th width="5%">Status</th>
             <th width="10%">Action</th>
         </tr>
     </thead>
-    <tbody>
+  <tbody>
+    @foreach($displayTourisms as $key => $value)
         <tr>
-            <td>1</td>
-            <td>DDD</td>
-            <td>DDDD</td>
-            <td>DDDD</td>
-             <td>DDDD</td>
+            <td>{{$value->id }}</td>
             <td>
-            <button data-toggle="modal" ng-click="edit(value.id)" data-target="#edit-data" class="btn btn-sm btn-primary">Update</button>
-            <a href="{{url('/admin/provinces/show')}}"  class="btn btn-sm btn-danger">Remove</a>
+               <div class="table-text-trail">  
+               <b>{{ $value->title_khmer }}</b>
+               <br>
+              <span>{{ $value->title_english }}<span>
+              <br>
+              <span class="label label-{{ $value->status==1?'success':'danger'}}">{{ $value->status==1?'enable':'disable'}}</span>
+               </div>  
+            </td>
+            <td>
+               <div class="table-text-trail">  
+               <b>{{ $value->description_khmer }}</b>
+               <br>
+              <span>{{ $value->description_english }}<span>
+              </div>
+            </td>
+             <td>
+               <img style="width: 35%;" src="{{ asset('img/gallerys') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
+            </td>
+             <td>
+                {{$value->created_at}}
+                <br>
+                {{$value->created_at==$value->updated_at?'':'Last Updated'.$value->updated_at}}
+            </td>
+            <td>
+             <div class="margin-rb-b">
+                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/edit"  class="btn-rb-success">Update</a>
+             </div>
+              <div class="margin-rb-b">
+                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
+             </div>
+               <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>
             </td>
         </tr>
+    @endforeach
     </tbody>
+   
 </table>
+
 </div>
 <div>
 </div>

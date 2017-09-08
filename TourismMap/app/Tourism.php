@@ -10,8 +10,8 @@ class Tourism extends Model
     {
       return $this->belongsTo('App\Province'); // assuming user_id and task_id as fk
     }
-    public function galleryType()
+    public function galleryTypes()
     {
-      return $this->belongsToMany('App\GalleryType', 'tourism_gallery'); // assuming user_id and task_id as fk
+      return $this->belongsToMany('App\GalleryType'); // assuming user_id and task_id as fk
     }
 }

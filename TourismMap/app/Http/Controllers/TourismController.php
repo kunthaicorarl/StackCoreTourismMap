@@ -23,7 +23,9 @@ class TourismController extends Controller
     }
     public function index()
     {
-          return view('tourisms.index');
+        $tourismPlace=TourismPlace::orderBy('id', 'desc')->paginate(50);
+        return view('tourisms.index')->with('displayTourisms',$tourismPlace);
+
     }
 
     /**
@@ -35,7 +37,6 @@ class TourismController extends Controller
     {   
         $galleryTypes=GalleryType::all();
         $provinces=Province::all();
-     //   dd(array('galleryTypes'=>$galleryTypes,'provinces'=>$provinces));
         return \View::make('tourisms.create',array('galleryTypes'=>$galleryTypes,'provinces'=>$provinces));
     }
 
@@ -47,82 +48,51 @@ class TourismController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validator = Validator::make($request->all(), [
+             'gallery_type'=>'required',
+             'province'=>'required',
+             'title_khmer' => 'required',
+             'title_english' => 'required',
+             'latitude' => 'required|min:1|max:50',
+             'longitude' => 'required|min:1|max:50',
+             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+    if ($validator->passes()) {
+         $photoName=null;  
+         $url="img/gallerys/"; 
+         $userId=Auth::user()->id;
+            if($request->thumbnail->isValid()) {
+                $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
+               $request->thumbnail->move(public_path($url), $photoName);  
+            }
+            $province=Province::find($request->province);
+            if(!$province){
+                return response()->json(['success'=>true,'infor'=>['Province not Found,[Error]']]);
+            }
+            $galleryType=GalleryType::find($request->gallery_type);
+            if(!$galleryType){
+                return response()->json(['success'=>true,'infor'=>['Gallery Type not Found,[Error]']]);
+            }
            $user=Auth::user();
            $tourism =new TourismPlace;
-           $tourism->latitude=12;
-           $tourism->latitude=222;
+           $tourism->latitude=$request->latitude;
+           $tourism->longitude=$request->longitude;
            $tourism->users()->associate($user);
-           $tourism->title_khmer='222';
-           $tourism->title_english='222';
-           $tourism->thumbnail=null;
-           $tourism->description_khmer='222';
-           $tourism->description_english='222';
-           $tourism->status=false;
+           $tourism->provinces()->associate($province);
+           $tourism->title_khmer=$request->title_khmer;
+           $tourism->title_english=$request->title_english;
+           $tourism->thumbnail=$photoName;
+           $tourism->video=$request->video;
+           $tourism->description_khmer=$request->description_khmer;
+           $tourism->description_english=$request->description_english;
+           $tourism->address_khmer=$request->address_khmer;
+           $tourism->address_english=$request->address_english;
+           $tourism->status=$request->status=='Enable'?'1':'0';
            $tourism->save();
-       //  $tourism->users()->associate($user);
-        // $tourism=$tourism->save();
-//         $tourism->latitude=$request->latitude;
-//         $tourism->latitude=$request->latitude;
-  
-//         $tourism->title_khmer=$request->title_khmer;
-//         $tourism->title_english=$request->title_english;
-//   //    $tourism->thumbnail=$photoName;
-//         $tourism->description_khmer=$request->description_khmer;
-//         $tourism->description_english=$request->description_english;
-//         $tourism->status=$request->status=='Enable'?true:false;
-//         $tourism=$tourism->save();
-//         $tourism->accociate($province);
-//         $tourism->galleryTypes()->save($galleryType);
-       return response()->json(['success'=>true,'infor'=>[$tourism]]);
-
-//         $validator = Validator::make($request->all(), [
-//              'gallery_type'=>'required',
-//              'province'=>'required',
-//              'title_khmer' => 'required',
-//              'title_english' => 'required',
-//              'latitude' => 'required|min:1|max:50',
-//              'longitude' => 'required|min:1|max:50',
-//             'description_khmer' => 'required',
-//             'description_english' => 'required',
-//             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//       ]);
-//     //if ($validator->passes())  return response()->json(['success'=>false,'infor'=>$request->all()]);
-//      if ($validator->passes()) {
-//          $photoName=null;  
-//          $url="img/gallerys/"; 
-//          $userId=Auth::user()->id;
-//             if($request->thumbnail->isValid()) {
-//                 $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
-//                $request->thumbnail->move(public_path($url), $photoName);  
-//             }
-//             $province=Province::find($request->province);
-//             if(!$province){
-//                 return response()->json(['success'=>true,'infor'=>['Province not Found']]);
-//             }
-//             $galleryType=GalleryType::find($request->gallery_type);
-//             if(!$galleryType){
-//                 return response()->json(['success'=>true,'infor'=>['Gallery Type not Found']]);
-//             }
-       
-//            $user=Auth::user();
-//            $tourism =new TourismPlace;
-//            $tourism->latitude=$request->latitude;
-//            $tourism->latitude=$request->latitude;
-//            $tourism->users()->associate($user);
-//            $tourism->title_khmer=$request->title_khmer;
-//            $tourism->title_english=$request->title_english;
-//            $tourism->thumbnail=$photoName;
-//            $tourism->description_khmer=$request->description_khmer;
-//            $tourism->description_english=$request->description_english;
-//            $tourism->status=$request->status=='Enable'?true:false;
-//            $tourism=$tourism->save();
-//            $tourism->accociate($province);
-//            $tourism->galleryTypes()->save($galleryType);
-//           return response()->json(['success'=>true,'infor'=>[$tourism]]);
-//    }
-
-//      return response()->json(['success'=>false,'infor'=>$request->all()]);
+           $tourism->galleryTypes()->save($galleryType);
+           return response()->json(['success'=>true,'infor'=>['Tourism Successfully Saved']]);
+      }
+           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);
     }
 
     /**
@@ -144,7 +114,15 @@ class TourismController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tourism = TourismPlace::find($id);
+        $provinces = Province::all();
+        $galleryType =GalleryType::all();
+        return \View::make('tourisms.edit',
+         array('tourism'=>$tourism,
+            'provines'=>$provinces,
+            'galleryTypes'=>$galleryType
+             ));
+          //  ->with('tourism', $tourisms);  
     }
 
     /**

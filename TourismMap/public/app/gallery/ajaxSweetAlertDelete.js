@@ -45,8 +45,9 @@ $(document).ready(function() {
 
 
     }
-    $('#removeId').on('click',function(e){
+    $('.table tr td').on('click','#removeId',function(e){
            var numberId=$(this).attr('data-id');
+           console.log(numberId);
            showAlertToDelete(e,numberId);
     });
 });

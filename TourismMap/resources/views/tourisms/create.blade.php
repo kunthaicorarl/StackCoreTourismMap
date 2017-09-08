@@ -2,7 +2,7 @@
 @section('content')
  <div class="col-md-10 p-4-l p-4-r mob-back-h"><div class="pull-left">
 <h4>Create New Tourism</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/provinces') }}" class="btn btn-default btn-sm">
+<a href="{{ url('/admin/tourisms') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
@@ -122,6 +122,34 @@
                         <input type="text"
                                name="description_english"
                                id="description_english"
+                               class="form-control"
+                               placeholder="Des English" />
+                    </div>
+            </div>
+
+            <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label">
+                      Address Khmer
+                        <span class="required">*</span>
+                    </label>
+                    <div class="col-md-5 col-sm-6">
+                        <input type="text"
+                               name="address_khmer"
+                               id="address_khmer"
+                               class="form-control"
+                               placeholder="Des Khmer" />
+                    </div>
+            </div>
+
+             <div class="form-group">
+                    <label class="col-md-3 col-sm-4 control-label">
+                       Address English
+                        <span class="required">*</span>
+                    </label>
+                    <div class="col-md-5 col-sm-6">
+                        <input type="text"
+                               name="address_english"
+                               id="address_english"
                                class="form-control"
                                placeholder="Des English" />
                     </div>

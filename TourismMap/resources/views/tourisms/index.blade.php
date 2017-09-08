@@ -28,6 +28,8 @@
         <tr>
             <th width="3%">No</th>
             <th width="17%">Title</th>
+             <th width="17%">Province</th>
+             <th width="17%">GalleryType</th>
             <th width="17%">Description</th>
              <th width="15%">Thumbnail</th>
              <th width="15%">CreateBy</th>
@@ -48,6 +50,13 @@
                </div>  
             </td>
             <td>
+             <div class="table-text-trail">  
+               <b>  {{ $value->provinces->title_khmer }}</b>
+               <br>
+              <span>  {{ $value->provinces->title_english }}<span> 
+               </div>  
+               </td>
+               <td>
                <div class="table-text-trail">  
                <b>{{ $value->description_khmer }}</b>
                <br>

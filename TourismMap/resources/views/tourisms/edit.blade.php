@@ -38,6 +38,7 @@
                         <select class="form-control"
                                 name="gallery_type" id="gallery_type"
                                 >
+                                
                                 <option value="">--Select Gallery Type--</option>
                                 @foreach($galleryTypes as $key => $value)
                                  <option value="{{$value->id}}" @if($tourism->galleryTypes[0]->id==$value->id) selected @endif>{{$value->title}}</option>
@@ -55,6 +56,7 @@
                                 name="latitude"
                                id="latitude"
                                class="form-control"
+                               value="{{$tourism->latitude}}"
                                placeholder="latitude" />
                     </div>
                    
@@ -69,6 +71,7 @@
                                 name="longitude"
                                id="longitude"
                                class="form-control"
+                                 value="{{$tourism->longitude}}"
                                placeholder="longitude" />
                     </div>
                    
@@ -82,6 +85,7 @@
                         <input type="text"
                                 name="title_khmer"
                                id="title_khmer"
+                                value="{{$tourism->title_khmer}}"
                                class="form-control"
                                placeholder="Title Khmer" />
                     </div>
@@ -96,6 +100,7 @@
                         <input type="text"
                                name="title_english"
                                id="title_english"
+                               value="{{$tourism->title_english}}"
                                class="form-control"
                                placeholder="Title English" />
                     </div>
@@ -110,6 +115,7 @@
                         <input type="text"
                                name="description_khmer"
                                id="description_khmer"
+                                value="{{$tourism->description_khmer}}"
                                class="form-control"
                                placeholder="Des Khmer" />
                     </div>
@@ -124,6 +130,7 @@
                         <input type="text"
                                name="description_english"
                                id="description_english"
+                                value="{{$tourism->description_english}}"
                                class="form-control"
                                placeholder="Des English" />
                     </div>
@@ -138,6 +145,7 @@
                         <input type="text"
                                name="address_khmer"
                                id="address_khmer"
+                                value="{{$tourism->address_khmer}}"
                                class="form-control"
                                placeholder="Des Khmer" />
                     </div>
@@ -152,6 +160,7 @@
                         <input type="text"
                                name="address_english"
                                id="address_english"
+                                 value="{{$tourism->address_english}}"
                                class="form-control"
                                placeholder="Des English" />
                     </div>
@@ -163,11 +172,6 @@
                         <span class="required"></span>
                     </label>
                     <div class="col-md-5 col-sm-6" id="imgId">
-                        {{--  <input type="file"
-                               name="thumbnail"
-                                id="thumbnail"
-                               class="form-control"
-                               placeholder="File Upload" />  --}}
                                <label class="myLabel">
                                   <input type="file"
                                             name="thumbnail"
@@ -203,6 +207,9 @@
                     </div>
                 </div>
         <form>   
+
+
+
 <script src="{{ asset('app/tourism/create.js') }}"></script>
 
 @endsection

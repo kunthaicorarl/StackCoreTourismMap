@@ -22,7 +22,7 @@ class TourismController extends Controller
        $this->middleware('auth');
     }
     public function index()
-    {
+    {       
         $tourismPlace=TourismPlace::orderBy('id', 'desc')->paginate(50);
         return view('tourisms.index')->with('displayTourisms',$tourismPlace);
 

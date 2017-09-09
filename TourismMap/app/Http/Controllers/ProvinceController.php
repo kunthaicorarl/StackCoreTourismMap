@@ -91,10 +91,11 @@ class ProvinceController extends Controller
             ]);
            if ($validator->passes()) {
               $photoName=null;   
+              $url="img/gallerys/"; 
               $userId=Auth::user()->id;
              if($request->thumbnail->isValid()) {
-                $photoName = 'province_'.time().'.'.$request->thumbnail->getClientOriginalExtension();
-                $request->thumbnail->move(public_path('img/provinces'), $photoName);  
+                $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
+                $request->thumbnail->move(public_path($url), $photoName);   
              }
                 $user=new User;
                 $user=Auth::user();
@@ -173,9 +174,11 @@ class ProvinceController extends Controller
                             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                         ]);
                         if ($validator->passes()) {
+                            
                               if($request->thumbnail->isValid()) {
-                                    $photoName = 'province_'.time().'.'.$request->thumbnail->getClientOriginalExtension();
-                                    $request->thumbnail->move(public_path('img/provinces'), $photoName);  
+                                $url="img/gallerys/"; 
+                                $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
+                                $request->thumbnail->move(public_path($url), $photoName);   
                                 }else {
                                         return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]); 
                                 }

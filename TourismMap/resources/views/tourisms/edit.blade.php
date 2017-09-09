@@ -8,10 +8,13 @@
     </a></div></div>
 
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-    
+        <div id="hasErrorId" class="has-error">
+          
+        </div>
         <form enctype="multipart/form-data" id="form" action="{{ url('/admin/tourisms/update') }}" name="form" method="POST"  class="form-horizontal">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
          <input type="hidden" name="_id" value="{{ $tourism->id }}">
+         <input type="hidden" id="_thumbnail" name="_thumbnail" value="{{ $tourism->thumbnail }}">
            <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                          Tourism
@@ -19,14 +22,14 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <select class="form-control"
-                                name="province" id="province"
+                                name="provinces" id="provinces"
                                 >
                                 <option value="">--Select a Province--</option>
                                 @foreach($provines as $key => $pr)
                                 <option value="{{$pr->id}}" @if($tourism->province_id==$pr->id) selected @endif>{{$pr->title_khmer}}</option>
                                 @endforeach 
                         </select>
-                    </div>
+                    </div>  
          </div>
        
           <div class="form-group">

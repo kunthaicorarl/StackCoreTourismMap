@@ -134,8 +134,9 @@ class TourismController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+       // return response()->json(['success'=>false,'infor'=>$request->all()]);
         $validator = Validator::make($request->all(), [
             'gallery_type'=>'required',
             'provinces'=>'required',
@@ -146,11 +147,10 @@ class TourismController extends Controller
            // 'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
    if ($validator->passes()) {
-        $photoName=null;  
-        $url="img/gallerys/"; 
-        $userId=Auth::user()->id;         
-        $isExistImage=TourismPlace::find($request->_id);        
-      //  dd($isExistImage);         
+       $photoName=null;  
+       $url="img/gallerys/"; 
+       $userId=Auth::user()->id;         
+       $isExistImage=TourismPlace::find($request->_id);          
         if($request->_thumbnail && $isExistImage->thumbnail==$request->_thumbnail){
                $photoName=$request->_thumbnail;
         }else{
@@ -169,16 +169,18 @@ class TourismController extends Controller
                    }
                   
         }   
-           $province=Province::find($request->provines);
+        
+           $province=Province::find($request->provinces);
            if(!$province){
-               return response()->json(['success'=>true,'infor'=>['Province not Found,[Error]']]);
+               return response()->json(['success'=>false,'infor'=>['Province not Found,[Error]']]);
            }
            $galleryType=GalleryType::find($request->gallery_type);
            if(!$galleryType){
-               return response()->json(['success'=>true,'infor'=>['Gallery Type not Found,[Error]']]);
+               return response()->json(['success'=>false,'infor'=>['Gallery Type not Found,[Error]']]);
            }
-          $user=Auth::user();
-          $tourism =TourismPlace::find($id);
+         
+         $user=Auth::user();
+          $tourism =TourismPlace::find($request->_id);
           $tourism->latitude=$request->latitude;
           $tourism->longitude=$request->longitude;
           $tourism->users()->associate($user);
@@ -192,8 +194,11 @@ class TourismController extends Controller
           $tourism->address_khmer=$request->address_khmer;
           $tourism->address_english=$request->address_english;
           $tourism->status=$request->status=='Enable'?'1':'0';
-          $tourism->save();
-          $tourism->galleryTypes()->save($galleryType);
+          $tourism->galleryTypes->save($galleryType);//()->save($galleryType);
+          dd($tourism);
+         // $tourism->save();
+         //
+        
           return response()->json(['success'=>true,'infor'=>['Tourism Successfully Saved']]);
      }
           return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);
@@ -222,13 +227,7 @@ class TourismController extends Controller
         return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);
     }
 
-    public function e($id)
-    {
-        dd(1);
-        // $tourism = TourismPlace::find($id);
-        // return \View::make('tourisms.enable',
-        //  array('tourism'=>$tourism));
-    }
+  
     public function disableDisplay($id)
     {
         $tourism = TourismPlace::find($id);

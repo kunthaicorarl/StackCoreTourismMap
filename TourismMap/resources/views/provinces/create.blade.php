@@ -9,9 +9,11 @@
     </a></div></div>
 
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
-    
+        <div class="hasError">
+        </div>
         <form enctype="multipart/form-data" id="provinceForm" action="{{ url('/admin/provinces/store') }}" name="provinceForm" method="POST"  class="form-horizontal">
-         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+          <input type="hidden" name="status" id="status" value="Enable"/>
           <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       Postal Code
@@ -53,7 +55,7 @@
                     </div>
             </div>
 
-             <div class="form-group">
+             {{--  <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       Des Khmer
                         <span class="required">*</span>
@@ -65,9 +67,16 @@
                                class="form-control"
                                placeholder="Des Khmer" />
                     </div>
-            </div>
+            </div>  --}}
 
              <div class="form-group">
+                <label for="name" class="col-md-3 control-label">Description Khmer</label>
+                <div class="col-md-5">
+                <textarea class="form-control" rows="5" id="description_khmer" name="description_khmer" placeholder="Description Khmer"></textarea>
+                 </div>
+             </div>  
+
+             {{--  <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                        Des English
                         <span class="required">*</span>
@@ -79,7 +88,14 @@
                                class="form-control"
                                placeholder="Des English" />
                     </div>
-            </div>
+            </div>  --}}
+              <div class="form-group">
+                <label for="name" class="col-md-3 control-label">Description English</label>
+                <div class="col-md-5">
+                <textarea class="form-control" rows="5" id="description_english" name="description_english" placeholder="Description English"></textarea>
+                 </div>
+             </div>  
+
                 
             <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
@@ -113,7 +129,7 @@
 
 
 
-                <div class="form-group">
+                {{--  <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                          Status
                         <span class="required"></span>
@@ -126,7 +142,7 @@
                                <option value="Disable">Disable</option>
                         </select>
                     </div>
-                </div>
+                </div>  --}}
                   <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
                       

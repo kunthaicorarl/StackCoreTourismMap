@@ -19,10 +19,10 @@ class CreateProvincesTable extends Migration
             $table->string('postal_code');
             $table->string('title_khmer');
             $table->string('title_english');
-            $table->text('thumbnail');
-            $table->string('description_khmer',200);
-            $table->string('description_english',200);
-            $table->boolean('status',200);
+            $table->text('thumbnail')->nullable();
+            $table->text('description_khmer')->nullable();
+            $table->text('description_english')->nullable();
+            $table->boolean('status');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -12,33 +12,13 @@ console.log(
 _urlCurrentPage,
 _token);
 </script>
-
-
-<div class="row header-title-module-p">
-    <div>
-        <div class="col-md-3">
-            <h4>Tourisms</h4>
-        </div>
-             <form name="form" id="form">
-             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-               <div class="col-md-7 col-md-offset-2">
-               <div class="col-md-10 header-title-module-p-btn-23">
-               <div class="input-group">
-               <input type="text" placeholder="Search" ng-model="searchKey" name="searchKey" id="searchKey" title="" tooltip=""  class="form-control form-control-rb">
-                <span id="btnSearch" class="input-group-addon" >Search</span>
-                </div>
-                </div>
-                 <div class="col-md-2">
-                 {{-- <button data-toggle="modal" data-target="#create-user" class="btn btn-success btn-sm">Create New</button> --}}
-                 <a href="{{url('/admin/tourisms/create')}}" class="btn btn-rb-success  btn-md">Create New</a>
-                 </div>
-
-
-                 </div>
-                 </form>
-    </div>
-</div>
-
+<div>
+<div class="col-md-12 p-4-l p-4-r"><div class="pull-left">
+<h4>Tourisms</h4></div> <div class="pull-right">
+<a href="{{ url('/admin/tourisms') }}" class="btn btn-default btn-sm">
+<i class="fa fa-arrow-left"></i>
+           Back
+    </a></div></div>
 <div class="row ">
 
 <table class="table table-condensed">
@@ -119,7 +99,7 @@ _token);
 </table>
 
 </div>
-<script src="{{ asset('app/tourism/searchTourism.js') }}"></script>
+
 <script src="{{ asset('app/tourism/ajaxSweetAlertEnable.js') }}"></script>
 <script src="{{ asset('app/tourism/ajaxSweetAlertDisable.js') }}"></script>
 @endsection

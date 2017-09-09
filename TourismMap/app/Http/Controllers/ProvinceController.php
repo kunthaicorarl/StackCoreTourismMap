@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Province;
 use App\User;
 use Auth;
+use App\Helper;
 use Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
@@ -81,13 +82,13 @@ class ProvinceController extends Controller
      */
 
     public function store(Request $request)
-    {  
+    {    //   dd($request->all());
             $validator = Validator::make($request->all(), [
-                 'title_khmer' => 'required',
-                 'title_english' => 'required',
-                  'description_khmer' => 'required',
-                 'description_english' => 'required',
-                'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                  'title_khmer' => 'required',
+                  'title_english' => 'required',
+                //   'description_khmer' => 'required',
+                //   'description_english' => 'required',
+                 'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
            if ($validator->passes()) {
               $photoName=null;   

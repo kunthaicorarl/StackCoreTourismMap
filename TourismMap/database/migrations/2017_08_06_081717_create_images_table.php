@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->integer('gallery_type_id')->unsigned();
             $table->string('name')->unique();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('caption')->nullable();
             $table->string('url')->nullable();
             $table->string('alt_text')->nullable();

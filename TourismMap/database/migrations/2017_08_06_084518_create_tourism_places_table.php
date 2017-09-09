@@ -16,8 +16,7 @@ class CreateTourismPlacesTable extends Migration
          Schema::create('tourism_places', function (Blueprint $table) {
                $table->increments('id');
                $table->integer('province_id')->unsigned();
-              // $table->integer('client_id')->unsigned();
-              $table->integer('user_id')->unsigned();
+               $table->integer('user_id')->unsigned();
                $table->string('title_khmer');
                $table->string('title_english');
                $table->text('thumbnail')->nullable();
@@ -25,13 +24,10 @@ class CreateTourismPlacesTable extends Migration
                $table->boolean('status');
                $table->string('address_khmer')->nullable();
                $table->string('address_english')->nullable();
-               $table->string('description_khmer')->nullable();
-               $table->string('description_english')->nullable();
+               $table->text('description_khmer')->nullable();
+               $table->text('description_english')->nullable();
                $table->float('latitude', 10, 6);
                $table->float('longitude', 10, 6);
-            //     $table->foreign('client_id')
-            // ->references('id')->on('clients')
-            // ->onDelete('cascade');
                 $table->foreign('province_id')
             ->references('id')->on('provinces')
             ->onDelete('cascade');

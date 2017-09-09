@@ -9,7 +9,7 @@
 
     <div class="col-md-10 panel default margin-top-p-4 p-4-t">
     
-        <form enctype="multipart/form-data" id="form" action="{{ url('/admin/tourisms/store') }}" name="form" method="POST"  class="form-horizontal">
+        <form enctype="multipart/form-data" id="form" action="{{ url('/admin/tourisms/update') }}" name="form" method="POST"  class="form-horizontal">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
          <input type="hidden" name="_id" value="{{ $tourism->id }}">
            <div class="form-group">
@@ -19,11 +19,11 @@
                     </label>
                     <div class="col-md-5 col-sm-6">
                         <select class="form-control"
-                                name="provines" id="provines"
+                                name="province" id="province"
                                 >
                                 <option value="">--Select a Province--</option>
                                 @foreach($provines as $key => $pr)
-                                 <option value="{{$pr->id}}" @if($tourism->province_id==$pr->id) selected @endif>{{$pr->title_khmer}}</option>
+                                <option value="{{$pr->id}}" @if($tourism->province_id==$pr->id) selected @endif>{{$pr->title_khmer}}</option>
                                 @endforeach 
                         </select>
                     </div>

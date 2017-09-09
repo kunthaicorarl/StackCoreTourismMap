@@ -136,7 +136,7 @@ class TourismController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'gallery_type'=>'required',
-            'provines'=>'required',
+            'provinces'=>'required',
             'title_khmer' => 'required',
             'title_english' => 'required',
             'latitude' => 'required|min:1|max:50',
@@ -147,10 +147,10 @@ class TourismController extends Controller
         $photoName=null;  
         $url="img/gallerys/"; 
         $userId=Auth::user()->id;         
-        $isExistImage=TourismPlace::find($request->_id);                 
+        $isExistImage=TourismPlace::find($request->_id);        
+      //  dd($isExistImage);         
         if($request->_thumbnail && $isExistImage->thumbnail==$request->_thumbnail){
                $photoName=$request->_thumbnail;
-                
         }else{
                    $validator = Validator::make($request->only('thumbnail'), [
                        'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
@@ -167,7 +167,7 @@ class TourismController extends Controller
                    }
                   
         }   
-           $province=Province::find($request->province);
+           $province=Province::find($request->provines);
            if(!$province){
                return response()->json(['success'=>true,'infor'=>['Province not Found,[Error]']]);
            }

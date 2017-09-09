@@ -186,7 +186,7 @@
                     <label class="col-md-3 col-sm-4 control-label">
                     </label>
                     <div class="col-md-5 col-sm-6">
-                         <img id="preview" src="" style=" width: 100%;"/>
+                         <img id="preview" src="{{ asset('img/gallerys/') }}/{{$tourism->thumbnail}}" style=" width: 100%;"/>
                          <!-- The Modal -->
                         <div id="myModal" class="modal">
                         <span class="close">&times;</span>

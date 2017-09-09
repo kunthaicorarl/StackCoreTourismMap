@@ -136,18 +136,17 @@ class TourismController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'gallery_type'=>'required',
-            'province'=>'required',
+            'provines'=>'required',
             'title_khmer' => 'required',
             'title_english' => 'required',
             'latitude' => 'required|min:1|max:50',
             'longitude' => 'required|min:1|max:50',
            // 'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-     ]);
+        ]);
    if ($validator->passes()) {
         $photoName=null;  
         $url="img/gallerys/"; 
-        $userId=Auth::user()->id;
-         
+        $userId=Auth::user()->id;         
         $isExistImage=TourismPlace::find($request->_id);                 
         if($request->_thumbnail && $isExistImage->thumbnail==$request->_thumbnail){
                $photoName=$request->_thumbnail;

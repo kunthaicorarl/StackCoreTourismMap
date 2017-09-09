@@ -87,7 +87,7 @@ class TourismController extends Controller
            $tourism->description_english=$request->description_english;
            $tourism->address_khmer=$request->address_khmer;
            $tourism->address_english=$request->address_english;
-           $tourism->status=$request->status=='Enable'?'1':'0';
+           $tourism->status='1';
            $tourism->save();
            $tourism->galleryTypes()->save($galleryType);
            return response()->json(['success'=>true,'infor'=>['Tourism Successfully Saved']]);
@@ -103,7 +103,9 @@ class TourismController extends Controller
      */
     public function show($id)
     {
-        //
+        $tourism = TourismPlace::find($id);
+        return \View::make('tourisms.remove',
+         array('tourism'=>$tourism));
     }
 
     /**
@@ -203,8 +205,34 @@ class TourismController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function  destroy(Request $request)
+    {  
+      //  return response()->json(['success'=>false,'infor'=>$request->all()]);
+        $validator = Validator::make($request->all(), [
+            '_id'=>'required',
+        ]);
+        if ($validator->passes()) {
+            $tourism=TourismPlace::find($request->_id);
+            if($tourism){
+                $tourism->delete();
+                return response()->json(['success'=>true,'infor'=>['Tourism Successfully Deleted']]);
+            }
+            return response()->json(['success'=>false,'infor'=>['Tourism Not Found']]);
+        }
+        return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);
+    }
+
+    public function e($id)
     {
-        //
+        dd(1);
+        // $tourism = TourismPlace::find($id);
+        // return \View::make('tourisms.enable',
+        //  array('tourism'=>$tourism));
+    }
+    public function disableDisplay($id)
+    {
+        $tourism = TourismPlace::find($id);
+        return \View::make('tourisms.disable',
+         array('tourism'=>$tourism));
     }
 }

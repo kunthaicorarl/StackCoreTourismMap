@@ -26,12 +26,12 @@
 <table class="table table-condensed">
     <thead>
         <tr>
-            <th width="3%">No</th>
-            <th width="17%">Title</th>
+             <th width="3%">No</th>
+             <th width="17%">Title</th>
              <th width="17%">Province</th>
-             <th width="17%">GalleryType</th>
-            <th width="17%">Description</th>
              <th width="15%">Thumbnail</th>
+             <th width="17%">GalleryType</th>
+             <th width="17%">Description</th>
              <th width="15%">CreateBy</th>
             <th width="10%">Action</th>
         </tr>
@@ -42,30 +42,37 @@
             <td>{{$value->id }}</td>
             <td>
                <div class="table-text-trail">  
-               <b>{{ $value->title_khmer }}</b>
-               <br>
-              <span>{{ $value->title_english }}<span>
-              <br>
-              <span class="label label-{{ $value->status==1?'success':'danger'}}">{{ $value->status==1?'enable':'disable'}}</span>
+                  <b>{{ $value->title_khmer }}</b>
+                <br>
+                <span>{{ $value->title_english }}<span>
+                 <br>
+                <span class="label label-{{ $value->status==1?'success':'danger'}}">{{ $value->status==1?'enable':'disable'}}</span>
                </div>  
             </td>
+
             <td>
-             <div class="table-text-trail">  
-               <b>  {{ $value->provinces->title_khmer }}</b>
-               <br>
-              <span>  {{ $value->provinces->title_english }}<span> 
-               </div>  
-               </td>
-               <td>
                <div class="table-text-trail">  
-               <b>{{ $value->description_khmer }}</b>
-               <br>
-              <span>{{ $value->description_english }}<span>
-              </div>
+                 <b>  {{ $value->provinces->title_khmer }}</b>
+                  <br>
+                  <span>  {{ $value->provinces->title_english }}<span> 
+               </div>  
             </td>
+
              <td>
                <img style="width: 35%;" src="{{ asset('img/gallerys') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
-            </td>
+             </td>
+              <td>
+               {{
+                  $value->galleryTypes[0]->title
+               }}
+              </td>
+               <td>
+                  <div class="table-text-trail">  
+                  <b>{{ $value->description_khmer }}</b>
+                  <br>
+                  <span>{{ $value->description_english }}<span>
+                  </div>
+              </td>
              <td>
                 {{$value->created_at}}
                 <br>
@@ -79,6 +86,12 @@
                 <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/detail"  class="btn-rb-default">View</a>
              </div>
                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>
+             <div class="margin-rb-b" @if($value->status==1) style="display:none" @endif>
+                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/enableDisplay"  class="btn-rb-default">Enable</a>
+             </div>
+              <div class="margin-rb-b" @if($value->status==0) style="display:none" @endif>
+                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/disableDisplay"  class="btn-rb-danger">Disable</a>
+             </div>
             </td>
         </tr>
     @endforeach

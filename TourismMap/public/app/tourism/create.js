@@ -29,7 +29,7 @@ $("#preview").attr("src",e.target.result);
                 $("#form")[0].reset();
                 $("#preview").attr("src","");
                 alertify.success(msg.infor[0]);
-               // setTimeout(function(){ window.location = "/admin/tourisms"; },500);
+                setTimeout(function(){ window.location = "/admin/tourisms"; },500);
                }else{
                  if(msg.infor.length>0){
                      for(var i=0;i<msg.infor.length;i++)

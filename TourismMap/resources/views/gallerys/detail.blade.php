@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
-
+<script>
+var _urlImageGallery='{{url("/admin/gallerys/removeImage")}}';
+var _urlCurrentPage='{{url("/admin/gallerys")}}/{{$galleryType->id}}/detail';
+var _token='{{ csrf_token() }}';
+console.log(
+    _urlImageGallery,
+    _urlCurrentPage,
+    _token);
+</script>
 <div class="col-md-10 p-4-l p-4-r"><div class="pull-left">
 <h4>View Gallery Type Detail</h4></div> <div class="pull-right">
 <a href="{{ url('/admin/gallerys') }}" class="btn btn-default btn-sm">

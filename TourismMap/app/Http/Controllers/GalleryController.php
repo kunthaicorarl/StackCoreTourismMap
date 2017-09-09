@@ -257,16 +257,14 @@ class GalleryController extends Controller
           
     }
     public function removeImage(Request $request){
-        $validator = Validator::make($request->all(), [
-            'id' => 'required'
-       ]);
-         
-         if ($validator->passes()) {
+  
+       
                    $image =Image::find($request->id);;
+                   if(!$image)
+                   {
+                    return response()->json(['success'=>true,'infor'=>['[Error]:Image Not Found']]);
+                   }
                    $image->delete();
                   return response()->json(['success'=>true,'infor'=>['Image Successful Removed']]);
-        }
-      return response()->json(['success'=>false,'infor'=>$request->all()]); 
-
     }
 }

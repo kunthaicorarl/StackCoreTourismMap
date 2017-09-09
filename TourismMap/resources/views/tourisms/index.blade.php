@@ -2,7 +2,16 @@
 @section('content')
 <div>
 <div class="col-md-10 panel panel-default container-p">
-
+<script>
+var EnableUri="{{url('/admin/tourisms/enable')}}";
+var _urlCurrentPage="{{url('/admin/tourisms')}}";
+var DisableUri="{{url('/admin/tourisms/disable')}}";
+var _token='{{ csrf_token() }}';
+console.log(
+    EnableUri,
+_urlCurrentPage,
+_token);
+</script>
 <div class="row header-title-module-p">
     <div>
         <div class="col-md-6">
@@ -87,10 +96,11 @@
              </div>
                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/show"  class="btn-rb-danger">Remove</a>
              <div class="margin-rb-b" @if($value->status==1) style="display:none" @endif>
-                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/enableDisplay"  class="btn-rb-default">Enable</a>
+                {{--  <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/enable"  class="btn-rb-default">Enable</a>  --}}
+                 <a href="javascript:;" id="removeId" data-id="{{$value->id}}" class="btn-rb-success">Enable</a>           
              </div>
               <div class="margin-rb-b" @if($value->status==0) style="display:none" @endif>
-                <a href="{{url('/admin/tourisms/')}}/{{$value->id}}/disableDisplay"  class="btn-rb-danger">Disable</a>
+                <a href="javascript:;" id="disableId" data-id="{{$value->id}}" class="btn-rb-banning">Disable</a>           
              </div>
             </td>
         </tr>
@@ -100,63 +110,7 @@
 </table>
 
 </div>
-<div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <form method="POST" action="{{url('/admin/provinces/store')}}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create New Province</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" >
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Post Code</label>
-            <input type="text" class="form-control" name="postalCode" id="postalCode">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Tittle KH</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Tittle EN</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-        <div class="form-group">
-                <label>Upload Image</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <span class="btn btn-default btn-file">
-                            Browse… <input type="file" name="user_photo" id="imgInp">
-                        </span>
-                    </span>
-                    <input type="text" class="form-control" readonly>
-                </div>
-                <img id='img-upload'/>
-                <h1 id="loadingId">Loading....</h1>
-            </div>
 
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">Des KH:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-         <div class="form-group">
-            <label for="message-text" class="form-control-label">Des EN:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
-        <input type="submit" class="btn btn-primary" value="Save"/>
-      </div>
-    </div>
-  </div>
-</div>
- </form>
-</div>
+<script src="{{ asset('app/tourism/ajaxSweetAlertEnable.js') }}"></script>
+<script src="{{ asset('app/tourism/ajaxSweetAlertDisable.js') }}"></script>
 @endsection

@@ -211,4 +211,12 @@ label.myLabel input[type="file"] {
 .myLabel :valid + span {
     color: #4A4;
 }
-/**END COMMON**/
+.btn-rb-banning {
+    padding: 2px;
+    border: 1px solid #ccc;
+    background: #ff0000;
+    color: white;
+    padding-left: 15px;
+    padding-right: 14px;
+    border-radius: 4px;
+}

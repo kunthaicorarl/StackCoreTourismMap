@@ -2,8 +2,8 @@
 @section('content')
 
 <div class="col-md-9 p-4-l p-4-r"><div class="pull-left">
-<h4>Create New Province</h4></div> <div class="pull-right">
-<a href="{{ url('/admin/provinces') }}" class="btn btn-default btn-sm">
+<h4>Tourism Detail</h4></div> <div class="pull-right">
+<a href="{{ url('/admin/tourisms') }}" class="btn btn-default btn-sm">
 <i class="fa fa-arrow-left"></i>
            Back
     </a></div></div>
@@ -12,11 +12,12 @@
         <form name="provinceForm" novalidate role="form" class="form-horizontal">
           <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label">
-                      Postal Code
+                       Province Name 
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-5 col-sm-6">
-                         12000
+                        {{$tourism->provinces->title_khmer}}
+                      
                     </div>
             </div>
               <div class="form-group">

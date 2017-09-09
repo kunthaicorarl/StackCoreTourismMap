@@ -107,6 +107,12 @@ class TourismController extends Controller
         return \View::make('tourisms.remove',
          array('tourism'=>$tourism));
     }
+    public function detail($id)
+    {
+        $tourism = TourismPlace::find($id);
+        return \View::make('tourisms.detail',
+         array('tourism'=>$tourism));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -194,9 +200,10 @@ class TourismController extends Controller
           $tourism->address_khmer=$request->address_khmer;
           $tourism->address_english=$request->address_english;
           $tourism->status=$request->status=='Enable'?'1':'0';
-          $tourism->galleryTypes->save($galleryType);//()->save($galleryType);
-          dd($tourism);
-         // $tourism->save();
+          $tourism->galleryTypes()->detach();
+          $tourism->galleryTypes()->save($galleryType);//->save($galleryType);//()->save($galleryType);
+          //dd($tourism);
+           $tourism->save();
          //
         
           return response()->json(['success'=>true,'infor'=>['Tourism Successfully Saved']]);
@@ -228,10 +235,30 @@ class TourismController extends Controller
     }
 
   
-    public function disableDisplay($id)
+    public function enable(Request $request)
     {
-        $tourism = TourismPlace::find($id);
-        return \View::make('tourisms.disable',
-         array('tourism'=>$tourism));
+        $tourism =TourismPlace::find($request->id);
+        if(!$tourism){
+            return response()->json(['success'=>false,'infor'=>['Tourism not Found,[Error]']]);
+        }
+        if($tourism->status==1){
+            return response()->json(['success'=>false,'infor'=>['Tourism Place is already Enable']]);
+        }
+        $tourism->status=1;
+        $tourism->save();
+        return response()->json(['success'=>true,'infor'=>['Tourism Place Successfully Enable.']]);
+    }
+    public function disable(Request $request)
+    {
+        $tourism =TourismPlace::find($request->id);
+        if(!$tourism){
+            return response()->json(['success'=>false,'infor'=>['Tourism not Found,[Error]']]);
+        }
+        if($tourism->status==0){
+            return response()->json(['success'=>false,'infor'=>['Tourism Place is already Disable']]);
+        }
+        $tourism->status=0;
+        $tourism->save();
+        return response()->json(['success'=>true,'infor'=>['Tourism Place Successfully Enable.']]);
     }
 }

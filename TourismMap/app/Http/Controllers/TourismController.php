@@ -61,15 +61,37 @@ class TourismController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     public function uploadSubmit(UploadRequest $request)
+     {
+         $product = Product::create($request->asll());
+         foreach ($request->photos as $photo) {
+             $filename = $photo->store('photos');
+             ProductsPhoto::create([
+                 'product_id' => $product->id,
+                 'filename' => $filename
+             ]);
+         }
+         return 'Upload successful!';
+     }
+
+
     public function store(Request $request)
     {
-
-         dd($request->only('picupload'));
-        $photos = count($request->only('picupload'));
+        //dd($request->picupload[0]);
+        $photos = count($request->picupload);
+            $photoName=null;
+            $url="img/gallerys/"; 
+        $photoList=array();
         foreach(range(0, $photos) as $index) {
-          
-            dd($index);
+            //$text=$request->only('picupload')[$index];
+            $photoName=$request->picupload[$index];
+           // $photoName = Helper::NewGuid().time().'.'.$request->picupload[$index]->getClientOriginalExtension();
+         //   $request->picupload[$index]->move(public_path($url), $photoName); 
+         //   $photoList[$index]=array_add($photoName);
+            $photoList->put('name', $photoName);
         }
+        dd($photoList);
+
 
     $validator = Validator::make($request->all(), [
              'gallery_type'=>'required',
@@ -86,9 +108,7 @@ class TourismController extends Controller
          $url="img/gallerys/"; 
          $userId=Auth::user()->id;
 
-         foreach($categories as $request->picupload) {
-            $selectedCategories[$category->id] = $category->name;
-        }
+
 
             if($request->thumbnail->isValid()) {
                 $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();

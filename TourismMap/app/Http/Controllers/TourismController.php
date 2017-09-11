@@ -11,6 +11,7 @@ use App\Tourism;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 class TourismController extends Controller
 {
     /**
@@ -18,6 +19,7 @@ class TourismController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function __construct() {
        $this->middleware('auth');
     }
@@ -77,20 +79,30 @@ class TourismController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->picupload[0]);
-        $photos = count($request->picupload);
+      
+            $photos = count($request->picupload);
             $photoName=null;
             $url="img/gallerys/"; 
-        $photoList=array();
+            $collection=null;
+            $arrayItem =array();
+
+            foreach($request->picupload as $key => $value)   
+            {
+               dd()
+            }
+
         foreach(range(0, $photos) as $index) {
-            //$text=$request->only('picupload')[$index];
+           
             $photoName=$request->picupload[$index];
-           // $photoName = Helper::NewGuid().time().'.'.$request->picupload[$index]->getClientOriginalExtension();
-         //   $request->picupload[$index]->move(public_path($url), $photoName); 
-         //   $photoList[$index]=array_add($photoName);
-            $photoList->put('name', $photoName);
+            $photoName = Helper::NewGuid().time().'.'.$request->picupload[$index]->getClientOriginalExtension();
+            $request->picupload[$index]->move(public_path($url), $photoName); 
+            $collection = collect([$photoName]);
+            $collection->pop();
+            $arrayItem=array_add($items, $key, $value);
+            
         }
-        dd($photoList);
+      
+        dd($collection);
 
 
     $validator = Validator::make($request->all(), [

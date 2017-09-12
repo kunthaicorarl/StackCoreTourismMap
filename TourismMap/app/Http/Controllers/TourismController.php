@@ -79,18 +79,25 @@ class TourismController extends Controller
 
     public function store(Request $request)
     {
-      
+        $url="img/gallerys/"; 
+        $images=array();
+      //  dd($request->picupload);
+        if($files=$request->picupload){
+            foreach($files as $file){
+                $photoName = Helper::NewGuid().time().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path($url), $photoName); 
+                $images[]=$photoName;
+            }
+            dd($images);
+        }
+
             $photos = count($request->picupload);
             $photoName=null;
             $url="img/gallerys/"; 
             $collection=null;
             $arrayItem =array();
 
-            foreach($request->picupload as $key => $value)   
-            {
-               dd()
-            }
-
+        
         foreach(range(0, $photos) as $index) {
            
             $photoName=$request->picupload[$index];

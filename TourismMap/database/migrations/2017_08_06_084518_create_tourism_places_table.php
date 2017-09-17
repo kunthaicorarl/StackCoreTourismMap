@@ -34,14 +34,15 @@ class CreateTourismPlacesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
               $table->timestamps();
         });
-        Schema::create('tourism_gallery', function (Blueprint $table) {
+
+        Schema::create('tourism_image', function (Blueprint $table) {
             $table->integer('tourism_place_id')->unsigned();
-            $table->integer('gallery_type_id')->unsigned();
+            $table->integer('image_id')->unsigned();
             $table->foreign('tourism_place_id')->references('id')->on('tourism_places')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('gallery_type_id')->references('id')->on('gallery_types')
+            $table->foreign('image_id')->references('id')->on('images')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->primary(['tourism_place_id', 'gallery_type_id']);
+            $table->primary(['tourism_place_id', 'image_id']);
         });
     }
 
@@ -52,7 +53,7 @@ class CreateTourismPlacesTable extends Migration
      */
     public function down()
     {   
-        Schema::dropIfExists('tourism_gallery');
+        Schema::dropIfExists('tourism_image');
         Schema::dropIfExists('tourism_places');
     }
 }

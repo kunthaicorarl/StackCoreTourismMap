@@ -8,6 +8,7 @@ use App\Province;
 use App\TourismPlace;
 use App\Helper;
 use App\Tourism;
+use App\Image;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Validator;
@@ -79,21 +80,35 @@ class TourismController extends Controller
 
     public function store(Request $request)
     {
+        
+        // $images=array();
+        // $url="img/gallerys/"; 
+        // $photoName=null;  
+
+        // if($files=$request->picupload){
+        //     foreach($files as $file){
+        //      $photoName = Helper::NewGuid().time().'.'.$file->getClientOriginalExtension();
+        //       $file->move(public_path($url), $photoName); 
+        //         $images[]=['name'=>$photoName];
+        //     }
+        // }
+        // print_r($images);
 
         $validator = Validator::make($request->all(), [
-             'gallery_type'=>'required',
+            // 'gallery_type'=>'required',
              'province'=>'required',
              'title_khmer' => 'required',
              'title_english' => 'required',
              'latitude' => 'required|min:1|max:50',
              'longitude' => 'required|min:1|max:50',
-             'picupload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'picupload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
       ]);
+      $images=array();
+      $collection = collect();
     if ($validator->passes()) {
          $photoName=null;  
          $url="img/gallerys/"; 
-         $images=array();
-            if($request->picupload->isValid()) {
+           // if($request->picupload->isValid()) {
                 // $photoName = Helper::NewGuid().time().'.'.$request->thumbnail->getClientOriginalExtension();
                 // $request->picupload->move(public_path($url), $photoName);  
 
@@ -101,10 +116,12 @@ class TourismController extends Controller
                     foreach($files as $file){
                      $photoName = Helper::NewGuid().time().'.'.$file->getClientOriginalExtension();
                       $file->move(public_path($url), $photoName); 
-                        $images[]=$photoName;
+                       // $images[]=['name'=>$photoName];
+                       $collection->put('name', $photoName);
                     }
                 }
-            }
+          //  }
+         //dd($images);
             $province=Province::find($request->province);
             if(!$province){
                 return response()->json(['success'=>true,'infor'=>['Province not Found,[Error]']]);
@@ -121,16 +138,19 @@ class TourismController extends Controller
            $tourism->provinces()->associate($province);
            $tourism->title_khmer=$request->title_khmer;
            $tourism->title_english=$request->title_english;
-           $tourism->thumbnail=$photoName;
+        //   $tourism->thumbnail=$photoName;
            $tourism->video=$request->video;
            $tourism->description_khmer=$request->description_khmer;
            $tourism->description_english=$request->description_english;
            $tourism->address_khmer=$request->address_khmer;
            $tourism->address_english=$request->address_english;
            $tourism->status='1';
-           $tourism->save();
-           $tourism->galleryTypes()->save($galleryType);
-           return response()->json(['success'=>true,'infor'=>['Tourism Successfully Saved']]);
+          // $tourism->save();
+        //  $imgModel=new Image;
+      //     $imgModel->name='thai...22';
+         //  $tourism->images()->save([$images]);
+           // dd($imgModel);
+           return response()->json(['success'=>false,'infor'=>['Tourism Successfully Saved'.$collection]]);
       }
            return response()->json(['success'=>false,'infor'=>$validator->errors()->all()]);
      }

@@ -48,7 +48,7 @@ _token);
              <th width="17%">Title</th>
              <th width="17%">Province</th>
              <th width="15%">Thumbnail</th>
-             <th width="17%">GalleryType</th>
+             {{--  <th width="17%">GalleryType</th>  --}}
              <th width="17%">Description</th>
              <th width="15%">CreateBy</th>
             <th width="10%">Action</th>
@@ -76,14 +76,14 @@ _token);
                </div>  
             </td>
 
-             <td>
+             {{--  <td>
                <img style="width: 35%;" src="{{ asset('img/gallerys') }}/{{ $value->thumbnail?$value->thumbnail:'no-images.png'}}"/>
              </td>
               <td>
                {{
                   $value->galleryTypes[0]->title
                }}
-              </td>
+              </td>  --}}
                <td>
                   <div class="table-text-trail">  
                   <b>{{ $value->description_khmer }}</b>
